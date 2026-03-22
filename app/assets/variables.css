@@ -1,0 +1,63 @@
+@font-face {
+  font-weight: 400;
+  font-family: 'SPSL-New-Cyrillic';
+  font-style: normal;
+  src: url('/fonts/spsl_new_cyrillic.ttf') format('truetype');
+}
+
+@font-face {
+  font-weight: 400;
+  font-family: 'Mont';
+  font-style: normal;
+  src:
+    url('/fonts/Mont-Regular.woff2') format('woff2'),
+    url('/fonts/Mont-Regular.woff') format('woff'),
+    url('/fonts/Mont-Regular.ttf') format('truetype');
+}
+@font-face {
+  font-weight: 500;
+  font-family: 'Mont';
+  font-style: normal;
+  src:
+    url('/fonts/Mont-SemiBold.woff2') format('woff2'),
+    url('/fonts/Mont-SemiBold.woff') format('woff'),
+    url('/fonts/Mont-SemiBold.ttf') format('truetype');
+  font-display: block;
+}
+@font-face {
+  font-weight: 600;
+  font-family: 'Mont';
+  font-style: normal;
+  src:
+    url('/fonts/Mont-Bold.woff2') format('woff2'),
+    url('/fonts/Mont-Bold.woff') format('woff'),
+    url('/fonts/Mont-Bold.ttf') format('truetype');
+  font-display: block;
+}
+@font-face {
+  font-weight: 700;
+  font-family: 'Mont';
+  font-style: normal;
+  src:
+    url('/fonts/Mont-Heavy.woff2') format('woff2'),
+    url('/fonts/Mont-Heavy.woff') format('woff'),
+    url('/fonts/Mont-Heavy.ttf') format('truetype');
+  font-display: block;
+}
+@font-face {
+  font-weight: 800;
+  font-family: 'Mont';
+  font-style: normal;
+  src:
+    url('/fonts/Mont-Black.woff2') format('woff2'),
+    url('/fonts/Mont-Black.woff') format('woff'),
+    url('/fonts/Mont-Black.ttf') format('truetype');
+  font-display: block;
+}
+:root {
+  --color-white: white;
+  --color-black: black;
+  --blue: #070835;
+
+  --accent: var(--blue);
+}

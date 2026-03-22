@@ -1,0 +1,32 @@
+html {
+  scroll-behavior: smooth;
+}
+body {
+  width: 100vw;
+  height: 100dvh;
+  overflow-x: hidden;
+  font-weight: 400;
+  font-size: 18pt;
+  @media screen and (max-width: 1599px) {
+    font-size: 17pt;
+  }
+  @media screen and (max-width: 1199px) {
+    font-size: 16pt;
+  }
+  @media screen and (max-width: 768px) {
+    font-size: 14pt;
+  }
+}
+body::-webkit-scrollbar {
+  width: 4px;
+}
+body::-webkit-scrollbar-track {
+  background: var(--color-black);
+}
+body::-webkit-scrollbar-thumb {
+  background-color: var(--color-white);
+  border-radius: 15px;
+}
+* {
+  font-family: 'Mont', sans-serif !important;
+}
