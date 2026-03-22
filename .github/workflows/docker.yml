@@ -26,7 +26,7 @@ jobs:
         with:
           context: .
           push: true
-          tags: mgdarrow/dobrogorlovka:latest
+          tags: mgdarrow/oroikge:latest
 
       - name: Trigger Dokploy webhook
         if: success()
