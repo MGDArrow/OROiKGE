@@ -5,7 +5,7 @@
       <ClientOnly>
         <iframe
           src="https://vkvideo.ru/video_ext.php?oid=-229166163&id=456239113&hash=42cde1f518c8af63&hd=3"
-          class="test"
+          class="video"
           allow="
             autoplay;
             encrypted-media;
@@ -514,20 +514,45 @@
   .mainpage {
     width: 100%;
   }
-  .test {
+  .video {
     float: left;
     width: 45%;
-    aspect-ratio: 1280/720;
+    aspect-ratio: 1280 / 720;
     margin: 0 2em 0 1em;
-    overflow: hidden;
+
+    @media (width <= 1200px) {
+      width: 50%;
+      margin-right: 1.5em;
+    }
+
+    @media (width <= 768px) {
+      float: none;
+      width: 100%;
+      margin: 0 0 20px;
+    }
   }
+
+  // Блок организаторов
   .organization {
     display: flex;
     gap: 20px;
-    width: 80%;
-    margin: 10px auto;
+    max-width: 90%;
+    margin: 20px auto;
     text-decoration: none;
     border: 8px solid var(--accent);
+
+    @media (width <= 1200px) {
+      gap: 15px;
+      max-width: 95%;
+      border-width: 6px;
+    }
+
+    @media (width <= 768px) {
+      flex-direction: column;
+      gap: 0;
+      max-width: 100%;
+      border-width: 4px;
+    }
     & div {
       display: flex;
       flex: 1;
@@ -536,54 +561,79 @@
       padding: 20px;
       color: var(--accent);
       font-weight: 600;
-      font-size: 2em;
+      font-size: clamp(1.2rem, 4vw, 2rem);
       text-align: center;
+
+      @media (width <= 768px) {
+        padding: 12px;
+      }
       &:last-child {
         background: var(--accent);
       }
     }
   }
+
+  // Результаты (цифры)
   .results {
     display: flex;
-    align-items: center;
+    flex-wrap: wrap;
+    gap: 20px;
     justify-content: center;
-    width: 80%;
-    margin: 20px auto;
+    margin: 30px auto;
     &__item {
       flex: 1;
+      min-width: 150px;
       color: var(--accent);
       text-align: center;
-      & div {
+      div {
         font-weight: 700;
-        font-size: 3em;
+        font-size: clamp(4rem, 6vw, 6rem);
       }
-      & span {
+      span {
         font-weight: 500;
-        font-size: 1.5em;
+        font-size: clamp(1rem, 3vw, 1.5rem);
         font-style: italic;
       }
     }
-    &__nominations {
-      display: flex;
-      flex-wrap: wrap;
+
+    @media (width <= 768px) {
+      flex-direction: column;
       gap: 20px;
-    }
-    &__nominatia {
-      width: calc(50% - 10px);
-      padding: 10px 0 40px;
-      border: 4px solid var(--accent);
-      & span {
-        display: block;
-        margin: 10px 0 20px;
-        color: var(--accent);
-        font-weight: 700;
-        font-size: 1.5em;
-        text-align: center;
-        text-transform: uppercase;
-      }
-      &:first-child {
+      &__item {
         width: 100%;
       }
+    }
+  }
+
+  // Сетка номинаций
+  /* stylelint-disable-next-line selector-class-pattern */
+  .results__nominations {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 20px;
+    margin-top: 20px;
+  }
+  /* stylelint-disable-next-line selector-class-pattern */
+  .results__nominatia {
+    width: calc(50% - 10px);
+    padding: 10px 0 30px;
+    border: 4px solid var(--accent);
+    &:first-child {
+      width: 100%;
+    }
+    span {
+      display: block;
+      margin: 10px 0 20px;
+      color: var(--accent);
+      font-weight: 700;
+      font-size: clamp(1.2rem, 3vw, 1.5rem);
+      text-align: center;
+      text-transform: uppercase;
+    }
+
+    @media (width <= 768px) {
+      width: 100%;
+      padding-bottom: 20px;
     }
   }
 </style>

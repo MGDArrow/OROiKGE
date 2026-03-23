@@ -10,27 +10,26 @@
   }>();
 </script>
 
-<style lang="scss">
+<style scoped lang="scss">
   .documents {
     display: flex;
     flex-wrap: wrap;
     gap: 30px;
+    width: 100%;
     margin: 0 auto;
-    padding: 1em 3em;
+    padding: 1em 2em;
 
-    @media screen and (width <= 1599px) {
-      width: 1100px;
-      font-size: 0.8em;
+    /* 1200px–768px */
+    @media (width <= 1200px) and (width >= 768px) {
+      gap: 20px;
+      padding: 1em 1.5em;
     }
 
-    @media screen and (width <= 1199px) {
-      width: 750px;
-    }
-
-    @media screen and (width <= 768px) {
+    /* до 768px */
+    @media (width <= 768px) {
       flex-direction: column;
       gap: 20px;
-      width: calc(98vw - 40px);
+      padding: 1em;
     }
   }
 </style>

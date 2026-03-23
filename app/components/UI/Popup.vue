@@ -70,7 +70,6 @@
     emit('close');
   };
 
-  // ----- Обработка клавиатуры -----
   const onKeydown = (e) => {
     if (!props.visible) return;
     if (e.key === 'ArrowLeft') {
@@ -87,7 +86,6 @@
   onMounted(() => window.addEventListener('keydown', onKeydown));
   onUnmounted(() => window.removeEventListener('keydown', onKeydown));
 
-  // ----- Обработка свайпов -----
   let touchStartX = 0;
   let touchEndX = 0;
   const onTouchStart = (e) => {
@@ -100,11 +98,10 @@
     if (!props.visible) return;
     const deltaX = touchEndX - touchStartX;
     if (Math.abs(deltaX) > 50) {
-      // минимальная длина свайпа
       if (deltaX > 0) {
-        goPrev(); // свайп вправо → предыдущее
+        goPrev();
       } else {
-        goNext(); // свайп влево → следующее
+        goNext();
       }
     }
     touchStartX = 0;
@@ -150,6 +147,18 @@
     &:hover {
       transform: scale(1.1);
     }
+
+    @media (width <= 768px) {
+      top: 10px;
+      right: 10px;
+      width: 44px;
+      height: 44px;
+      font-size: 40px;
+      line-height: 1;
+      text-align: center;
+      background: rgb(0 0 0 / 50%);
+      border-radius: 50%;
+    }
   }
   .nav-button {
     position: absolute;
@@ -172,6 +181,19 @@
     }
     &.next {
       right: -60px;
+    }
+
+    @media (width <= 768px) {
+      width: 40px;
+      height: 40px;
+      font-size: 1.5rem;
+      background: rgb(0 0 0 / 70%);
+      &.prev {
+        left: 10px;
+      }
+      &.next {
+        right: 10px;
+      }
     }
   }
   .image-counter {

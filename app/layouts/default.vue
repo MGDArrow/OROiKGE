@@ -31,12 +31,21 @@
     display: flex;
     flex-direction: column;
     min-height: 100vh;
-    margin: 0 auto;
   }
   main {
     flex: 1;
+    width: 100%;
     max-width: 1600px;
     margin: 0 auto;
     padding: 0 20px 40px;
+
+    // Плавное уменьшение отступов
+    @media (width <= 1200px) {
+      padding: 0 30px 40px;
+    }
+
+    @media (width <= 768px) {
+      padding: 0 16px 30px;
+    }
   }
 </style>

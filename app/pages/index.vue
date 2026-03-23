@@ -22,7 +22,7 @@
 
 <style scoped lang="scss">
   .mainpage {
-    width: 1600px;
-    margin: 0 auto;
+    // width: 1600px;
+    // margin: 0 auto;
   }
 </style>

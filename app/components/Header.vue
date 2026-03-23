@@ -92,4 +92,62 @@
       font-weight: 500;
     }
   }
+
+  /* ========== Адаптив ========== */
+
+  /* 1600px–1200px */
+  @media (width <= 1600px) and (width >= 1200px) {
+    .logo img {
+      width: 400px;
+    }
+  }
+
+  /* 1200px–768px */
+  @media (width <= 1200px) and (width >= 768px) {
+    .logo img {
+      width: 300px;
+    }
+    h1 {
+      font-size: 1.8em;
+    }
+    nav {
+      font-size: 1.1em;
+    }
+  }
+
+  /* до 768px */
+  @media (width <= 768px) {
+    header {
+      margin-bottom: 30px;
+    }
+    .logo img {
+      width: 200px;
+    }
+    h1 {
+      margin-bottom: 20px;
+      font-size: 1.5em;
+    }
+    nav {
+      flex-direction: column;
+      gap: 10px;
+      align-items: center;
+      margin-bottom: 15px;
+      font-size: 1em;
+      & a,
+      div {
+        width: auto;
+        margin: 5px 0;
+      }
+      &.second {
+        flex-direction: row;
+        flex-wrap: wrap;
+        gap: 8px;
+        justify-content: center;
+        height: auto;
+        margin-top: 5px;
+        margin-bottom: 10px;
+        font-size: 0.9em;
+      }
+    }
+  }
 </style>

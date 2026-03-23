@@ -72,4 +72,28 @@
       }
     }
   }
+
+  /* ========== Адаптив ========== */
+
+  /* до 768px */
+  @media (width <= 768px) {
+    .footer {
+      flex-direction: column;
+      gap: 30px;
+      text-align: center;
+    }
+    .footer__logo {
+      max-width: 200px;
+    }
+    .footer__name {
+      font-size: 1em;
+    }
+    .footer__created {
+      width: auto;
+      max-width: 280px;
+      margin: 0 auto;
+      padding: 15px 10px;
+      font-size: 1em;
+    }
+  }
 </style>

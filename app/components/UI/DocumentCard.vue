@@ -38,7 +38,7 @@
     position: relative;
     display: flex;
     align-items: center;
-    width: calc(100% / 2 - 30px);
+    width: calc(50% - 15px); /* 2 колонки с учётом gap 30px */
     padding: 20px 15px;
     color: var(--accent);
     font-weight: 600;
@@ -46,11 +46,6 @@
     border: 4px solid var(--accent);
     cursor: pointer;
     transition: 0.4s ease-in-out;
-
-    @media screen and (width <= 768px) {
-      width: 80%;
-      padding: 15px 5px;
-    }
     & p {
       padding-left: 80px;
     }
@@ -85,20 +80,19 @@
       scale: 1.03;
     }
 
-    // &:hover {
-    //   width: calc(100% / 2 - 15px - 8px - 65.5px);
-    //   padding: 25px 15px 25px 50px;
-    //   transform: scale(1.04);
-
-    //   @media screen and (width <= 1199px) {
-    //     width: calc(100% / 2 - 15px - 8px - 30.5px);
-    //     padding: 25px 15px;
-    //   }
-
-    //   @media screen and (width <= 768px) {
-    //     width: unset;
-    //     padding: 25px 15px;
-    //   }
-    // }
+    /* до 768px — одна колонка */
+    @media (width <= 768px) {
+      width: 100%;
+      padding: 15px 10px;
+      & p {
+        padding-left: 70px;
+      }
+      &__download {
+        width: 70px;
+      }
+      &__size {
+        font-size: 0.7em;
+      }
+    }
   }
 </style>

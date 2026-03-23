@@ -51,4 +51,18 @@
       line-height: 1.5em;
     }
   }
+
+  @media (width <= 768px) {
+    ul li {
+      padding-left: 10px;
+      font-size: 0.85em;
+      text-indent: 1.8em;
+    }
+    ol {
+      padding-left: 1.8em;
+      li {
+        font-size: 0.85em;
+      }
+    }
+  }
 </style>
