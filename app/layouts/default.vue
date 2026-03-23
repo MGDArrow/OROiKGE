@@ -8,7 +8,23 @@
   </div>
 </template>
 
-<script setup lang="ts"></script>
+<script setup lang="ts">
+  import type { RouteRecordNameGeneric } from 'vue-router';
+
+  onMounted(() => {
+    changeColor(useRoute().name);
+  });
+
+  useRouter().afterEach((to) => {
+    changeColor(to.name);
+  });
+
+  function changeColor(to: RouteRecordNameGeneric) {
+    if (to === 'easter-egg')
+      document.documentElement.style.setProperty('--accent', 'var(--red)');
+    else document.documentElement.style.setProperty('--accent', 'var(--blue)');
+  }
+</script>
 
 <style scoped lang="scss">
   .wrapper {
@@ -19,6 +35,8 @@
   }
   main {
     flex: 1;
-    padding: 40px 0;
+    max-width: 1600px;
+    margin: 0 auto;
+    padding: 0 20px 40px;
   }
 </style>

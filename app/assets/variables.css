@@ -58,6 +58,7 @@
   --color-white: white;
   --color-black: black;
   --blue: #070835;
+  --red: #7a1521;
 
   --accent: var(--blue);
 }
