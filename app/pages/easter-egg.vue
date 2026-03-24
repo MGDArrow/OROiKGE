@@ -1,5 +1,5 @@
 <template>
-  <div class="mainpage">
+  <div>
     <h2>УВАЖАЕМЫЕ РОДИТЕЛИ, ПЕДАГОГИ И УЧАЩИЕСЯ!</h2>
     <CompetitionSection>
       <ClientOnly>
@@ -40,7 +40,7 @@
       </UIList>
       <a
         href="https://peresvet-lavra.ru/razdely/pashalnoe-yayco"
-        class="organization"
+        class="organization-competition"
         target="_blank"
         rel="noopener noreferrer"
       >
@@ -189,7 +189,7 @@
         </div>
       </div>
       <div class="results__nominations">
-        <div class="results__nominatia">
+        <div class="results__nominatia full">
           <span>Вне номинаций</span>
           <UIList>
             <li>
@@ -510,130 +510,4 @@
   ];
 </script>
 
-<style scoped lang="scss">
-  .mainpage {
-    width: 100%;
-  }
-  .video {
-    float: left;
-    width: 45%;
-    aspect-ratio: 1280 / 720;
-    margin: 0 2em 0 1em;
-
-    @media (width <= 1200px) {
-      width: 50%;
-      margin-right: 1.5em;
-    }
-
-    @media (width <= 768px) {
-      float: none;
-      width: 100%;
-      margin: 0 0 20px;
-    }
-  }
-
-  // Блок организаторов
-  .organization {
-    display: flex;
-    gap: 20px;
-    max-width: 90%;
-    margin: 20px auto;
-    text-decoration: none;
-    border: 8px solid var(--accent);
-
-    @media (width <= 1200px) {
-      gap: 15px;
-      max-width: 95%;
-      border-width: 6px;
-    }
-
-    @media (width <= 768px) {
-      flex-direction: column;
-      gap: 0;
-      max-width: 100%;
-      border-width: 4px;
-    }
-    & div {
-      display: flex;
-      flex: 1;
-      align-items: center;
-      justify-content: center;
-      padding: 20px;
-      color: var(--accent);
-      font-weight: 600;
-      font-size: clamp(1.2rem, 4vw, 2rem);
-      text-align: center;
-
-      @media (width <= 768px) {
-        padding: 12px;
-      }
-      &:last-child {
-        background: var(--accent);
-      }
-    }
-  }
-
-  // Результаты (цифры)
-  .results {
-    display: flex;
-    flex-wrap: wrap;
-    gap: 20px;
-    justify-content: center;
-    margin: 30px auto;
-    &__item {
-      flex: 1;
-      min-width: 150px;
-      color: var(--accent);
-      text-align: center;
-      div {
-        font-weight: 700;
-        font-size: clamp(4rem, 6vw, 6rem);
-      }
-      span {
-        font-weight: 500;
-        font-size: clamp(1rem, 3vw, 1.5rem);
-        font-style: italic;
-      }
-    }
-
-    @media (width <= 768px) {
-      flex-direction: column;
-      gap: 20px;
-      &__item {
-        width: 100%;
-      }
-    }
-  }
-
-  // Сетка номинаций
-  /* stylelint-disable-next-line selector-class-pattern */
-  .results__nominations {
-    display: flex;
-    flex-wrap: wrap;
-    gap: 20px;
-    margin-top: 20px;
-  }
-  /* stylelint-disable-next-line selector-class-pattern */
-  .results__nominatia {
-    width: calc(50% - 10px);
-    padding: 10px 0 30px;
-    border: 4px solid var(--accent);
-    &:first-child {
-      width: 100%;
-    }
-    span {
-      display: block;
-      margin: 10px 0 20px;
-      color: var(--accent);
-      font-weight: 700;
-      font-size: clamp(1.2rem, 3vw, 1.5rem);
-      text-align: center;
-      text-transform: uppercase;
-    }
-
-    @media (width <= 768px) {
-      width: 100%;
-      padding-bottom: 20px;
-    }
-  }
-</style>
+<style scoped lang="scss"></style>

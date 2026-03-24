@@ -5,7 +5,12 @@ export default defineNuxtConfig({
   nitro: {
     preset: 'node-server',
   },
-  css: ['./assets/reset.css', './assets/variables.css', './assets/styles.css'],
+  css: [
+    './assets/reset.css',
+    './assets/variables.css',
+    './assets/styles.css',
+    './assets/competition.css',
+  ],
   app: {
     head: {
       title: 'Отдел Религиозного Образования и Катехизации Горловской Епархии',
