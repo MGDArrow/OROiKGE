@@ -80,6 +80,7 @@
   font-weight: 500;
   font-size: clamp(1rem, 3vw, 1.5rem);
   font-style: italic;
+  text-wrap: balance;
 }
 @media (width <= 768px) {
   .results {
@@ -107,6 +108,9 @@
 }
 .results__nominatia.full {
   width: 100%;
+}
+.results__nominatia.golden {
+  --accent: var(--gold);
 }
 .results__nominatia span {
   display: block;

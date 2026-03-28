@@ -174,6 +174,42 @@
 
     <CompetitionSection>
       <h2>Итоги и победители конкурса</h2>
+      <div class="results__nominations">
+        <div class="results__nominatia full golden">
+          <span>Победители международного этапа</span>
+          <UIList>
+            <li>
+              <strong>Дорошенкова Мария</strong> — <strong>I место</strong>, в
+              номинации «Фантазия», возрастная группа 12-14 лет;
+            </li>
+            <li>
+              <strong>Голубева Мария</strong> — <strong>II место</strong>, в
+              номинации «Фантазия», возрастная группа 9-11 лет;
+            </li>
+            <li>
+              <strong>Шубина Дарина</strong> — <strong>III место</strong>, в
+              номинации «Умелец», возрастная группа 12-14 лет;
+            </li>
+            <p></p>
+            <li>
+              <strong>Неботова Анна</strong> —
+              <strong>Диплом 3 степени</strong> за высокий уровень работ;
+            </li>
+            <li>
+              <strong>Гофман Мария</strong> —
+              <strong>Диплом 3 степени</strong> за высокий уровень работ;
+            </li>
+            <li>
+              <strong>Агаева София</strong> —
+              <strong>Диплом 3 степени</strong> за высокий уровень работ;
+            </li>
+            <li>
+              <strong>Матвеева Варвара</strong> —
+              <strong>Диплом 3 степени</strong> за высокий уровень работ;
+            </li>
+          </UIList>
+        </div>
+      </div>
       <div class="results">
         <div class="results__item">
           <div>256</div>
@@ -186,6 +222,10 @@
         <div class="results__item">
           <div>47</div>
           <span>победителей</span>
+        </div>
+        <div class="results__item">
+          <div>7</div>
+          <span>дипломов Международного этапа</span>
         </div>
       </div>
       <div class="results__nominations">

@@ -59,6 +59,7 @@
   --color-black: black;
   --blue: #070835;
   --red: #7a1521;
+  --gold: #daa520;
 
   --accent: var(--blue);
 }
