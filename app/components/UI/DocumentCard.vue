@@ -5,6 +5,7 @@
     rel="noopener noreferrer"
     class="document-card"
     ref="activeRef"
+    download
   >
     <p>
       <slot />

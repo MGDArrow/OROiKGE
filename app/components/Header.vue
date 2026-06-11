@@ -1,41 +1,74 @@
 <template>
   <header>
-    <a class="logo">
-      <img v-if="page === 'index'" src="/logo.svg" alt="logo" />
-      <img v-else-if="page === 'easter-egg'" src="/logo_egg.svg" alt="logo" />
+    <div class="logo">
+      <img v-if="page === 'easter-egg'" src="/logo_egg.svg" alt="logo" />
       <img
         v-else-if="page === 'beauty-of-gods-world'"
         src="/logo_beauty.svg"
         alt="logo"
       />
-    </a>
-    <h1 v-if="page === 'index'">
-      Отдел Религиозного Образования и Катехизации Горловской Епархии
-    </h1>
-    <h1 v-else-if="page === 'easter-egg'">
-      Епархиальный этап международного конкурса-фестиваля
-      декоративно-прикладного творчества «Пасхальное яйцо»
-    </h1>
-    <h1 v-else-if="page === 'beauty-of-gods-world'">
-      Регионального этапа международного конкурса детского творчества «Красота
-      Божьего мира»
-    </h1>
-
+      <img v-else src="/logo.svg" alt="logo" />
+    </div>
+    <h1>{{ pageName }}</h1>
     <nav>
-      <NuxtLink to="/" @click="setSecondMenu('')">Главная</NuxtLink>
-      <div @click="setSecondMenu('OPK')">Сотрудничество со школами</div>
-      <div @click="setSecondMenu('Competition')">Конкурсы</div>
-      <a>Контакты</a>
+      <NuxtLink
+        :class="{ active: page === 'index' }"
+        to="/"
+        @click="setSecondMenu('')"
+        >Главная</NuxtLink
+      >
+      <div
+        :class="{
+          active: secondMenu === 'OPK' || isOPK,
+          halfactive: !isOPK,
+        }"
+        @click="setSecondMenu('OPK')"
+      >
+        Сотрудничество со школами
+      </div>
+      <div
+        :class="{
+          active: secondMenu === 'Competition' || isCompetition,
+          halfactive: !isCompetition,
+        }"
+        @click="setSecondMenu('Competition')"
+      >
+        Конкурсы
+      </div>
+      <NuxtLink
+        :class="{ active: page === 'contacts' }"
+        to="/contacts"
+        @click="setSecondMenu('')"
+        >Контакты</NuxtLink
+      >
     </nav>
     <nav class="second">
       <template v-if="secondMenu === 'OPK'">
-        <a>Материалы для учителей</a>
-        <a>Материалы для учеников</a>
-        <a>Информация для родителей</a>
+        <NuxtLink
+          :class="{ active: page === 'opk-for-teacher' }"
+          to="/opk-for-teacher"
+          >Материалы для учителей</NuxtLink
+        >
+        <NuxtLink
+          :class="{ active: page === 'opk-for-student' }"
+          to="/opk-for-student"
+          >Материалы для учеников</NuxtLink
+        >
+        <NuxtLink
+          :class="{ active: page === 'opk-for-parents' }"
+          to="/opk-for-parents"
+          >Информация для родителей</NuxtLink
+        >
       </template>
       <template v-if="secondMenu === 'Competition'">
-        <NuxtLink to="/beauty-of-gods-world">Красота Божьего Мира</NuxtLink>
-        <NuxtLink to="/easter-egg">Пасхальное яйцо</NuxtLink>
+        <NuxtLink
+          :class="{ active: page === 'beauty-of-gods-world' }"
+          to="/beauty-of-gods-world"
+          >Красота Божьего Мира</NuxtLink
+        >
+        <NuxtLink :class="{ active: page === 'easter-egg' }" to="/easter-egg"
+          >Пасхальное яйцо</NuxtLink
+        >
       </template>
     </nav>
   </header>
@@ -51,6 +84,33 @@
 
   const page = ref(useRoute().name);
 
+  const pageName = computed(() => {
+    if (page.value === 'easter-egg')
+      return `Епархиальный этап международного конкурса-фестиваля
+      декоративно-прикладного творчества «Пасхальное яйцо»`;
+    else if (page.value === 'beauty-of-gods-world')
+      return `Регионального этапа международного конкурса детского творчества «Красота
+      Божьего мира»`;
+    else if (page.value === 'opk-for-parents')
+      return `Информация для родителей`;
+    else if (page.value === 'opk-for-teacher') return `Материалы для учителей`;
+    else if (page.value === 'opk-for-student') return `Материалы для учеников`;
+    else if (page.value === 'contacts') return `Контакты`;
+    else
+      return `Отдел Религиозного Образования и Катехизации Горловской Епархии`;
+  });
+
+  const isOPK = computed(() => {
+    return (
+      page.value === 'opk-for-teacher' ||
+      page.value === 'opk-for-student' ||
+      page.value === 'opk-for-parents'
+    );
+  });
+  const isCompetition = computed(() => {
+    return page.value === 'beauty-of-gods-world' || page.value === 'easter-egg';
+  });
+
   useRouter().afterEach((to) => {
     page.value = to.name as string;
   });
@@ -63,14 +123,20 @@
     border-bottom: 3px solid var(--accent);
   }
   .logo {
+    width: 500px;
+    margin: 10px auto;
+    aspect-ratio: 1/1;
     & img {
       display: block;
-      width: 500px;
-      margin: 10px auto;
+      width: 100%;
     }
   }
   h1 {
-    margin: 10px auto 40px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    min-height: 3em;
+    margin: 10px auto;
     color: var(--accent);
     font-size: 2em;
     font-family: SPSL-New-Cyrillic, sans-serif !important;
@@ -80,6 +146,7 @@
   nav {
     display: flex;
     flex-wrap: wrap;
+    gap: 10px;
     justify-content: space-evenly;
     margin: 10px auto 20px;
     font-weight: 600;
@@ -90,15 +157,26 @@
     div {
       display: block;
       width: max-content;
-      margin: 0 10px;
+      padding: 10px;
       color: var(--accent);
       text-align: center;
       text-decoration: none;
+      border: 3px solid var(--color-white);
       cursor: pointer;
+      &.active {
+        color: var(--color-white);
+        background: var(--accent);
+        border: 3px solid var(--accent);
+      }
+      &.halfactive {
+        color: var(--accent);
+        background: var(--color-white);
+      }
     }
     &.second {
-      height: 30px;
+      // height: 30px;
       font-weight: 500;
+      transition: 0.2s ease-in-out;
     }
   }
 
@@ -106,14 +184,14 @@
 
   /* 1600px–1200px */
   @media (width <= 1600px) and (width >= 1200px) {
-    .logo img {
+    .logo {
       width: 400px;
     }
   }
 
   /* 1200px–768px */
   @media (width <= 1200px) and (width >= 768px) {
-    .logo img {
+    .logo {
       width: 300px;
     }
     h1 {
@@ -129,7 +207,7 @@
     header {
       margin-bottom: 30px;
     }
-    .logo img {
+    .logo {
       width: 200px;
     }
     h1 {
@@ -145,7 +223,7 @@
       & a,
       div {
         width: auto;
-        margin: 5px 0;
+        padding: 5px;
       }
       &.second {
         flex-direction: row;

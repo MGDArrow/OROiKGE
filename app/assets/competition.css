@@ -1,8 +1,9 @@
 .video {
+  display: block;
   float: left;
   width: 45%;
-  aspect-ratio: 1280/720;
   margin: 0 2em 0 1em;
+  aspect-ratio: 1280/720;
 }
 @media (width <= 1200px) {
   .video {
@@ -16,6 +17,9 @@
     width: 100%;
     margin: 0 0 20px;
   }
+}
+.video-right {
+  float: right;
 }
 .organization-competition {
   display: flex;
@@ -126,4 +130,68 @@
     width: 100%;
     padding-bottom: 20px;
   }
+}
+.gallery {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 12px;
+  justify-content: space-evenly;
+  margin: 0.5em 0;
+  padding: 0 2em;
+  figure {
+    width: calc(50% - 8px);
+  }
+  figcaption {
+    display: block;
+    margin: 8px 0 4px 0;
+    color: darkslategrey;
+    font-size: 0.8em;
+    font-style: italic;
+    text-align: center;
+  }
+  img {
+    width: 100%;
+    max-height: 300px;
+    object-fit: contain;
+  }
+  video {
+    width: 100%;
+    aspect-ratio: 1280/720;
+  }
+  p {
+    display: block;
+    margin: 4px 0;
+    color: var(--accent);
+    font-weight: 600;
+    font-size: 0.6em;
+    text-align: center;
+  }
+  a {
+    display: inline;
+    color: var(--accent);
+    font-size: 1em;
+    text-align: center;
+  }
+}
+.gallery__video {
+  figure {
+    width: calc(100% / 3 - 8px);
+  }
+}
+@media (width <= 768px) {
+  .gallery,
+  .gallery__video {
+    flex-direction: column;
+    padding: 0 1em;
+    figure {
+      width: 100%;
+    }
+  }
+}
+video::-webkit-media-controls {
+  display: none;
+  pointer-events: none;
+}
+video {
+  outline: 3px solid var(--accent);
 }

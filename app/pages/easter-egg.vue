@@ -2,22 +2,17 @@
   <div>
     <h2>УВАЖАЕМЫЕ РОДИТЕЛИ, ПЕДАГОГИ И УЧАЩИЕСЯ!</h2>
     <CompetitionSection>
-      <ClientOnly>
-        <iframe
-          src="https://vkvideo.ru/video_ext.php?oid=-229166163&id=456239113&hash=42cde1f518c8af63&hd=3"
-          class="video"
-          allow="
-            autoplay;
-            encrypted-media;
-            fullscreen;
-            picture-in-picture;
-            screen-wake-lock;
-          "
-          frameborder="0"
-          allowfullscreen
-        ></iframe>
-      </ClientOnly>
-
+      <div class="video">
+        <video-player>
+          <video-skin>
+            <video
+              playsinline
+              controls
+              src="https://s3.regru.cloud/opk-info/easter-egg/video_2026.mp4"
+            ></video>
+          </video-skin>
+        </video-player>
+      </div>
       <p>
         Отдел религиозного образования и катехизации Горловской епархии
         приглашает Вас принять участие в отборочном (епархиальном) этапе
@@ -494,59 +489,59 @@
   const docs: Array<IDoc> = [
     {
       size: '325 Kb',
-      href: `/docs/easter-egg-2026/00_Положение о конкурсе 'Пасхальное яйцо'.pdf`,
+      href: `https://s3.regru.cloud/opk-info/easter-egg/2026/docs/00_Положение о конкурсе 'Пасхальное яйцо'.pdf`,
       name: `Положение о конкурсе 'Пасхальное яйцо'`,
     },
     {
       size: '2.65 Mb',
-      href: `/docs/easter-egg-2026/01_Положение епархиального этапа о конкурсе.pdf`,
+      href: `https://s3.regru.cloud/opk-info/easter-egg/2026/docs/01_Положение епархиального этапа о конкурсе.pdf`,
       name: `Положение епархиального этапа о конкурсе`,
     },
     {
       size: '0.8 Mb',
-      href: `/docs/easter-egg-2026/02_Номинации епархиального этапа.pdf`,
+      href: `https://s3.regru.cloud/opk-info/easter-egg/2026/docs/02_Номинации епархиального этапа.pdf`,
       name: `Номинации епархиального этапа`,
     },
     {
       size: '2.65 Mb',
-      href: `/docs/easter-egg-2026/03_Требования к работам.pdf`,
+      href: `https://s3.regru.cloud/opk-info/easter-egg/2026/docs/03_Требования к работам.pdf`,
       name: `Требования к работам`,
     },
     {
       size: '1.15 Mb',
-      href: `/docs/easter-egg-2026/04_Призовые места епархиального этапа.pdf`,
+      href: `https://s3.regru.cloud/opk-info/easter-egg/2026/docs/04_Призовые места епархиального этапа.pdf`,
       name: `Призовые места епархиального этапа`,
     },
     {
       size: '19 Kb',
-      href: `/docs/easter-egg-2026/05_Согласие на обработку персональных данных.docx`,
+      href: `https://s3.regru.cloud/opk-info/easter-egg/2026/docs/05_Согласие на обработку персональных данных.docx`,
       name: `Согласие на обработку персональных данных`,
     },
     {
       size: '130 Kb',
-      href: `/docs/easter-egg-2026/06_Ярлычк на работу с обратной стороны.docx`,
+      href: `https://s3.regru.cloud/opk-info/easter-egg/2026/docs/06_Ярлычк на работу с обратной стороны.docx`,
       name: `Ярлык на работу`,
     },
   ];
 
   const photosJury = [
-    '/photos/easter-egg-2026/jury (1).webp',
-    '/photos/easter-egg-2026/jury (2).webp',
-    '/photos/easter-egg-2026/jury (3).webp',
-    '/photos/easter-egg-2026/jury (4).webp',
-    '/photos/easter-egg-2026/jury (5).webp',
-    '/photos/easter-egg-2026/jury (6).webp',
-    '/photos/easter-egg-2026/jury (7).webp',
-    '/photos/easter-egg-2026/jury (8).webp',
-    '/photos/easter-egg-2026/jury (9).webp',
-    '/photos/easter-egg-2026/jury (10).webp',
+    'https://s3.regru.cloud/opk-info/easter-egg/2026/photos/jury (1).webp',
+    'https://s3.regru.cloud/opk-info/easter-egg/2026/photos/jury (2).webp',
+    'https://s3.regru.cloud/opk-info/easter-egg/2026/photos/jury (3).webp',
+    'https://s3.regru.cloud/opk-info/easter-egg/2026/photos/jury (4).webp',
+    'https://s3.regru.cloud/opk-info/easter-egg/2026/photos/jury (5).webp',
+    'https://s3.regru.cloud/opk-info/easter-egg/2026/photos/jury (6).webp',
+    'https://s3.regru.cloud/opk-info/easter-egg/2026/photos/jury (7).webp',
+    'https://s3.regru.cloud/opk-info/easter-egg/2026/photos/jury (8).webp',
+    'https://s3.regru.cloud/opk-info/easter-egg/2026/photos/jury (9).webp',
+    'https://s3.regru.cloud/opk-info/easter-egg/2026/photos/jury (10).webp',
   ];
   const photosWinners = [
-    '/photos/easter-egg-2026/winners (1).webp',
-    '/photos/easter-egg-2026/winners (2).webp',
-    '/photos/easter-egg-2026/winners (3).webp',
-    '/photos/easter-egg-2026/winners (4).webp',
-    '/photos/easter-egg-2026/winners (5).webp',
+    'https://s3.regru.cloud/opk-info/easter-egg/2026/photos/winners (1).webp',
+    'https://s3.regru.cloud/opk-info/easter-egg/2026/photos/winners (2).webp',
+    'https://s3.regru.cloud/opk-info/easter-egg/2026/photos/winners (3).webp',
+    'https://s3.regru.cloud/opk-info/easter-egg/2026/photos/winners (4).webp',
+    'https://s3.regru.cloud/opk-info/easter-egg/2026/photos/winners (5).webp',
   ];
 </script>
 

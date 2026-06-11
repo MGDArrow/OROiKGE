@@ -27,7 +27,7 @@
   ul {
     width: 100%;
     & li {
-      position: relative;
+      // position: relative;
       font-size: 0.9em;
       line-height: 1.5em;
       text-indent: 2.8em;

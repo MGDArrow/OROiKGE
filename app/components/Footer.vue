@@ -12,7 +12,51 @@
         </ClientOnly>
       </div>
       <div class="footer__column">
-        <!-- <div class="footer__menu">123</div> -->
+        <div class="footer__menu">
+          <a
+            class="footer__ge"
+            href="https://gorlovka-eparhia.org/"
+            target="_blank"
+            rel="noopener noreferrer"
+            >Сайт Горловской Епархии</a
+          >
+          <ul>
+            <li><NuxtLink to="/">Главная</NuxtLink></li>
+            <li>
+              Сотрудничество со школами
+              <ul>
+                <li>
+                  <NuxtLink to="/opk-for-teacher"
+                    >Материалы для учителей</NuxtLink
+                  >
+                </li>
+                <li>
+                  <NuxtLink to="/opk-for-student"
+                    >Материалы для учеников</NuxtLink
+                  >
+                </li>
+                <li>
+                  <NuxtLink to="/opk-for-parents"
+                    >Информация для родителей</NuxtLink
+                  >
+                </li>
+              </ul>
+            </li>
+            <li>
+              Конкурсы
+              <ul>
+                <li>
+                  <NuxtLink to="/beauty-of-gods-world"
+                    >Красота Божьего Мира</NuxtLink
+                  >
+                </li>
+                <li><NuxtLink to="/easter-egg">Пасхальное яйцо</NuxtLink></li>
+              </ul>
+            </li>
+            <li><NuxtLink to="/contacts">Контакты</NuxtLink></li>
+          </ul>
+        </div>
+
         <a
           class="footer__created"
           href="https://vk.com/mgdarrow"
@@ -53,8 +97,22 @@
       font-size: 1.2em;
       text-align: center;
     }
+    &__ge {
+      display: block;
+      width: 100%;
+      margin: 20px auto;
+      padding: 15px 10px;
+      color: var(--color-white);
+      font-weight: 500;
+      font-size: 1.2em;
+      text-align: center;
+      text-transform: uppercase;
+      text-decoration: none;
+      border: 3px solid var(--color-white);
+    }
     &__menu {
       flex: 1;
+      margin-bottom: 20px;
     }
     &__created {
       display: block;
@@ -72,20 +130,40 @@
       }
     }
   }
+  ul {
+    width: 100%;
+    padding-left: 1em;
+    & li {
+      position: relative;
+      font-size: 0.9em;
+      line-height: 1.5em;
+      text-indent: 2.8em;
+      &::before {
+        position: absolute;
+        width: 0.5em;
+        height: 0.5em;
+        background: var(--accent);
+        transform: translateX(-1em) translateY(80%);
+        content: ' ';
+      }
+    }
+    & a {
+      color: var(--color-white);
+    }
+  }
 
-  /* ========== Адаптив ========== */
-
-  /* до 768px */
   @media (width <= 768px) {
     .footer {
       flex-direction: column;
       gap: 30px;
-      text-align: center;
       &__logo {
         max-width: 200px;
       }
       &__name {
         font-size: 1em;
+      }
+      &__menu {
+        margin-bottom: 30px;
       }
       &__created {
         width: auto;
@@ -94,6 +172,14 @@
         padding: 15px 10px;
         font-size: 1em;
       }
+    }
+  }
+
+  @media (width <= 768px) {
+    ul li {
+      padding-left: 10px;
+      font-size: 0.85em;
+      text-indent: 1.8em;
     }
   }
 </style>

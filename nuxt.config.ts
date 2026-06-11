@@ -2,15 +2,24 @@
 export default defineNuxtConfig({
   compatibilityDate: '2025-07-15',
   devtools: { enabled: true },
+
   nitro: {
     preset: 'node-server',
   },
+
+  vue: {
+    compilerOptions: {
+      isCustomElement: (tag) => ['video-player', 'video-skin'].includes(tag),
+    },
+  },
+
   css: [
     './assets/reset.css',
     './assets/variables.css',
     './assets/styles.css',
     './assets/competition.css',
   ],
+
   app: {
     head: {
       title: 'Отдел Религиозного Образования и Катехизации Горловской Епархии',
@@ -49,4 +58,6 @@ export default defineNuxtConfig({
       ],
     },
   },
+
+  modules: ['@nuxt/image'],
 });

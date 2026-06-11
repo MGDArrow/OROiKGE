@@ -2,9 +2,9 @@ html {
   scroll-behavior: smooth;
 }
 body {
-  width: 100vw;
+  width: calc(100vw - 4px);
   height: 100dvh;
-  overflow-x: hidden;
+  /* overflow-x: hidden; */
   font-weight: 400;
   font-size: 18pt;
   @media screen and (max-width: 1599px) {
@@ -62,5 +62,15 @@ p {
 }
 strong {
   color: var(--accent);
-  font-weight: 700;
+  font-weight: 600;
+}
+blockquote {
+  display: block;
+  margin: 12px 1vw 12px 5vw;
+  padding: 0 1vw 0 2vw;
+  font-style: italic;
+  line-height: 1.4em;
+  text-align: justify;
+  text-indent: 1.5em;
+  border-left: 8px solid var(--accent);
 }
