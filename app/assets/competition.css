@@ -154,10 +154,6 @@
     max-height: 300px;
     object-fit: contain;
   }
-  video {
-    width: 100%;
-    aspect-ratio: 1280/720;
-  }
   p {
     display: block;
     margin: 4px 0;
@@ -193,5 +189,7 @@ video::-webkit-media-controls {
   pointer-events: none;
 }
 video {
+  width: 100%;
   outline: 3px solid var(--accent);
+  aspect-ratio: 1280/720;
 }

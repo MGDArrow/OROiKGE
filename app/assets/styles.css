@@ -51,7 +51,7 @@ h3 {
   font-weight: 500;
   font-size: 1.1em;
   line-height: 1.4em;
-  text-align: justify;
+  /* text-align: justify; */
   text-indent: 1.3em;
 }
 p {
@@ -59,6 +59,13 @@ p {
   line-height: 1.3em;
   text-align: justify;
   text-indent: 1.5em;
+  /* text-wrap: balance; */
+  @media (max-width: 768px) {
+    font-size: 0.9em;
+    line-height: 1.6em;
+    text-align: left;
+    text-indent: 1em;
+  }
 }
 strong {
   color: var(--accent);
@@ -70,7 +77,7 @@ blockquote {
   padding: 0 1vw 0 2vw;
   font-style: italic;
   line-height: 1.4em;
-  text-align: justify;
+  /* text-align: justify; */
   text-indent: 1.5em;
   border-left: 8px solid var(--accent);
 }
