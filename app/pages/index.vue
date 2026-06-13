@@ -3,7 +3,7 @@
     <article>
       <h2>Об отделе</h2>
       <figure class="photo">
-        <img
+        <NuxtImg
           src="/mitropolit.webp"
           alt="Митрофан, митрополит Горловский и Славянский"
         />
@@ -13,7 +13,7 @@
         </figcaption>
       </figure>
       <figure class="photo right">
-        <img
+        <NuxtImg
           src="/evgenij.webp"
           alt="Евгений, митрополит Екатеринбургский и Верхотурский"
         />
@@ -44,7 +44,7 @@
         подготовку педагогов.
       </p>
       <figure class="photo">
-        <img src="/manager.webp" alt="протоиерей Кирилл Щевелев" />
+        <NuxtImg src="/manager.webp" alt="протоиерей Кирилл Щевелев" />
         <figcaption>Протоиерей Кирилл Щевелев</figcaption>
         <figcaption>
           <span

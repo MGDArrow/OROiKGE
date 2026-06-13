@@ -3,7 +3,7 @@
     <div class="footer">
       <div class="footer__column">
         <div class="footer__logo">
-          <img src="/logo_white.svg" alt="logo" />
+          <NuxtImg src="/logo_white.svg" alt="logo" loading="lazy" />
         </div>
         <ClientOnly>
           <div class="footer__name">
