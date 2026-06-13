@@ -126,7 +126,7 @@
       border: 3px solid var(--color-white);
       & strong {
         color: white;
-        font-weight: 800;
+        font-weight: 700;
       }
     }
   }

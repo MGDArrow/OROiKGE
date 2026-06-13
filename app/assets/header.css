@@ -1,0 +1,123 @@
+header {
+  max-width: 1600px;
+  margin: 0 auto 50px;
+  border-bottom: 3px solid var(--accent);
+}
+@media (width <= 768px) {
+  header {
+    margin-bottom: 30px;
+  }
+}
+.logo {
+  width: 500px;
+  margin: 10px auto;
+  aspect-ratio: 1/1;
+}
+.logo img {
+  display: block;
+  width: 100%;
+}
+@media (width <= 1600px) and (width >= 1200px) {
+  .logo {
+    width: 400px;
+  }
+}
+@media (width <= 1200px) and (width >= 768px) {
+  .logo {
+    width: 300px;
+  }
+}
+@media (width <= 768px) {
+  .logo {
+    width: 200px;
+  }
+}
+h1 {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  min-height: 3em;
+  margin: 10px auto;
+  color: var(--accent);
+  font-size: 2em;
+  font-family: SPSL-New-Cyrillic, sans-serif !important;
+  text-align: center;
+  text-wrap: balance;
+}
+@media (width <= 1200px) and (width >= 768px) {
+  h1 {
+    font-size: 1.8em;
+  }
+}
+@media (width <= 768px) {
+  h1 {
+    margin-bottom: 20px;
+    font-size: 1.5em;
+  }
+}
+nav {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 10px;
+  justify-content: space-evenly;
+  margin: 10px auto 20px;
+  font-weight: 600;
+  font-size: 1.3em;
+  text-transform: uppercase;
+  cursor: pointer;
+}
+nav a,
+nav div {
+  display: block;
+  width: max-content;
+  padding: 10px;
+  color: var(--accent);
+  text-align: center;
+  text-decoration: none;
+  border: 3px solid var(--color-white);
+  cursor: pointer;
+}
+nav a.active,
+nav div.active {
+  color: var(--color-white);
+  background: var(--accent);
+  border: 3px solid var(--accent);
+}
+nav a.halfactive,
+nav div.halfactive {
+  color: var(--accent);
+  background: var(--color-white);
+}
+@media (width <= 1200px) and (width >= 768px) {
+  nav {
+    font-size: 1.1em;
+  }
+}
+nav.second {
+  font-weight: 500;
+  transition: 0.2s ease-in-out;
+}
+@media (width <= 768px) {
+  nav {
+    flex-direction: column;
+    gap: 10px;
+    align-items: center;
+    margin-bottom: 15px;
+    font-size: 1em;
+  }
+  nav a,
+  nav div {
+    width: auto;
+    padding: 5px;
+  }
+  nav.second {
+    flex-direction: row;
+    flex-wrap: wrap;
+    gap: 8px;
+    justify-content: center;
+    height: auto;
+    margin-top: 5px;
+    margin-bottom: 10px;
+    font-size: 0.9em;
+  }
+}

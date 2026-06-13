@@ -48,16 +48,6 @@
     url('/fonts/Mont-Heavy.ttf') format('truetype');
   font-display: block;
 }
-@font-face {
-  font-weight: 800;
-  font-family: 'Mont';
-  font-style: normal;
-  src:
-    url('/fonts/Mont-Black.woff2') format('woff2'),
-    url('/fonts/Mont-Black.woff') format('woff'),
-    url('/fonts/Mont-Black.ttf') format('truetype');
-  font-display: block;
-}
 :root {
   --color-white: white;
   --color-black: black;

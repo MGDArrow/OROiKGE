@@ -1,13 +1,13 @@
 <template>
   <header>
     <div class="logo">
-      <img v-if="page === 'easter-egg'" src="/logo_egg.svg" alt="logo" />
-      <img
+      <NuxtImg v-if="page === 'easter-egg'" src="/logo_egg.svg" alt="logo" />
+      <NuxtImg
         v-else-if="page === 'beauty-of-gods-world'"
         src="/logo_beauty.svg"
         alt="logo"
       />
-      <img v-else src="/logo.svg" alt="logo" />
+      <NuxtImg v-else src="/logo.svg" alt="logo" />
     </div>
     <h1>{{ pageName }}</h1>
     <nav>
@@ -117,117 +117,117 @@
 </script>
 
 <style scoped lang="scss">
-  header {
-    max-width: 1600px;
-    margin: 0 auto 50px;
-    border-bottom: 3px solid var(--accent);
+  // header {
+  //   max-width: 1600px;
+  //   margin: 0 auto 50px;
+  //   border-bottom: 3px solid var(--accent);
 
-    @media (width <= 768px) {
-      margin-bottom: 30px;
-    }
-  }
-  .logo {
-    width: 500px;
-    margin: 10px auto;
-    aspect-ratio: 1/1;
-    & img {
-      display: block;
-      width: 100%;
-    }
+  //   @media (width <= 768px) {
+  //     margin-bottom: 30px;
+  //   }
+  // }
+  // .logo {
+  //   width: 500px;
+  //   margin: 10px auto;
+  //   aspect-ratio: 1/1;
+  //   & img {
+  //     display: block;
+  //     width: 100%;
+  //   }
 
-    @media (width <= 1600px) and (width >= 1200px) {
-      width: 400px;
-    }
+  //   @media (width <= 1600px) and (width >= 1200px) {
+  //     width: 400px;
+  //   }
 
-    @media (width <= 1200px) and (width >= 768px) {
-      width: 300px;
-    }
+  //   @media (width <= 1200px) and (width >= 768px) {
+  //     width: 300px;
+  //   }
 
-    @media (width <= 768px) {
-      width: 200px;
-    }
-  }
-  h1 {
-    display: flex;
-    align-items: center;
-    justify-content: center;
-    min-height: 3em;
-    margin: 10px auto;
-    color: var(--accent);
-    font-size: 2em;
-    font-family: SPSL-New-Cyrillic, sans-serif !important;
-    text-align: center;
-    text-wrap: balance;
+  //   @media (width <= 768px) {
+  //     width: 200px;
+  //   }
+  // }
+  // h1 {
+  //   display: flex;
+  //   align-items: center;
+  //   justify-content: center;
+  //   min-height: 3em;
+  //   margin: 10px auto;
+  //   color: var(--accent);
+  //   font-size: 2em;
+  //   font-family: SPSL-New-Cyrillic, sans-serif !important;
+  //   text-align: center;
+  //   text-wrap: balance;
 
-    @media (width <= 1200px) and (width >= 768px) {
-      font-size: 1.8em;
-    }
+  //   @media (width <= 1200px) and (width >= 768px) {
+  //     font-size: 1.8em;
+  //   }
 
-    @media (width <= 768px) {
-      margin-bottom: 20px;
-      font-size: 1.5em;
-    }
-  }
-  nav {
-    display: flex;
-    flex-wrap: wrap;
-    gap: 10px;
-    justify-content: space-evenly;
-    margin: 10px auto 20px;
-    font-weight: 600;
-    font-size: 1.3em;
-    text-transform: uppercase;
-    cursor: pointer;
-    & a,
-    div {
-      display: block;
-      width: max-content;
-      padding: 10px;
-      color: var(--accent);
-      text-align: center;
-      text-decoration: none;
-      border: 3px solid var(--color-white);
-      cursor: pointer;
-      &.active {
-        color: var(--color-white);
-        background: var(--accent);
-        border: 3px solid var(--accent);
-      }
-      &.halfactive {
-        color: var(--accent);
-        background: var(--color-white);
-      }
-    }
+  //   @media (width <= 768px) {
+  //     margin-bottom: 20px;
+  //     font-size: 1.5em;
+  //   }
+  // }
+  // nav {
+  //   display: flex;
+  //   flex-wrap: wrap;
+  //   gap: 10px;
+  //   justify-content: space-evenly;
+  //   margin: 10px auto 20px;
+  //   font-weight: 600;
+  //   font-size: 1.3em;
+  //   text-transform: uppercase;
+  //   cursor: pointer;
+  //   & a,
+  //   div {
+  //     display: block;
+  //     width: max-content;
+  //     padding: 10px;
+  //     color: var(--accent);
+  //     text-align: center;
+  //     text-decoration: none;
+  //     border: 3px solid var(--color-white);
+  //     cursor: pointer;
+  //     &.active {
+  //       color: var(--color-white);
+  //       background: var(--accent);
+  //       border: 3px solid var(--accent);
+  //     }
+  //     &.halfactive {
+  //       color: var(--accent);
+  //       background: var(--color-white);
+  //     }
+  //   }
 
-    @media (width <= 1200px) and (width >= 768px) {
-      font-size: 1.1em;
-    }
-    &.second {
-      font-weight: 500;
-      transition: 0.2s ease-in-out;
-    }
+  //   @media (width <= 1200px) and (width >= 768px) {
+  //     font-size: 1.1em;
+  //   }
+  //   &.second {
+  //     font-weight: 500;
+  //     transition: 0.2s ease-in-out;
+  //   }
 
-    @media (width <= 768px) {
-      flex-direction: column;
-      gap: 10px;
-      align-items: center;
-      margin-bottom: 15px;
-      font-size: 1em;
-      & a,
-      div {
-        width: auto;
-        padding: 5px;
-      }
-      &.second {
-        flex-direction: row;
-        flex-wrap: wrap;
-        gap: 8px;
-        justify-content: center;
-        height: auto;
-        margin-top: 5px;
-        margin-bottom: 10px;
-        font-size: 0.9em;
-      }
-    }
-  }
+  //   @media (width <= 768px) {
+  //     flex-direction: column;
+  //     gap: 10px;
+  //     align-items: center;
+  //     margin-bottom: 15px;
+  //     font-size: 1em;
+  //     & a,
+  //     div {
+  //       width: auto;
+  //       padding: 5px;
+  //     }
+  //     &.second {
+  //       flex-direction: row;
+  //       flex-wrap: wrap;
+  //       gap: 8px;
+  //       justify-content: center;
+  //       height: auto;
+  //       margin-top: 5px;
+  //       margin-bottom: 10px;
+  //       font-size: 0.9em;
+  //     }
+  //   }
+  // }
 </style>

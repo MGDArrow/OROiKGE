@@ -91,11 +91,11 @@
     <h2>Конкурсы</h2>
     <div class="menu">
       <NuxtLink to="/beauty-of-gods-world" class="menu__item">
-        <img src="/logo_beauty.svg" alt="logo" />
+        <NuxtImg src="/logo_beauty.svg" alt="logo" loading="lazy" />
         <span>Красота Божьего Мира XXI</span>
       </NuxtLink>
       <NuxtLink to="/easter-egg" class="menu__item">
-        <img src="/logo_egg.svg" alt="logo" />
+        <NuxtImg src="/logo_egg.svg" alt="logo" loading="lazy" />
         <span>Пасхальное яйцо 2026</span>
       </NuxtLink>
     </div>

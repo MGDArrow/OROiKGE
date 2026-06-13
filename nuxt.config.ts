@@ -21,6 +21,7 @@ export default defineNuxtConfig({
     './assets/reset.css',
     './assets/variables.css',
     './assets/styles.css',
+    './assets/header.css',
     './assets/competition.css',
   ],
 
