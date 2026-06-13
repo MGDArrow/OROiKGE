@@ -2,7 +2,11 @@
   font-weight: 400;
   font-family: 'SPSL-New-Cyrillic';
   font-style: normal;
-  src: url('/fonts/spsl_new_cyrillic.ttf') format('truetype');
+  src:
+    url('/fonts/SPSL-New-Cyrillic.woff2') format('woff2'),
+    url('/fonts/SPSL-New-Cyrillic.woff') format('woff'),
+    url('/fonts/SPSL-New-Cyrillic.ttf') format('truetype');
+  font-display: block;
 }
 
 @font-face {

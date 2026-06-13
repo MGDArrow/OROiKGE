@@ -121,6 +121,10 @@
     max-width: 1600px;
     margin: 0 auto 50px;
     border-bottom: 3px solid var(--accent);
+
+    @media (width <= 768px) {
+      margin-bottom: 30px;
+    }
   }
   .logo {
     width: 500px;
@@ -129,6 +133,18 @@
     & img {
       display: block;
       width: 100%;
+    }
+
+    @media (width <= 1600px) and (width >= 1200px) {
+      width: 400px;
+    }
+
+    @media (width <= 1200px) and (width >= 768px) {
+      width: 300px;
+    }
+
+    @media (width <= 768px) {
+      width: 200px;
     }
   }
   h1 {
@@ -142,6 +158,15 @@
     font-family: SPSL-New-Cyrillic, sans-serif !important;
     text-align: center;
     text-wrap: balance;
+
+    @media (width <= 1200px) and (width >= 768px) {
+      font-size: 1.8em;
+    }
+
+    @media (width <= 768px) {
+      margin-bottom: 20px;
+      font-size: 1.5em;
+    }
   }
   nav {
     display: flex;
@@ -173,48 +198,16 @@
         background: var(--color-white);
       }
     }
+
+    @media (width <= 1200px) and (width >= 768px) {
+      font-size: 1.1em;
+    }
     &.second {
-      // height: 30px;
       font-weight: 500;
       transition: 0.2s ease-in-out;
     }
-  }
 
-  /* ========== Адаптив ========== */
-
-  /* 1600px–1200px */
-  @media (width <= 1600px) and (width >= 1200px) {
-    .logo {
-      width: 400px;
-    }
-  }
-
-  /* 1200px–768px */
-  @media (width <= 1200px) and (width >= 768px) {
-    .logo {
-      width: 300px;
-    }
-    h1 {
-      font-size: 1.8em;
-    }
-    nav {
-      font-size: 1.1em;
-    }
-  }
-
-  /* до 768px */
-  @media (width <= 768px) {
-    header {
-      margin-bottom: 30px;
-    }
-    .logo {
-      width: 200px;
-    }
-    h1 {
-      margin-bottom: 20px;
-      font-size: 1.5em;
-    }
-    nav {
+    @media (width <= 768px) {
       flex-direction: column;
       gap: 10px;
       align-items: center;

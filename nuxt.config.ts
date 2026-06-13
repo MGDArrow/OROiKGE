@@ -2,6 +2,9 @@
 export default defineNuxtConfig({
   compatibilityDate: '2025-07-15',
   devtools: { enabled: true },
+  experimental: {
+    clientNodeCompat: true,
+  },
 
   ssr: true,
   nitro: {
@@ -56,6 +59,41 @@ export default defineNuxtConfig({
           sizes: '180x180',
         },
         { rel: 'manifest', href: '/site.webmanifest' },
+        { rel: 'preconnect', href: 'https://s3.regru.cloud' },
+        { rel: 'dns-prefetch', href: 'https://s3.regru.cloud' },
+        {
+          rel: 'preload',
+          href: '/fonts/SPSL-New-Cyrillic.woff2',
+          as: 'font',
+          type: 'font/woff2',
+          crossorigin: 'anonymous',
+        },
+        {
+          rel: 'preload',
+          href: '/fonts/Mont-Regular.woff2',
+          as: 'font',
+          type: 'font/woff2',
+          crossorigin: 'anonymous',
+        },
+        {
+          rel: 'preload',
+          href: '/fonts/Mont-Bold.woff2',
+          as: 'font',
+          type: 'font/woff2',
+          crossorigin: 'anonymous',
+        },
+        {
+          rel: 'preload',
+          href: '/fonts/Mont-SemiBold.woff2',
+          as: 'font',
+          type: 'font/woff2',
+          crossorigin: 'anonymous',
+        },
+        {
+          rel: 'preload',
+          href: '/logo.svg',
+          as: 'image',
+        },
       ],
     },
   },
