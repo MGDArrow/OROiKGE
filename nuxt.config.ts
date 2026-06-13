@@ -90,11 +90,6 @@ export default defineNuxtConfig({
           type: 'font/woff2',
           crossorigin: 'anonymous',
         },
-        {
-          rel: 'preload',
-          href: '/logo.svg',
-          as: 'image',
-        },
       ],
     },
   },
