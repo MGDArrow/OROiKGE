@@ -1,10 +1,11 @@
 <template>
   <div>
     <UIMenu :menu />
+    <OPKAboutORKSE :addressee="'teachers'" />
+    <OPKAboutOPK :addressee="'teachers'" />
     <OPKMeeting :is-teachers="true" />
     <CompetitionSection>
       <h2 id="skillup">Повышение квалификации</h2>
-      <p>Уважаемые учителя!</p>
       <p>
         Преподавание модуля «Основы Православной Культуры» в рамках курса ОРКСЭ
         требует от педагога не только профессиональных компетенций, но и
@@ -112,6 +113,26 @@
 
 <script setup lang="ts">
   const menu = [
+    {
+      name: 'О предмете «Основы Религиозной Культуры и Светской Этики»',
+      id: 'about-orkse',
+      lvl: 1,
+    },
+    {
+      name: 'Базовые понятия о православной культуре',
+      id: 'about-opk',
+      lvl: 1,
+    },
+    { name: 'Живопись', id: 'about-opk-1', lvl: 2 },
+    { name: 'Литература', id: 'about-opk-2', lvl: 2 },
+    { name: 'Архитектура', id: 'about-opk-3', lvl: 2 },
+    { name: 'Язык и повседневность', id: 'about-opk-4', lvl: 2 },
+    {
+      name: 'Нравственный ориентир в современном мире',
+      id: 'about-opk-5',
+      lvl: 2,
+    },
+
     { name: 'Родительское собрание', id: 'meeting', lvl: 1 },
     { name: '1. Подготовка и содержание собрания', id: 'meeting-1', lvl: 2 },
     {
