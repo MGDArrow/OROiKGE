@@ -12,7 +12,7 @@
   </div>
   <div class="menu__popup" :class="{ top: isTop, open: isOpen }">
     <div v-if="isTop" @click="isOpen = !isOpen">
-      <NuxtImg src="/menu.svg" :class="{ open: isOpen }" />
+      <NuxtImg src="./menu.svg" :class="{ open: isOpen }" alt="menu" />
     </div>
     <div v-if="!isTop || isOpen">
       <span>Оглавление страницы:</span>
