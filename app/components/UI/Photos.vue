@@ -1,7 +1,7 @@
 <template>
   <div class="image-gallery">
     <div class="main-image-container">
-      <img
+      <NuxtImg
         v-if="currentImage"
         :src="currentImage"
         alt="Main image"
@@ -13,7 +13,7 @@
 
     <div v-if="images.length" class="thumbnails-container">
       <div class="thumbnails-list">
-        <img
+        <NuxtImg
           v-for="(img, idx) in images"
           :key="idx"
           :src="img"

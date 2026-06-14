@@ -41,7 +41,7 @@
         rel="noopener noreferrer"
       >
         <div>Организаторы конкурса:</div>
-        <div><img src="/logo_peresvet.png" alt="Пересвет" /></div>
+        <div><NuxtImg src="/logo_peresvet.png" alt="Пересвет" /></div>
       </a>
       <h3 id="info-1">
         Первый, отборочный, этап Конкурса проводится

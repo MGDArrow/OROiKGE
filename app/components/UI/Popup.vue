@@ -11,7 +11,7 @@
       <button class="popup-close" @click="close">×</button>
       <button class="nav-button prev" @click="goPrev">◀</button>
       <button class="nav-button next" @click="goNext">▶</button>
-      <img :src="currentSrc" alt="Full size image" class="popup-image" />
+      <NuxtImg :src="currentSrc" alt="Full size image" class="popup-image" />
       <div class="image-counter" v-if="images.length > 1">
         {{ currentIdx + 1 }} / {{ images.length }}
       </div>

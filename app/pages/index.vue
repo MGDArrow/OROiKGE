@@ -43,6 +43,7 @@
         становление личности, воцерковление новоначальных и профессиональную
         подготовку педагогов.
       </p>
+
       <figure class="photo">
         <NuxtImg src="/manager.webp" alt="протоиерей Кирилл Щевелев" />
         <figcaption>Протоиерей Кирилл Щевелев</figcaption>
@@ -99,6 +100,20 @@
         <span>Пасхальное яйцо 2026</span>
       </NuxtLink>
     </div>
+    <a
+      href="https://pravobraz.ru/informaciya-ob-otdele/obshhaya-informaciya/"
+      class="organization-competition"
+      target="_blank"
+      rel="noopener noreferrer"
+    >
+      <div>Общие сведения о Синодальном ОРОиК</div>
+      <div>
+        <NuxtImg
+          src="/logo_soroik.png"
+          alt="Синодальный Отдел Религиозного Образования и Катехизации"
+        />
+      </div>
+    </a>
   </div>
 </template>
 
