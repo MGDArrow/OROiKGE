@@ -1,6 +1,6 @@
 <template>
   <CompetitionSection>
-    <h2>Материалы к урокам</h2>
+    <h2 id="lessons">Материалы к урокам</h2>
     <p><strong>Материалы к урокам включают в себя:</strong></p>
     <UIList :type="'ol'">
       <li v-if="addressee === 'teachers'">

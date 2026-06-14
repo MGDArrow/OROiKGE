@@ -1,6 +1,7 @@
 <template>
   <div>
-    <h2>УВАЖАЕМЫЕ РОДИТЕЛИ, ПЕДАГОГИ И УЧАЩИЕСЯ!</h2>
+    <UIMenu :menu />
+    <h2 id="info">УВАЖАЕМЫЕ РОДИТЕЛИ, ПЕДАГОГИ И УЧАЩИЕСЯ!</h2>
     <CompetitionSection>
       <div class="video">
         <video-player>
@@ -42,7 +43,7 @@
         <div>Организаторы конкурса:</div>
         <div><img src="/logo_peresvet.png" alt="Пересвет" /></div>
       </a>
-      <h3>
+      <h3 id="info-1">
         Первый, отборочный, этап Конкурса проводится
         <strong>с 1 января по 22 февраля 2026 года</strong>, принять участие в
         нем могут учащиеся <strong>с 6 до 17 лет:</strong>
@@ -56,7 +57,7 @@
           территории Горловской епархии.
         </li>
       </UIList>
-      <h3><strong>Цели и задачи</strong> Конкурса:</h3>
+      <h3 id="info-2"><strong>Цели и задачи</strong> Конкурса:</h3>
       <UIList>
         <li>
           создание условий для эстетического, нравственного, православного и
@@ -81,7 +82,9 @@
         </li>
         <li>создание среды для творческого общения детей и юношества.</li>
       </UIList>
-      <h3>В Конкурсе установлены следующие <strong>номинации:</strong></h3>
+      <h3 id="info-3">
+        В Конкурсе установлены следующие <strong>номинации:</strong>
+      </h3>
       <UIList>
         <li>
           <strong>«УМЕЛЕЦ»</strong> — пасхальные яйца, выполненные в технике
@@ -101,7 +104,7 @@
           макраме, вязание, фриволите, лоскутная техника, валяние.
         </li>
       </UIList>
-      <h3>
+      <h3 id="info-4">
         <strong>В каждой номинации</strong> конкурс проводится в следующих
         <strong>возрастных группах</strong>:
       </h3>
@@ -117,7 +120,7 @@
         Господня, для участия в заключительном этапе. Подробную информацию о
         конкурсе смотрите на сайте:
       </p>
-      <p>
+      <p id="info-5">
         Работы принимаются <strong>с 1 января по 15 февраля 2026 г.</strong> в
         храмах на иконных лавках, по следующим адресам:
       </p>
@@ -137,7 +140,7 @@
         <li>Александро-Невский храм — г. Дебальцево, ул. Калинина, 52;</li>
         <li>Андреевский храм — г. Ждановка, ул. Школьная, 3.</li>
       </UIList>
-      <h3>
+      <h3 id="info-6">
         <strong>Контакты организаторов регионального этапа Конкурса:</strong>
       </h3>
       <UIList>
@@ -150,7 +153,7 @@
     </CompetitionSection>
 
     <CompetitionSection>
-      <h2>Документы для конкурса</h2>
+      <h2 id="docs">Документы для конкурса</h2>
       <UIDocumentWrap>
         <UIDocumentCard
           v-for="doc in docs"
@@ -163,12 +166,12 @@
     </CompetitionSection>
 
     <CompetitionSection>
-      <h2>Фотогалерея</h2>
+      <h2 id="photos">Фотогалерея</h2>
       <UIPhotos :images="photosJury" />
     </CompetitionSection>
 
     <CompetitionSection>
-      <h2>Итоги и победители конкурса</h2>
+      <h2 id="winners">Итоги и победители конкурса</h2>
       <div class="results__nominations">
         <div class="results__nominatia full golden">
           <span>Победители международного этапа</span>
@@ -542,6 +545,19 @@
     'https://s3.regru.cloud/opk-info/easter-egg/2026/photos/winners (3).webp',
     'https://s3.regru.cloud/opk-info/easter-egg/2026/photos/winners (4).webp',
     'https://s3.regru.cloud/opk-info/easter-egg/2026/photos/winners (5).webp',
+  ];
+
+  const menu = [
+    { name: 'Информация о конкурсе', id: 'info', lvl: 1 },
+    { name: 'Сроки проведения', id: 'info-1', lvl: 2 },
+    { name: 'Цели и задачи', id: 'info-2', lvl: 2 },
+    { name: 'Номинации', id: 'info-3', lvl: 2 },
+    { name: 'Возрастные группы', id: 'info-4', lvl: 2 },
+    { name: 'Приём работ', id: 'info-5', lvl: 2 },
+    { name: 'Контакты организаторов', id: 'info-6', lvl: 2 },
+    { name: 'Документы для конкурса', id: 'docs', lvl: 1 },
+    { name: 'Фотогалерея', id: 'photos', lvl: 1 },
+    { name: 'Итоги и победители конкурса', id: 'winners', lvl: 1 },
   ];
 </script>
 

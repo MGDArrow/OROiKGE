@@ -114,6 +114,11 @@
   useRouter().afterEach((to) => {
     page.value = to.name as string;
   });
+
+  onMounted(() => {
+    if (isOPK) secondMenu.value = 'OPK';
+    if (isCompetition) secondMenu.value = 'Competition';
+  });
 </script>
 
 <style scoped lang="scss">
