@@ -116,8 +116,8 @@
   });
 
   onMounted(() => {
-    if (isOPK) secondMenu.value = 'OPK';
-    if (isCompetition) secondMenu.value = 'Competition';
+    if (isOPK.value) secondMenu.value = 'OPK';
+    if (isCompetition.value) secondMenu.value = 'Competition';
   });
 </script>
 
