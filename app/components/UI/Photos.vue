@@ -25,7 +25,7 @@
       </div>
     </div>
 
-    <UIPopup
+    <UIPopupPhoto
       :visible="popupVisible"
       :images="images"
       :current-index="currentIndex"

@@ -1,0 +1,110 @@
+<template>
+  <div class="ui-input">
+    <label>
+      <p>
+        {{ label }}
+      </p>
+      <input
+        type="tel"
+        v-model="modelValue"
+        :placeholder="placeholder"
+        :required
+      />
+    </label>
+  </div>
+</template>
+
+<script setup lang="ts">
+  import { watch } from 'vue';
+
+  interface Props {
+    label?: string;
+    placeholder?: string;
+    required?: boolean;
+  }
+
+  const modelValue = defineModel<string>({ required: true });
+  const props = defineProps<Props>();
+
+  watch(
+    () => modelValue.value,
+    (newValue, oldValue) => {
+      if (newValue == null) return;
+
+      // Проверяем количество цифр (не более 11 для полного номера +7)
+      const digitsOnly = newValue.replace(/\D/g, '');
+      if (digitsOnly.length > 11) {
+        modelValue.value = oldValue;
+        return;
+      }
+
+      const masked = maskPhone(newValue);
+      if (masked !== newValue) {
+        modelValue.value = masked;
+      }
+    },
+    { flush: 'post' },
+  );
+
+  function maskPhone(tel: string): string {
+    // 1. Извлекаем только цифры
+    let digits = tel.replace(/\D/g, '');
+    if (!digits.length) return '';
+
+    // 2. Заменяем ведущую 8 на 7
+    if (digits[0] === '8') {
+      digits = '7' + digits.slice(1);
+    }
+
+    // 3. Если после замены номер не начинается с 7 – возвращаем пустую строку
+    if (digits[0] !== '7') return '';
+
+    // 4. Обрезаем до 11 цифр (7 + 10)
+    if (digits.length > 11) {
+      digits = digits.slice(0, 11);
+    }
+
+    // 5. Разбиваем на группы: первая цифра, код, остальные части
+    const match = /^(\d)(\d{0,3})(\d{0,3})(\d{0,2})(\d{0,2})$/.exec(digits);
+    if (!match) return '';
+
+    const [, first, area, part1, part2, part3] = match;
+
+    // 6. Формируем отформатированную строку в стиле "+7 (XXX) XXX-XX-XX"
+    let result = '+7';
+    if (area) {
+      result += ` (${area}`;
+      if (part1) {
+        result += `) ${part1}`;
+        if (part2) {
+          result += `-${part2}`;
+          if (part3) {
+            result += `-${part3}`;
+          }
+        }
+      }
+      // если area есть, но part1 нет – скобка не закрывается (как в оригинале)
+    }
+    return result;
+  }
+</script>
+
+<style scoped lang="scss">
+  .ui-input {
+    flex: 1;
+    width: 100%;
+    min-width: 300px;
+    & p {
+      width: 100%;
+      margin: 0;
+      font-weight: 500;
+      text-indent: 0;
+    }
+    & input {
+      width: 100%;
+      padding: 0 10px;
+      font-size: 1.1em;
+      border: 4px solid var(--accent);
+    }
+  }
+</style>
