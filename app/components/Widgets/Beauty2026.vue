@@ -223,7 +223,31 @@
           ярлыком и пакет документов.
         </li>
       </UIList>
+
+      <div
+        class="order__disabled"
+        v-if="dateCurrent && dateCurrent < dateStart"
+      >
+        Приём заявок начнётся: {{ dateStart.toLocaleDateString() }}
+      </div>
+      <div
+        class="order__new"
+        @click="isOpenPopupOrder = true"
+        v-if="dateCurrent && dateCurrent >= dateStart && dateCurrent <= dateEnd"
+      >
+        Подать заявку
+      </div>
+      <div class="order__disabled" v-if="dateCurrent && dateCurrent > dateEnd">
+        Приём заявок завершился {{ dateEnd.toLocaleDateString() }}
+      </div>
     </CompetitionSection>
+
+    <Teleport to="body">
+      <WidgetsFormsBeauty2026
+        v-if="isOpenPopupOrder"
+        @close-popup="isOpenPopupOrder = false"
+      />
+    </Teleport>
   </div>
 </template>
 
@@ -233,6 +257,17 @@
     href: string;
     name: string;
   }
+
+  const dateStart = new Date(2025, 8, 1);
+  const dateEnd = new Date(2026, 9, 31);
+
+  const dateCurrent = ref<Date | null>(null);
+
+  onMounted(() => {
+    dateCurrent.value = new Date();
+  });
+
+  const isOpenPopupOrder = ref(false);
 
   const docs: Array<IDoc> = [
     {
@@ -277,4 +312,34 @@
   ];
 </script>
 
-<style scoped lang="scss"></style>
+<style scoped lang="scss">
+  .order {
+    &__new,
+    &__disabled {
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      width: 50%;
+      min-width: 300px;
+      height: 100px;
+      margin: 30px auto;
+      font-weight: 600;
+      text-align: center;
+      text-transform: uppercase;
+      border: 5px solid var(--accent);
+    }
+    &__new {
+      font-size: 1.6em;
+      cursor: pointer;
+      transition: 0.3s ease-in-out;
+      &:hover {
+        color: var(--color-white);
+        background: var(--accent);
+      }
+    }
+    &__disabled {
+      color: grey;
+      border-color: grey;
+    }
+  }
+</style>
