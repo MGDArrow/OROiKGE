@@ -337,6 +337,10 @@
     'https://s3.regru.cloud/opk-info/beauty-of-gods-world/XXI/photos/jury (16).webp',
     'https://s3.regru.cloud/opk-info/beauty-of-gods-world/XXI/photos/jury (17).webp',
     'https://s3.regru.cloud/opk-info/beauty-of-gods-world/XXI/photos/jury (18).webp',
+    'https://s3.regru.cloud/opk-info/beauty-of-gods-world/XXI/photos/award (1).webp',
+    'https://s3.regru.cloud/opk-info/beauty-of-gods-world/XXI/photos/award (2).webp',
+    'https://s3.regru.cloud/opk-info/beauty-of-gods-world/XXI/photos/award (3).webp',
+    'https://s3.regru.cloud/opk-info/beauty-of-gods-world/XXI/photos/award (4).webp',
   ];
   const photosWinners = [
     'https://s3.regru.cloud/opk-info/beauty-of-gods-world/XXI/photos/winners (1).webp',
