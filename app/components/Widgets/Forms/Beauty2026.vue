@@ -1,6 +1,6 @@
 <template>
-  <UIPopup @close-popup="emit('closePopup')">
-    <form @submit.prevent="submit()">
+  <UIPopup @close-popup="closePopup()">
+    <form @submit.prevent="submit()" v-if="!numberLabel">
       <h2>Подать заявку</h2>
       <div class="popup__subtitle">Работа</div>
       <div class="popup__flex">
@@ -154,18 +154,41 @@
           <p><span>№ заявки регионального этапа:</span> XXX-XXX</p>
         </div>
       </div>
-      <UIButton :type="'submit'">Подать</UIButton>
+      <div v-if="errorMessage" class="error-message">
+        {{ errorMessage }}
+      </div>
+      <UIButton :type="'submit'" :loading>Подать</UIButton>
     </form>
+
+    <div class="successful" v-else>
+      <h2>Заявка {{ numberLabel }} принята!</h2>
+      <p>
+        Ярлык на обратную сторону работы уже скачивается. Если скачивание не
+        началось, попробуйте скачать заново.
+      </p>
+      <a :href="linkAgain.href" :download="linkAgain.download">
+        <UIButton>Скачать заново</UIButton>
+      </a>
+      <p>
+        Распечатайте и приклейте ярлык на обратную сторону работы, после чего,
+        работу с пакетом документов отнесите на удобный для вас адрес.
+      </p>
+      <p>
+        Результаты конкурса будут объявлены в TG и MAX каналах Горловской
+        Епархии, а также на сайте ОРОиК ГЕ.
+      </p>
+    </div>
   </UIPopup>
 </template>
 
 <script setup lang="ts">
   import { schools, paintSchools, VSH } from '~/assets/schools';
   import Fuse from 'fuse.js';
+  import { formatLabelNumber } from '~~/utils/utils';
 
   const order = reactive({
     jobName: '',
-    nomination: 'main',
+    nomination: '«ОСНОВНАЯ ТЕМАТИКА»',
 
     authorSurname: '',
     authorName: '',
@@ -190,8 +213,8 @@
   }>();
 
   const nominations = [
-    { value: 'main', label: '«ОСНОВНАЯ ТЕМАТИКА»' },
-    { value: 'porcelain', label: '«РОСПИСЬ ПО ФАРФОРУ»' },
+    { value: '«ОСНОВНАЯ ТЕМАТИКА»', label: '«ОСНОВНАЯ ТЕМАТИКА»' },
+    { value: '«РОСПИСЬ ПО ФАРФОРУ»', label: '«РОСПИСЬ ПО ФАРФОРУ»' },
   ];
 
   const schoolsAll: string[] = [...schools, ...paintSchools, ...VSH].map(
@@ -219,7 +242,9 @@
     else
       return `${order.authorSurname} ${order.authorName} ${order.authorFathername}, ${order.authorOld} лет;`;
   });
-  const autorMinOld = computed(() => (order.nomination === 'main' ? 9 : 13));
+  const autorMinOld = computed(() =>
+    order.nomination === '«ОСНОВНАЯ ТЕМАТИКА»' ? 9 : 13,
+  );
   const representativeInfo = computed(() => {
     if (
       order.representativeSurname === '' ||
@@ -260,50 +285,72 @@
 
     return found.slice(0, 10);
   });
+  const numberLabel = ref('');
+
+  function closePopup() {
+    numberLabel.value = '';
+    emit('closePopup');
+  }
 
   watch(
     () => order.nomination,
     (newVal) => {
-      if (newVal !== 'main' && order.authorOld < 13) {
+      if (newVal !== '«ОСНОВНАЯ ТЕМАТИКА»' && order.authorOld < 13) {
         order.authorOld = 13;
       }
     },
   );
 
   const loading = ref(false);
-  function submit() {
+  const errorMessage = ref<string | null>(null);
+  const linkAgain = reactive({ href: '', download: '' });
+
+  async function submit() {
     loading.value = true;
+    errorMessage.value = null;
     try {
-      console.log(order);
-    } catch (e) {
-      console.error(e);
+      const result = await $fetch('/api/beauty-2026/apply', {
+        method: 'POST',
+        body: order,
+      });
+      if (!result.success) {
+        throw new Error(result.message || 'Ошибка при создании заявки');
+      }
+      const { data, pdfBase64Label } = result;
+
+      const binaryString = atob(pdfBase64Label);
+      const bytes = new Uint8Array(binaryString.length);
+      for (let i = 0; i < binaryString.length; i++) {
+        bytes[i] = binaryString.charCodeAt(i);
+      }
+      const blob = new Blob([bytes], { type: 'application/pdf' });
+      const url = URL.createObjectURL(blob);
+
+      numberLabel.value = formatLabelNumber(data.number);
+
+      const link = document.createElement('a');
+      link.href = url;
+      link.download = `label_${numberLabel.value}.pdf`;
+      linkAgain.href = url;
+      linkAgain.download = `label_${numberLabel.value}.pdf`;
+
+      document.body.appendChild(link);
+      link.click();
+      document.body.removeChild(link);
+
+      // URL.revokeObjectURL(url);
+    } catch (err: any) {
+      if (err.data?.data) {
+        errorMessage.value = err.data.data
+          .map((e: any) => e.message)
+          .join('; ');
+      } else {
+        errorMessage.value = err.message || 'Произошла ошибка при отправке';
+      }
     } finally {
       loading.value = false;
     }
   }
-
-  //   function validForm() {
-  //     if (order.jobName === '') return false;
-  //     if (order.authorFathername === '') return false;
-  //     if (order.authorName === '') return false;
-  //     if (order.authorSurname === '') return false;
-  //     if (
-  //       order.authorOld < 9 ||
-  //       order.authorOld > 17 ||
-  //       (order.authorOld < 13 && order.nomination !== 'main')
-  //     )
-  //       return false;
-  //     if (order.representativeFathername === '') return false;
-  //     if (order.representativeName === '') return false;
-  //     if (order.representativeSurname === '') return false;
-  //     if (order.representativePhone === '') return false;
-  //     if (order.teacherFathername === '') return false;
-  //     if (order.teacherName === '') return false;
-  //     if (order.teacherSurname === '') return false;
-  //     if (order.teacherPhone === '') return false;
-  //     if (order.school === '') return false;
-  //     return true;
-  //   }
 </script>
 
 <style scoped lang="scss">
@@ -335,6 +382,7 @@
   }
   .label {
     display: flex;
+    max-width: 100%;
 
     @media screen and (width <= 768px) {
       font-size: 0.7em;
@@ -371,6 +419,23 @@
           font-weight: 400;
         }
       }
+    }
+  }
+  .error-message {
+    margin: 10px 0;
+    padding: 8px;
+    color: var(--color-error-500);
+    font-size: 0.9em;
+    text-align: center;
+    border: 1px solid var(--color-error-500);
+    border-radius: var(--radius-md);
+  }
+  .successful {
+    & p {
+      font-size: 0.8em;
+      text-align: center;
+      text-indent: 0;
+      text-wrap: balance;
     }
   }
 </style>

@@ -1,0 +1,35 @@
+// This is your Prisma schema file,
+// learn more about it in the docs: https://pris.ly/d/prisma-schema
+
+// Get a free hosted Postgres database in seconds: `npx create-db`
+
+generator client {
+  provider = "prisma-client"
+  output   = "./generated"
+}
+
+datasource db {
+  provider = "postgresql"
+}
+
+model BeautyII {
+  id                       Int      @id @default(autoincrement())
+  number                   String   @unique @db.VarChar(6)
+  jobName                  String   @db.VarChar(255)
+  nomination               String   @db.VarChar(50)
+  authorSurname            String   @db.VarChar(100)
+  authorName               String   @db.VarChar(100)
+  authorFathername         String   @db.VarChar(100)
+  authorOld                Int
+  representativeSurname    String   @db.VarChar(100)
+  representativeName       String   @db.VarChar(100)
+  representativeFathername String   @db.VarChar(100)
+  representativePhone      String   @db.VarChar(30)
+  teacherSurname           String   @db.VarChar(100)
+  teacherName              String   @db.VarChar(100)
+  teacherFathername        String   @db.VarChar(100)
+  teacherPhone             String   @db.VarChar(30)
+  school                   String   @db.Text
+  createdAt                DateTime @default(now())
+  updatedAt                DateTime @updatedAt
+}
