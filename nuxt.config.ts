@@ -6,9 +6,13 @@ export default defineNuxtConfig({
     clientNodeCompat: true,
   },
 
-  ssr: true,
+  runtimeConfig: {
+    authSalt: process.env.NUXT_AUTH_SALT || 'default-salt-change-me',
+    authHash: process.env.NUXT_AUTH_HASH || '',
+  },
+
   nitro: {
-    preset: 'static',
+    preset: 'node-server',
   },
 
   vue: {

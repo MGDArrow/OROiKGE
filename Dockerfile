@@ -9,36 +9,32 @@ RUN npm ci
 
 # Копируем исходный код и собираем приложение
 COPY . .
-RUN npm run generate
+RUN npm run build
 
 # Финальный образ
-# FROM node:24-alpine
+FROM node:24-alpine
 
-# WORKDIR /app
+RUN apk add --no-cache \
+    chromium \
+    nss \
+    freetype \
+    harfbuzz \
+    ca-certificates \
+    ttf-freefont \
+    && rm -rf /var/cache/apk/*
 
-# # Копируем только необходимые файлы из стадии builder
-# COPY --from=builder /app/.output ./.output
-# # COPY --from=builder /app/node_modules ./node_modules
-# # COPY --from=builder /app/package.json ./package.json
+WORKDIR /app
 
-# # Указываем переменные окружения
-# ENV NUXT_HOST=0.0.0.0
-# ENV NUXT_PORT=3000
+# Копируем только необходимые файлы из стадии builder
+COPY --from=builder /app/.output ./.output
+# COPY --from=builder /app/node_modules ./node_modules
+# COPY --from=builder /app/package.json ./package.json
 
-# EXPOSE 3000
+# Указываем переменные окружения
+ENV PUPPETEER_EXECUTABLE_PATH=/usr/bin/chromium-browser
+ENV NUXT_HOST=0.0.0.0
+ENV NUXT_PORT=3000
 
-# CMD ["node", ".output/server/index.mjs"]
+EXPOSE 3000
 
-
-FROM nginx:alpine
-
-# Копируем сгенерированную статику из builder'а
-COPY --from=builder /app/dist /usr/share/nginx/html
-
-# (Опционально) Копируем свой конфиг nginx, если нужно.
-# По умолчанию nginx на alpine слушает порт 80 и отдаёт /usr/share/nginx/html
-# Если вам нужен порт 3000 — измените конфиг или пробросьте порты при запуске.
-COPY nginx.conf /etc/nginx/conf.d/default.conf
-EXPOSE 80
-
-# Nginx сам запускается в режиме foreground, команда CMD уже задана в образе.
+CMD ["node", ".output/server/index.mjs"]
