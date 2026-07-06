@@ -2,14 +2,18 @@
   <div class="ui-input">
     <label>
       <p>{{ label }}</p>
-      <select v-model="modelValue" :required="required">
+      <select
+        v-model="modelValue"
+        :required="required"
+        @change="emit('change')"
+      >
         <!-- Пустой/плейсхолдерный option, если нужен -->
         <option v-if="placeholder" value="" disabled hidden>
           {{ placeholder }}
         </option>
         <option
           v-for="option in options"
-          :key="option.value"
+          :key="option.value || 0"
           :value="option.value"
         >
           {{ option.label }}
@@ -21,7 +25,7 @@
 
 <script setup lang="ts">
   export interface SelectOption {
-    value: string | number;
+    value: string | number | null;
     label: string;
   }
 
@@ -32,7 +36,11 @@
     options: SelectOption[];
   }
 
-  const modelValue = defineModel<string | number>({ required: true });
+  const emit = defineEmits<{
+    change: [];
+  }>();
+
+  const modelValue = defineModel<string | number | null>({ required: true });
   const props = defineProps<Props>();
 </script>
 

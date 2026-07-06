@@ -54,6 +54,7 @@ export type BeautyIIMinAggregateOutputType = {
   teacherFathername: string | null
   teacherPhone: string | null
   school: string | null
+  place: string | null
   createdAt: Date | null
   updatedAt: Date | null
 }
@@ -76,6 +77,7 @@ export type BeautyIIMaxAggregateOutputType = {
   teacherFathername: string | null
   teacherPhone: string | null
   school: string | null
+  place: string | null
   createdAt: Date | null
   updatedAt: Date | null
 }
@@ -98,6 +100,7 @@ export type BeautyIICountAggregateOutputType = {
   teacherFathername: number
   teacherPhone: number
   school: number
+  place: number
   createdAt: number
   updatedAt: number
   _all: number
@@ -132,6 +135,7 @@ export type BeautyIIMinAggregateInputType = {
   teacherFathername?: true
   teacherPhone?: true
   school?: true
+  place?: true
   createdAt?: true
   updatedAt?: true
 }
@@ -154,6 +158,7 @@ export type BeautyIIMaxAggregateInputType = {
   teacherFathername?: true
   teacherPhone?: true
   school?: true
+  place?: true
   createdAt?: true
   updatedAt?: true
 }
@@ -176,6 +181,7 @@ export type BeautyIICountAggregateInputType = {
   teacherFathername?: true
   teacherPhone?: true
   school?: true
+  place?: true
   createdAt?: true
   updatedAt?: true
   _all?: true
@@ -285,6 +291,7 @@ export type BeautyIIGroupByOutputType = {
   teacherFathername: string
   teacherPhone: string
   school: string
+  place: string | null
   createdAt: Date
   updatedAt: Date
   _count: BeautyIICountAggregateOutputType | null
@@ -330,6 +337,7 @@ export type BeautyIIWhereInput = {
   teacherFathername?: Prisma.StringFilter<"BeautyII"> | string
   teacherPhone?: Prisma.StringFilter<"BeautyII"> | string
   school?: Prisma.StringFilter<"BeautyII"> | string
+  place?: Prisma.StringNullableFilter<"BeautyII"> | string | null
   createdAt?: Prisma.DateTimeFilter<"BeautyII"> | Date | string
   updatedAt?: Prisma.DateTimeFilter<"BeautyII"> | Date | string
 }
@@ -352,6 +360,7 @@ export type BeautyIIOrderByWithRelationInput = {
   teacherFathername?: Prisma.SortOrder
   teacherPhone?: Prisma.SortOrder
   school?: Prisma.SortOrder
+  place?: Prisma.SortOrderInput | Prisma.SortOrder
   createdAt?: Prisma.SortOrder
   updatedAt?: Prisma.SortOrder
 }
@@ -377,6 +386,7 @@ export type BeautyIIWhereUniqueInput = Prisma.AtLeast<{
   teacherFathername?: Prisma.StringFilter<"BeautyII"> | string
   teacherPhone?: Prisma.StringFilter<"BeautyII"> | string
   school?: Prisma.StringFilter<"BeautyII"> | string
+  place?: Prisma.StringNullableFilter<"BeautyII"> | string | null
   createdAt?: Prisma.DateTimeFilter<"BeautyII"> | Date | string
   updatedAt?: Prisma.DateTimeFilter<"BeautyII"> | Date | string
 }, "id" | "number">
@@ -399,6 +409,7 @@ export type BeautyIIOrderByWithAggregationInput = {
   teacherFathername?: Prisma.SortOrder
   teacherPhone?: Prisma.SortOrder
   school?: Prisma.SortOrder
+  place?: Prisma.SortOrderInput | Prisma.SortOrder
   createdAt?: Prisma.SortOrder
   updatedAt?: Prisma.SortOrder
   _count?: Prisma.BeautyIICountOrderByAggregateInput
@@ -429,6 +440,7 @@ export type BeautyIIScalarWhereWithAggregatesInput = {
   teacherFathername?: Prisma.StringWithAggregatesFilter<"BeautyII"> | string
   teacherPhone?: Prisma.StringWithAggregatesFilter<"BeautyII"> | string
   school?: Prisma.StringWithAggregatesFilter<"BeautyII"> | string
+  place?: Prisma.StringNullableWithAggregatesFilter<"BeautyII"> | string | null
   createdAt?: Prisma.DateTimeWithAggregatesFilter<"BeautyII"> | Date | string
   updatedAt?: Prisma.DateTimeWithAggregatesFilter<"BeautyII"> | Date | string
 }
@@ -450,6 +462,7 @@ export type BeautyIICreateInput = {
   teacherFathername: string
   teacherPhone: string
   school: string
+  place?: string | null
   createdAt?: Date | string
   updatedAt?: Date | string
 }
@@ -472,6 +485,7 @@ export type BeautyIIUncheckedCreateInput = {
   teacherFathername: string
   teacherPhone: string
   school: string
+  place?: string | null
   createdAt?: Date | string
   updatedAt?: Date | string
 }
@@ -493,6 +507,7 @@ export type BeautyIIUpdateInput = {
   teacherFathername?: Prisma.StringFieldUpdateOperationsInput | string
   teacherPhone?: Prisma.StringFieldUpdateOperationsInput | string
   school?: Prisma.StringFieldUpdateOperationsInput | string
+  place?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   createdAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
   updatedAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
 }
@@ -515,6 +530,7 @@ export type BeautyIIUncheckedUpdateInput = {
   teacherFathername?: Prisma.StringFieldUpdateOperationsInput | string
   teacherPhone?: Prisma.StringFieldUpdateOperationsInput | string
   school?: Prisma.StringFieldUpdateOperationsInput | string
+  place?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   createdAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
   updatedAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
 }
@@ -537,6 +553,7 @@ export type BeautyIICreateManyInput = {
   teacherFathername: string
   teacherPhone: string
   school: string
+  place?: string | null
   createdAt?: Date | string
   updatedAt?: Date | string
 }
@@ -558,6 +575,7 @@ export type BeautyIIUpdateManyMutationInput = {
   teacherFathername?: Prisma.StringFieldUpdateOperationsInput | string
   teacherPhone?: Prisma.StringFieldUpdateOperationsInput | string
   school?: Prisma.StringFieldUpdateOperationsInput | string
+  place?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   createdAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
   updatedAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
 }
@@ -580,6 +598,7 @@ export type BeautyIIUncheckedUpdateManyInput = {
   teacherFathername?: Prisma.StringFieldUpdateOperationsInput | string
   teacherPhone?: Prisma.StringFieldUpdateOperationsInput | string
   school?: Prisma.StringFieldUpdateOperationsInput | string
+  place?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   createdAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
   updatedAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
 }
@@ -602,6 +621,7 @@ export type BeautyIICountOrderByAggregateInput = {
   teacherFathername?: Prisma.SortOrder
   teacherPhone?: Prisma.SortOrder
   school?: Prisma.SortOrder
+  place?: Prisma.SortOrder
   createdAt?: Prisma.SortOrder
   updatedAt?: Prisma.SortOrder
 }
@@ -629,6 +649,7 @@ export type BeautyIIMaxOrderByAggregateInput = {
   teacherFathername?: Prisma.SortOrder
   teacherPhone?: Prisma.SortOrder
   school?: Prisma.SortOrder
+  place?: Prisma.SortOrder
   createdAt?: Prisma.SortOrder
   updatedAt?: Prisma.SortOrder
 }
@@ -651,6 +672,7 @@ export type BeautyIIMinOrderByAggregateInput = {
   teacherFathername?: Prisma.SortOrder
   teacherPhone?: Prisma.SortOrder
   school?: Prisma.SortOrder
+  place?: Prisma.SortOrder
   createdAt?: Prisma.SortOrder
   updatedAt?: Prisma.SortOrder
 }
@@ -670,6 +692,10 @@ export type IntFieldUpdateOperationsInput = {
   decrement?: number
   multiply?: number
   divide?: number
+}
+
+export type NullableStringFieldUpdateOperationsInput = {
+  set?: string | null
 }
 
 export type DateTimeFieldUpdateOperationsInput = {
@@ -696,6 +722,7 @@ export type BeautyIISelect<ExtArgs extends runtime.Types.Extensions.InternalArgs
   teacherFathername?: boolean
   teacherPhone?: boolean
   school?: boolean
+  place?: boolean
   createdAt?: boolean
   updatedAt?: boolean
 }, ExtArgs["result"]["beautyII"]>
@@ -718,6 +745,7 @@ export type BeautyIISelectCreateManyAndReturn<ExtArgs extends runtime.Types.Exte
   teacherFathername?: boolean
   teacherPhone?: boolean
   school?: boolean
+  place?: boolean
   createdAt?: boolean
   updatedAt?: boolean
 }, ExtArgs["result"]["beautyII"]>
@@ -740,6 +768,7 @@ export type BeautyIISelectUpdateManyAndReturn<ExtArgs extends runtime.Types.Exte
   teacherFathername?: boolean
   teacherPhone?: boolean
   school?: boolean
+  place?: boolean
   createdAt?: boolean
   updatedAt?: boolean
 }, ExtArgs["result"]["beautyII"]>
@@ -762,11 +791,12 @@ export type BeautyIISelectScalar = {
   teacherFathername?: boolean
   teacherPhone?: boolean
   school?: boolean
+  place?: boolean
   createdAt?: boolean
   updatedAt?: boolean
 }
 
-export type BeautyIIOmit<ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs> = runtime.Types.Extensions.GetOmit<"id" | "number" | "jobName" | "nomination" | "authorSurname" | "authorName" | "authorFathername" | "authorOld" | "representativeSurname" | "representativeName" | "representativeFathername" | "representativePhone" | "teacherSurname" | "teacherName" | "teacherFathername" | "teacherPhone" | "school" | "createdAt" | "updatedAt", ExtArgs["result"]["beautyII"]>
+export type BeautyIIOmit<ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs> = runtime.Types.Extensions.GetOmit<"id" | "number" | "jobName" | "nomination" | "authorSurname" | "authorName" | "authorFathername" | "authorOld" | "representativeSurname" | "representativeName" | "representativeFathername" | "representativePhone" | "teacherSurname" | "teacherName" | "teacherFathername" | "teacherPhone" | "school" | "place" | "createdAt" | "updatedAt", ExtArgs["result"]["beautyII"]>
 
 export type $BeautyIIPayload<ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs> = {
   name: "BeautyII"
@@ -789,6 +819,7 @@ export type $BeautyIIPayload<ExtArgs extends runtime.Types.Extensions.InternalAr
     teacherFathername: string
     teacherPhone: string
     school: string
+    place: string | null
     createdAt: Date
     updatedAt: Date
   }, ExtArgs["result"]["beautyII"]>
@@ -1231,6 +1262,7 @@ export interface BeautyIIFieldRefs {
   readonly teacherFathername: Prisma.FieldRef<"BeautyII", 'String'>
   readonly teacherPhone: Prisma.FieldRef<"BeautyII", 'String'>
   readonly school: Prisma.FieldRef<"BeautyII", 'String'>
+  readonly place: Prisma.FieldRef<"BeautyII", 'String'>
   readonly createdAt: Prisma.FieldRef<"BeautyII", 'DateTime'>
   readonly updatedAt: Prisma.FieldRef<"BeautyII", 'DateTime'>
 }
