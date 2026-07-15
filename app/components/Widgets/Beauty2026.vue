@@ -264,6 +264,74 @@
       </div>
     </CompetitionSection>
 
+    <CompetitionSection>
+      <h2 id="winners">Итоги и победители конкурса</h2>
+
+      <div style="text-align: center">
+        {{
+          status === 'before'
+            ? `Ожидаем начало Конкурса`
+            : status === 'during'
+              ? 'Идёт приём заявок на Конкурс'
+              : status === 'after' && !data?.totalWinners
+                ? 'Идёт подведение итогов конкурса'
+                : ''
+        }}
+      </div>
+
+      <div
+        v-if="status !== 'before'"
+        class="results"
+        :class="{ grey: data.totalWinners === 0 }"
+      >
+        <div class="results__item">
+          <div>{{ data.totalApplications }}</div>
+          <span>работ участников</span>
+        </div>
+        <div class="results__item">
+          <div>{{ data.totalSchools }}</div>
+          <span>организации</span>
+        </div>
+        <div
+          v-if="status === 'after' && data.totalWinners > 0"
+          class="results__item"
+        >
+          <div>{{ data.totalWinners }}</div>
+          <span>победителей</span>
+        </div>
+      </div>
+
+      <div
+        v-if="status === 'after' && data.totalWinners > 0"
+        class="results__nominations"
+      >
+        <div
+          v-for="group in data.groups"
+          :key="`${group.nomination}-${group.ageGroup}`"
+          class="results__nominatia"
+          :class="{
+            full:
+              group.nomination === '«КРАСОТА ГЛАЗАМИ РЕБЁНКА»' ||
+              group.nomination === '«РОСПИСЬ ПО ФАРФОРУ»',
+          }"
+        >
+          <span>{{ formatGroupTitle(group) }}</span>
+          <UIList>
+            <li
+              v-for="winner in group.winners"
+              :key="winner.authorSurname + winner.authorName"
+            >
+              <strong>{{ formatPlace(winner.place) }}</strong> —
+              {{ winner.authorSurname }} {{ winner.authorName }}
+              {{ winner.authorFathername }} ({{ winner.authorOld }} лет), «{{
+                winner.jobName
+              }}»
+            </li>
+          </UIList>
+        </div>
+      </div>
+    </CompetitionSection>
+
     <Teleport to="body">
       <WidgetsFormsBeauty2026
         v-if="isOpenPopupOrder"
@@ -280,15 +348,63 @@
     name: string;
   }
 
+  // Даты конкурса (при необходимости скорректировать)
   const dateStart = new Date(2025, 8, 1);
-  const dateEnd = new Date(2026, 9, 31);
+  const dateEnd = new Date(2026, 5, 31);
 
   const dateCurrent = ref<Date | null>(null);
-
   onMounted(() => {
     dateCurrent.value = new Date();
   });
 
+  // Загрузка результатов
+  const { data, pending, error } = useAsyncData(
+    'beauty2026-results',
+    () => $fetch('/api/beauty-2026/results'),
+    {
+      default: () => ({
+        totalApplications: 0,
+        totalSchools: 0,
+        totalWinners: 0,
+        groups: [],
+      }),
+    },
+  );
+
+  // Статус конкурса
+  const status = computed<'before' | 'during' | 'after'>(() => {
+    if (!dateCurrent.value) return 'before';
+    if (dateCurrent.value < dateStart) return 'before';
+    if (dateCurrent.value <= dateEnd) return 'during';
+    return 'after';
+  });
+
+  // Форматирование заголовка группы
+  function formatGroupTitle(group: {
+    nomination: string;
+    ageGroup: string;
+  }): string {
+    const nomMap: Record<string, string> = {
+      'КРАСОТА ГЛАЗАМИ РЕБЁНКА': '«Красота глазами ребёнка»',
+      'ОСНОВНАЯ ТЕМАТИКА': '«Основная тематика»',
+      'РОСПИСЬ ПО ФАРФОРУ': '«Роспись по фарфору»',
+    };
+    return `${nomMap[group.nomination] || group.nomination} (${group.ageGroup})`;
+  }
+
+  // Форматирование места
+  function formatPlace(place: string | null): string {
+    if (!place) return '';
+    const map: Record<string, string> = {
+      'I': '1-е место',
+      'II': '2-е место',
+      'III': '3-е место',
+      'Гран-При': 'Гран-При',
+    };
+    return map[place] || place;
+  }
+
+  // --- Остальные данные ---
   const isOpenPopupOrder = ref(false);
 
   const docs: Array<IDoc> = [
@@ -302,13 +418,11 @@
       href: `https://s3.regru.cloud/opk-info/beauty-of-gods-world/XXI/docs/01_Положение регионального этапа о конкурсе.pdf`,
       name: `Положение регионального этапа`,
     },
-
     {
       size: '3.37 Mb',
       href: `https://s3.regru.cloud/opk-info/beauty-of-gods-world/XXI/docs/03_Требования к работам.pdf`,
       name: `Требования к работам`,
     },
-
     {
       size: '17 Kb',
       href: `https://s3.regru.cloud/opk-info/beauty-of-gods-world/XXI/docs/05_Согласие на передачу авторских прав.docx`,
@@ -331,6 +445,7 @@
     { name: 'Контакты организаторов', id: 'info-6', lvl: 2 },
     { name: 'Документы для конкурса', id: 'docs', lvl: 1 },
     { name: 'Подать заявку', id: 'order', lvl: 1 },
+    { name: 'Итоги и победители конкурса', id: 'winners', lvl: 1 },
   ];
 </script>
 

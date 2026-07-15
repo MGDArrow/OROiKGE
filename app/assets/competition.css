@@ -131,6 +131,9 @@
     padding-bottom: 20px;
   }
 }
+.results.grey {
+  --accent: grey;
+}
 .gallery {
   display: flex;
   flex-wrap: wrap;
