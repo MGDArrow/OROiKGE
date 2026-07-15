@@ -4,11 +4,15 @@ import prisma from '../../../utils/prisma';
 // Схема валидации тела запроса
 const applicationSchema = z.object({
   jobName: z.string().min(1, 'Название работы обязательно'),
-  nomination: z.enum(['«ОСНОВНАЯ ТЕМАТИКА»', '«РОСПИСЬ ПО ФАРФОРУ»']),
+  nomination: z.enum([
+    '«КРАСОТА ГЛАЗАМИ РЕБЁНКА»',
+    '«ОСНОВНАЯ ТЕМАТИКА»',
+    '«РОСПИСЬ ПО ФАРФОРУ»',
+  ]),
   authorSurname: z.string().min(1, 'Фамилия автора обязательна'),
   authorName: z.string().min(1, 'Имя автора обязательно'),
   authorFathername: z.string().min(1, 'Отчество автора обязательно'),
-  authorOld: z.number().int().min(9).max(17),
+  authorOld: z.number().int().min(5).max(17),
   representativeSurname: z.string().min(1, 'Фамилия представителя обязательна'),
   representativeName: z.string().min(1, 'Имя представителя обязательно'),
   representativeFathername: z
@@ -44,9 +48,7 @@ export default defineEventHandler(async (event) => {
     const { order, jobInfo } = await readBody(event);
 
     const validated = applicationSchema.parse(order);
-    console.log(321);
     const validatedInfo = jobInfoSchema.parse(jobInfo);
-    console.log(321);
     const number = await generateApplicationNumber();
     const data = { ...validated, number };
 

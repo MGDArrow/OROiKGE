@@ -75,11 +75,12 @@
           :placeholder="'Полный возраст автора'"
           :label="'Возраст автора:'"
           :min="autorMinOld"
-          :max="17"
+          :max="autorMaxOld"
           required
         />
       </div>
       <div class="popup__subtitle">Родитель / Представитель</div>
+
       <div class="popup__flex">
         <UIInput
           v-model="order.representativeSurname"
@@ -107,29 +108,43 @@
         />
       </div>
       <div class="popup__subtitle">Педагог</div>
+      <p class="comment">
+        *Если вы подаёте работу от художественной школы или кружка, заполните
+        данные своего педагога. Если от воскресной школы — данные учителя
+        рисования. Если от общеобразовательной школы или садика — данные
+        классного руководителя или воспитателя.
+      </p>
       <div class="popup__flex">
         <UIInput
           v-model="order.teacherSurname"
           :placeholder="'Фамилия педагога'"
           :label="'Фамилия педагога:'"
+          required
         />
         <UIInput
           v-model="order.teacherName"
           :placeholder="'Имя педагога'"
           :label="'Имя педагога:'"
+          required
         />
         <UIInput
           v-model="order.teacherFathername"
           :placeholder="'Отчество педагога'"
           :label="'Отчество педагога:'"
+          required
         />
         <UIInputPhone
           v-model="order.teacherPhone"
           :placeholder="'Телефон педагога'"
           :label="'Телефон педагога:'"
+          required
         />
       </div>
       <div class="popup__subtitle">Учебное заведение</div>
+      <p class="comment">
+        **Выберите учебное заведение из списка. При отсутствии вашего учебного
+        заведения, введите данные вручную.
+      </p>
       <UIInputTextarea
         v-model="order.school"
         :placeholder="'Полное название и адрес учебного заведения '"
@@ -182,6 +197,17 @@
           <p><span>№ заявки регионального этапа:</span> XXX-XXX</p>
         </div>
       </div>
+
+      <UICheckbox v-model="isCheckboxRules" class="comment"
+        >Я ознакомлен(-а) и согласен(-на) с правилами проведения конкурса
+        «Красота Божьего Мира 2026»;</UICheckbox
+      >
+      <UICheckbox v-model="isCheckboxPersonalData" class="comment"
+        >Я даю своё добровольное согласие на обработку моих персональных данных
+        (ФИО, контактные данные, иная информация, указанная в заявке)
+        организаторами конкурса в целях проведения конкурса, подведения итогов и
+        публикации результатов, в том числе в сети Интернет.</UICheckbox
+      >
       <div v-if="errorMessage" class="error-message">
         {{ errorMessage }}
       </div>
@@ -192,7 +218,9 @@
       <h2>Заявка {{ numberLabel }} принята!</h2>
       <p>
         Ярлык на обратную сторону работы уже скачивается. Если скачивание не
-        началось, попробуйте скачать заново.
+        началось, попробуйте скачать заново. Вместе с ним, для удобства также
+        скачиваются и "Согласие на обработку персональных данных" и "Согласие на
+        передачу авторских прав".
       </p>
       <a :href="linkAgain.href" :download="linkAgain.download">
         <UIButton>Скачать заново</UIButton>
@@ -244,11 +272,15 @@
     city: '',
   });
 
+  const isCheckboxRules = ref(false);
+  const isCheckboxPersonalData = ref(false);
+
   const emit = defineEmits<{
     closePopup: [];
   }>();
 
   const nominations = [
+    { value: '«КРАСОТА ГЛАЗАМИ РЕБЁНКА»', label: '«КРАСОТА ГЛАЗАМИ РЕБЁНКА»' },
     { value: '«ОСНОВНАЯ ТЕМАТИКА»', label: '«ОСНОВНАЯ ТЕМАТИКА»' },
     { value: '«РОСПИСЬ ПО ФАРФОРУ»', label: '«РОСПИСЬ ПО ФАРФОРУ»' },
   ];
@@ -279,7 +311,14 @@
       return `${order.authorSurname} ${order.authorName} ${order.authorFathername}, ${order.authorOld} лет;`;
   });
   const autorMinOld = computed(() =>
-    order.nomination === '«ОСНОВНАЯ ТЕМАТИКА»' ? 9 : 13,
+    order.nomination === '«КРАСОТА ГЛАЗАМИ РЕБЁНКА»'
+      ? 5
+      : order.nomination === '«ОСНОВНАЯ ТЕМАТИКА»'
+        ? 9
+        : 13,
+  );
+  const autorMaxOld = computed(() =>
+    order.nomination === '«КРАСОТА ГЛАЗАМИ РЕБЁНКА»' ? 8 : 17,
   );
   const representativeInfo = computed(() => {
     if (
@@ -331,9 +370,15 @@
   watch(
     () => order.nomination,
     (newVal) => {
-      if (newVal !== '«ОСНОВНАЯ ТЕМАТИКА»' && order.authorOld < 13) {
-        order.authorOld = 13;
+      if (newVal === '«РОСПИСЬ ПО ФАРФОРУ»') {
         jobInfo.size = 'А2';
+        if (order.authorOld < 13) order.authorOld = 13;
+      }
+      if (newVal === '«ОСНОВНАЯ ТЕМАТИКА»') {
+        if (order.authorOld < 9) order.authorOld = 9;
+      }
+      if (newVal === '«КРАСОТА ГЛАЗАМИ РЕБЁНКА»') {
+        if (order.authorOld > 8) order.authorOld = 5;
       }
     },
   );
@@ -346,6 +391,14 @@
     loading.value = true;
     errorMessage.value = null;
     try {
+      if (!isCheckboxRules.value) {
+        throw new Error('Подтвердите согласие с правилами Конкурса');
+      }
+      if (!isCheckboxPersonalData.value) {
+        throw new Error(
+          'Подтвердите согласие на обработку персональных данных',
+        );
+      }
       const result = await $fetch('/api/beauty-2026/apply', {
         method: 'POST',
         body: { order, jobInfo },
@@ -402,6 +455,11 @@
       font-weight: 600;
       font-size: 1.2em;
       text-align: center;
+    }
+    & .comment {
+      margin: 5px 0;
+      font-size: 0.7em;
+      opacity: 0.6;
     }
   }
   .search {
@@ -461,11 +519,10 @@
   .error-message {
     margin: 10px 0;
     padding: 8px;
-    color: var(--color-error-500);
+    color: var(--red);
     font-size: 0.9em;
     text-align: center;
-    border: 1px solid var(--color-error-500);
-    border-radius: var(--radius-md);
+    border: 1px solid var(--red);
   }
   .successful {
     & p {
