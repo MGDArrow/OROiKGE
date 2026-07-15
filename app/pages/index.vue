@@ -93,7 +93,7 @@
     <div class="menu">
       <NuxtLink to="/beauty-of-gods-world" class="menu__item">
         <NuxtImg src="/logo_beauty.svg" alt="logo" loading="lazy" />
-        <span>Красота Божьего Мира XXI</span>
+        <span>Красота Божьего Мира</span>
       </NuxtLink>
       <NuxtLink to="/easter-egg" class="menu__item">
         <NuxtImg src="/logo_egg.svg" alt="logo" loading="lazy" />
