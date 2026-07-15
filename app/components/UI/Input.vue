@@ -44,6 +44,9 @@
       padding: 0 10px;
       font-size: 1.1em;
       border: 4px solid var(--accent);
+      &::placeholder {
+        font-size: 0.7em;
+      }
     }
   }
 </style>

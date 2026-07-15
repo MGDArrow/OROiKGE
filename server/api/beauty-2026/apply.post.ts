@@ -21,6 +21,13 @@ const applicationSchema = z.object({
   teacherPhone: z.string().min(1, 'Телефон педагога обязателен'),
   school: z.string().min(1, 'Учебное заведение обязательно'),
 });
+const jobInfoSchema = z.object({
+  size: z.string().min(1, 'Размер работы обязательно'),
+  matherial: z.string().min(1, 'Материал работы обязательно'),
+  tecnology: z.string().min(1, 'Техника работы обязательно'),
+  year: z.number().int().min(2011).max(2026),
+  city: z.string().min(1, 'Место создания работы обязательно'),
+});
 
 async function generateApplicationNumber(): Promise<string> {
   while (true) {
@@ -34,15 +41,18 @@ async function generateApplicationNumber(): Promise<string> {
 
 export default defineEventHandler(async (event) => {
   try {
-    const body = await readBody(event);
+    const { order, jobInfo } = await readBody(event);
 
-    const validated = applicationSchema.parse(body);
+    const validated = applicationSchema.parse(order);
+    console.log(321);
+    const validatedInfo = jobInfoSchema.parse(jobInfo);
+    console.log(321);
     const number = await generateApplicationNumber();
     const data = { ...validated, number };
 
     const label = await $fetch('/api/beauty-2026/label', {
       method: 'POST',
-      body: { ...data },
+      body: { ...data, ...validatedInfo },
       responseType: 'blob',
     });
 

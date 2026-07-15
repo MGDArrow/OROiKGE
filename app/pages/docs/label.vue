@@ -179,11 +179,11 @@
           <li>
             – название работы / <b>«{{ jobName }}»</b> /
           </li>
-          <li>– размер /_____________________________________/</li>
-          <li>– материал /_____________________________________/</li>
-          <li>– техника /_____________________________________/</li>
-          <li>– год создания /_____________________________________/</li>
-          <li>– место создания /_____________________________________/</li>
+          <li>– размер / {{ size }} /</li>
+          <li>– материал / {{ matherial }} /</li>
+          <li>– техника / {{ tecnology }} /</li>
+          <li>– год создания / {{ year }} /</li>
+          <li>– место создания / {{ city }} /</li>
           <li>
             – автор /
             <b>{{ authorSurname }} {{ authorName }} {{ authorFathername }}</b> /
@@ -243,6 +243,11 @@
     teacherName,
     teacherPhone,
     teacherSurname,
+    size,
+    matherial,
+    tecnology,
+    year,
+    city,
   } = route.query as Record<string, string>;
 
   const formattedDate = computed(() => {

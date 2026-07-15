@@ -42,6 +42,11 @@ export default defineEventHandler(async (event) => {
     teacherName,
     teacherPhone,
     teacherSurname,
+    size,
+    matherial,
+    tecnology,
+    year,
+    city,
   } = await readBody(event);
 
   const url = getRequestURL(event);
@@ -73,6 +78,11 @@ export default defineEventHandler(async (event) => {
   reportUrl.searchParams.set('teacherName', teacherName);
   reportUrl.searchParams.set('teacherPhone', teacherPhone);
   reportUrl.searchParams.set('teacherSurname', teacherSurname);
+  reportUrl.searchParams.set('size', size);
+  reportUrl.searchParams.set('matherial', matherial);
+  reportUrl.searchParams.set('tecnology', tecnology);
+  reportUrl.searchParams.set('year', year);
+  reportUrl.searchParams.set('city', city);
 
   const browserInstance = await getBrowser();
   const page = await browserInstance.newPage();

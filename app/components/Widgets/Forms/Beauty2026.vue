@@ -17,6 +17,38 @@
           :options="nominations"
           required
         />
+        <UIInput
+          v-model="jobInfo.size"
+          :label="'Размер работы:'"
+          :placeholder="'Например: A2/A3/30x50см'"
+          required
+        />
+        <UIInput
+          v-model="jobInfo.matherial"
+          :placeholder="'Например: Карандаш/Гуашь/Пастель/...'"
+          :label="'Материал работы:'"
+          required
+        />
+        <UIInput
+          v-model="jobInfo.tecnology"
+          :placeholder="'Например: Живописная/Графическая/...'"
+          :label="'Техника работы:'"
+          required
+        />
+        <UIInput
+          v-model.number="jobInfo.year"
+          :placeholder="'Год создания работы'"
+          :label="'Год создания:'"
+          :min="2011"
+          :max="2026"
+          required
+        />
+        <UIInput
+          v-model="jobInfo.city"
+          :placeholder="'Город создания работы'"
+          :label="'Место создания:'"
+          required
+        />
       </div>
       <div class="popup__subtitle">Автор</div>
       <div class="popup__flex">
@@ -80,25 +112,21 @@
           v-model="order.teacherSurname"
           :placeholder="'Фамилия педагога'"
           :label="'Фамилия педагога:'"
-          required
         />
         <UIInput
           v-model="order.teacherName"
           :placeholder="'Имя педагога'"
           :label="'Имя педагога:'"
-          required
         />
         <UIInput
           v-model="order.teacherFathername"
           :placeholder="'Отчество педагога'"
           :label="'Отчество педагога:'"
-          required
         />
         <UIInputPhone
           v-model="order.teacherPhone"
           :placeholder="'Телефон педагога'"
           :label="'Телефон педагога:'"
-          required
         />
       </div>
       <div class="popup__subtitle">Учебное заведение</div>
@@ -208,6 +236,14 @@
     school: '',
   });
 
+  const jobInfo = reactive({
+    size: '',
+    matherial: '',
+    tecnology: '',
+    year: 2026,
+    city: '',
+  });
+
   const emit = defineEmits<{
     closePopup: [];
   }>();
@@ -297,6 +333,7 @@
     (newVal) => {
       if (newVal !== '«ОСНОВНАЯ ТЕМАТИКА»' && order.authorOld < 13) {
         order.authorOld = 13;
+        jobInfo.size = 'А2';
       }
     },
   );
@@ -311,7 +348,7 @@
     try {
       const result = await $fetch('/api/beauty-2026/apply', {
         method: 'POST',
-        body: order,
+        body: { order, jobInfo },
       });
       if (!result.success) {
         throw new Error(result.message || 'Ошибка при создании заявки');
