@@ -1,7 +1,16 @@
 <template>
   <UIPopup @close-popup="closePopup()">
+    <!-- Кнопка очистки формы, видна, если есть заполненные данные -->
+
     <form @submit.prevent="submit()" v-if="!numberLabel">
       <h2>Подать заявку</h2>
+      <div
+        class="clear-button-wrapper"
+        :class="{ active: hasFormData && !numberLabel }"
+        @click="clearForm()"
+      >
+        Очистить форму
+      </div>
       <div class="popup__subtitle">Работа</div>
       <div class="popup__flex">
         <UIInput
@@ -242,38 +251,181 @@
   import Fuse from 'fuse.js';
   import { formatLabelNumber } from '~~/utils/utils';
 
-  const order = reactive({
+  // --- Типизация данных формы ---
+  interface OrderData {
+    jobName: string;
+    nomination: string;
+    authorSurname: string;
+    authorName: string;
+    authorFathername: string;
+    authorOld: number;
+    representativeSurname: string;
+    representativeName: string;
+    representativeFathername: string;
+    representativePhone: string;
+    teacherSurname: string;
+    teacherName: string;
+    teacherFathername: string;
+    teacherPhone: string;
+    school: string;
+  }
+
+  interface JobInfoData {
+    size: string;
+    matherial: string;
+    tecnology: string;
+    year: number;
+    city: string;
+  }
+
+  interface FormStorageData {
+    order: OrderData;
+    jobInfo: JobInfoData;
+    isCheckboxRules: boolean;
+    isCheckboxPersonalData: boolean;
+  }
+
+  // --- Начальные значения ---
+  const defaultOrder: OrderData = {
     jobName: '',
     nomination: '«ОСНОВНАЯ ТЕМАТИКА»',
-
     authorSurname: '',
     authorName: '',
     authorFathername: '',
     authorOld: 9,
-
     representativeSurname: '',
     representativeName: '',
     representativeFathername: '',
     representativePhone: '',
-
     teacherSurname: '',
     teacherName: '',
     teacherFathername: '',
     teacherPhone: '',
-
     school: '',
-  });
+  };
 
-  const jobInfo = reactive({
+  const defaultJobInfo: JobInfoData = {
     size: '',
     matherial: '',
     tecnology: '',
     year: 2026,
     city: '',
-  });
+  };
 
+  // --- Реактивные данные ---
+  const order = reactive<OrderData>({ ...defaultOrder });
+  const jobInfo = reactive<JobInfoData>({ ...defaultJobInfo });
   const isCheckboxRules = ref(false);
   const isCheckboxPersonalData = ref(false);
+
+  // --- Флаг восстановления из localStorage (чтобы не триггерить сохранение) ---
+  const isRestoring = ref(false);
+
+  // --- Ключ для localStorage ---
+  const STORAGE_KEY = 'beauty2026_form_data';
+
+  // --- Сохранение в localStorage ---
+  function saveFormData() {
+    if (isRestoring.value) return; // не сохраняем во время восстановления
+    const data: FormStorageData = {
+      order: { ...order },
+      jobInfo: { ...jobInfo },
+      isCheckboxRules: isCheckboxRules.value,
+      isCheckboxPersonalData: isCheckboxPersonalData.value,
+    };
+    try {
+      localStorage.setItem(STORAGE_KEY, JSON.stringify(data));
+    } catch (e) {
+      // игнорируем ошибки localStorage (например, превышение размера)
+    }
+  }
+
+  // --- Загрузка из localStorage ---
+  function loadFormData() {
+    try {
+      const raw = localStorage.getItem(STORAGE_KEY);
+      if (!raw) return;
+      const data: FormStorageData = JSON.parse(raw);
+      isRestoring.value = true;
+      // Обновляем reactive объекты
+      Object.assign(order, data.order);
+      Object.assign(jobInfo, data.jobInfo);
+      isCheckboxRules.value = data.isCheckboxRules;
+      isCheckboxPersonalData.value = data.isCheckboxPersonalData;
+    } catch (e) {
+      // если данные повреждены, игнорируем
+    } finally {
+      isRestoring.value = false;
+    }
+  }
+
+  // --- Очистка формы ---
+  function clearForm() {
+    // Сброс на начальные значения
+    Object.assign(order, defaultOrder);
+    Object.assign(jobInfo, defaultJobInfo);
+    isCheckboxRules.value = false;
+    isCheckboxPersonalData.value = false;
+    // Удаляем из localStorage
+    localStorage.removeItem(STORAGE_KEY);
+    // Сбрасываем ошибку, если была
+    errorMessage.value = null;
+  }
+
+  // --- Проверка, есть ли заполненные данные (кроме nomination и year, которые всегда есть) ---
+  const hasFormData = computed(() => {
+    // Проверяем строковые поля в order (игнорируем nomination, т.к. всегда выбрано)
+    const orderFields: (keyof OrderData)[] = [
+      'jobName',
+      'authorSurname',
+      'authorName',
+      'authorFathername',
+      'representativeSurname',
+      'representativeName',
+      'representativeFathername',
+      'representativePhone',
+      'teacherSurname',
+      'teacherName',
+      'teacherFathername',
+      'teacherPhone',
+      'school',
+    ];
+    for (const key of orderFields) {
+      if (order[key] && order[key].trim() !== '') return true;
+    }
+    // Проверяем jobInfo (все строки)
+    const jobInfoFields: (keyof JobInfoData)[] = [
+      'size',
+      'matherial',
+      'tecnology',
+      'city',
+    ];
+    for (const key of jobInfoFields) {
+      if (jobInfo[key] && jobInfo[key].trim() !== '') return true;
+    }
+    // Проверяем checkboxes
+    if (isCheckboxRules.value || isCheckboxPersonalData.value) return true;
+    // Проверяем числовые поля, если они отличаются от дефолта (кроме year, т.к. год всегда 2026)
+    if (order.authorOld !== defaultOrder.authorOld) return true;
+    // year не проверяем, т.к. почти всегда 2026
+    return false;
+  });
+
+  // --- Следим за изменениями и сохраняем ---
+  watch(
+    [order, jobInfo, isCheckboxRules, isCheckboxPersonalData],
+    () => {
+      saveFormData();
+    },
+    { deep: true },
+  );
+
+  // --- Восстанавливаем при монтировании ---
+  onMounted(() => {
+    loadFormData();
+  });
+
+  // --- Остальной код без изменений ---
 
   const emit = defineEmits<{
     closePopup: [];
@@ -428,7 +580,9 @@
       link.click();
       document.body.removeChild(link);
 
-      // URL.revokeObjectURL(url);
+      // После успешной отправки очищаем сохранённые данные из localStorage,
+      // чтобы форма не восстанавливалась после закрытия попапа
+      localStorage.removeItem(STORAGE_KEY);
     } catch (err: any) {
       if (err.data?.data) {
         errorMessage.value = err.data.data
@@ -530,6 +684,22 @@
       text-align: center;
       text-indent: 0;
       text-wrap: balance;
+    }
+  }
+
+  /* Стили для кнопки очистки */
+  .clear-button-wrapper {
+    display: flex;
+    justify-content: flex-end;
+    font-weight: 500;
+    cursor: pointer;
+    opacity: 0;
+    transition: 0.3s ease-in-out;
+    &:hover {
+      text-decoration: underline;
+    }
+    &.active {
+      opacity: 1;
     }
   }
 </style>
