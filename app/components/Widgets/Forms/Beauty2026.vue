@@ -247,7 +247,7 @@
 </template>
 
 <script setup lang="ts">
-  import { schools, paintSchools, VSH } from '~/assets/schools';
+  import { SCHOOLS, DOY, PAINT, VSH } from '~/assets/schools';
   import Fuse from 'fuse.js';
   import { formatLabelNumber } from '~~/utils/utils';
 
@@ -437,7 +437,7 @@
     { value: '«РОСПИСЬ ПО ФАРФОРУ»', label: '«РОСПИСЬ ПО ФАРФОРУ»' },
   ];
 
-  const schoolsAll: string[] = [...schools, ...paintSchools, ...VSH].map(
+  const schoolsAll: string[] = [...SCHOOLS, ...PAINT, ...DOY, ...VSH].map(
     (item) => item.toUpperCase(),
   );
 
