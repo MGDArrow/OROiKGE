@@ -22,6 +22,8 @@
   function changeColor(to: RouteRecordNameGeneric) {
     if (to === 'easter-egg')
       document.documentElement.style.setProperty('--accent', 'var(--red)');
+    else if (to === 'summer-of-lord')
+      document.documentElement.style.setProperty('--accent', 'var(--green)');
     else document.documentElement.style.setProperty('--accent', 'var(--blue)');
   }
 </script>

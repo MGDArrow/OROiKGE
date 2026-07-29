@@ -97,7 +97,11 @@
       </NuxtLink>
       <NuxtLink to="/easter-egg" class="menu__item">
         <NuxtImg src="/logo_egg.svg" alt="logo" loading="lazy" />
-        <span>Пасхальное яйцо 2026</span>
+        <span>Пасхальное яйцо</span>
+      </NuxtLink>
+      <NuxtLink to="/summer-of-lord" class="menu__item">
+        <NuxtImg src="/logo_summer.svg" alt="logo" loading="lazy" />
+        <span>Лето Господне</span>
       </NuxtLink>
     </div>
     <a
@@ -130,7 +134,9 @@
     border-radius: 10px;
     & img {
       display: block;
-      max-width: 95%;
+
+      // max-width: 95%;
+      width: 95%;
       margin: 0 auto 0.3em;
       border-radius: 10px;
     }
@@ -169,6 +175,10 @@
       float: none;
       width: 100%;
       margin: 0 0 1em;
+      & img {
+        width: auto;
+        max-width: 95%;
+      }
     }
   }
   article {
@@ -197,7 +207,7 @@
       text-align: center;
       text-decoration: none;
       text-wrap: balance;
-      border: 1em solid var(--accent);
+      border: 0.4em solid var(--accent);
       cursor: pointer;
       & * {
         display: block;
@@ -205,6 +215,9 @@
       }
       &:nth-child(2) {
         --accent: var(--red);
+      }
+      &:nth-child(3) {
+        --accent: var(--green);
       }
     }
 

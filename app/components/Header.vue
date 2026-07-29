@@ -7,6 +7,11 @@
         src="/logo_beauty.svg"
         alt="logo"
       />
+      <NuxtImg
+        v-else-if="page === 'summer-of-lord'"
+        src="/logo_summer.svg"
+        alt="logo"
+      />
       <NuxtImg v-else src="/logo.svg" alt="logo" />
     </div>
     <h1>{{ pageName }}</h1>
@@ -69,6 +74,11 @@
         <NuxtLink :class="{ active: page === 'easter-egg' }" to="/easter-egg"
           >Пасхальное яйцо</NuxtLink
         >
+        <NuxtLink
+          :class="{ active: page === 'summer-of-lord' }"
+          to="/summer-of-lord"
+          >Лето Господне</NuxtLink
+        >
       </template>
     </nav>
   </header>
@@ -91,6 +101,8 @@
     else if (page.value === 'beauty-of-gods-world')
       return `Региональный этап международного конкурса детского творчества «Красота
       Божьего мира»`;
+    else if (page.value === 'summer-of-lord')
+      return `Международный детско-юношеский литературный конкурс имени И.С. Шмелева «Лето Господне»`;
     else if (page.value === 'opk-for-parents')
       return `Информация для родителей`;
     else if (page.value === 'opk-for-teacher') return `Материалы для учителей`;
@@ -108,7 +120,11 @@
     );
   });
   const isCompetition = computed(() => {
-    return page.value === 'beauty-of-gods-world' || page.value === 'easter-egg';
+    return (
+      page.value === 'beauty-of-gods-world' ||
+      page.value === 'easter-egg' ||
+      page.value === 'summer-of-lord'
+    );
   });
 
   useRouter().afterEach((to) => {
@@ -121,118 +137,4 @@
   });
 </script>
 
-<style scoped lang="scss">
-  // header {
-  //   max-width: 1600px;
-  //   margin: 0 auto 50px;
-  //   border-bottom: 3px solid var(--accent);
-
-  //   @media (width <= 768px) {
-  //     margin-bottom: 30px;
-  //   }
-  // }
-  // .logo {
-  //   width: 500px;
-  //   margin: 10px auto;
-  //   aspect-ratio: 1/1;
-  //   & img {
-  //     display: block;
-  //     width: 100%;
-  //   }
-
-  //   @media (width <= 1600px) and (width >= 1200px) {
-  //     width: 400px;
-  //   }
-
-  //   @media (width <= 1200px) and (width >= 768px) {
-  //     width: 300px;
-  //   }
-
-  //   @media (width <= 768px) {
-  //     width: 200px;
-  //   }
-  // }
-  // h1 {
-  //   display: flex;
-  //   align-items: center;
-  //   justify-content: center;
-  //   min-height: 3em;
-  //   margin: 10px auto;
-  //   color: var(--accent);
-  //   font-size: 2em;
-  //   font-family: SPSL-New-Cyrillic, sans-serif !important;
-  //   text-align: center;
-  //   text-wrap: balance;
-
-  //   @media (width <= 1200px) and (width >= 768px) {
-  //     font-size: 1.8em;
-  //   }
-
-  //   @media (width <= 768px) {
-  //     margin-bottom: 20px;
-  //     font-size: 1.5em;
-  //   }
-  // }
-  // nav {
-  //   display: flex;
-  //   flex-wrap: wrap;
-  //   gap: 10px;
-  //   justify-content: space-evenly;
-  //   margin: 10px auto 20px;
-  //   font-weight: 600;
-  //   font-size: 1.3em;
-  //   text-transform: uppercase;
-  //   cursor: pointer;
-  //   & a,
-  //   div {
-  //     display: block;
-  //     width: max-content;
-  //     padding: 10px;
-  //     color: var(--accent);
-  //     text-align: center;
-  //     text-decoration: none;
-  //     border: 3px solid var(--color-white);
-  //     cursor: pointer;
-  //     &.active {
-  //       color: var(--color-white);
-  //       background: var(--accent);
-  //       border: 3px solid var(--accent);
-  //     }
-  //     &.halfactive {
-  //       color: var(--accent);
-  //       background: var(--color-white);
-  //     }
-  //   }
-
-  //   @media (width <= 1200px) and (width >= 768px) {
-  //     font-size: 1.1em;
-  //   }
-  //   &.second {
-  //     font-weight: 500;
-  //     transition: 0.2s ease-in-out;
-  //   }
-
-  //   @media (width <= 768px) {
-  //     flex-direction: column;
-  //     gap: 10px;
-  //     align-items: center;
-  //     margin-bottom: 15px;
-  //     font-size: 1em;
-  //     & a,
-  //     div {
-  //       width: auto;
-  //       padding: 5px;
-  //     }
-  //     &.second {
-  //       flex-direction: row;
-  //       flex-wrap: wrap;
-  //       gap: 8px;
-  //       justify-content: center;
-  //       height: auto;
-  //       margin-top: 5px;
-  //       margin-bottom: 10px;
-  //       font-size: 0.9em;
-  //     }
-  //   }
-  // }
-</style>
+<style scoped lang="scss"></style>
