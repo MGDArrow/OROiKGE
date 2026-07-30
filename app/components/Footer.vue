@@ -54,6 +54,11 @@
                 <li><NuxtLink to="/summer-of-lord">Лето Господне</NuxtLink></li>
               </ul>
             </li>
+            <li>
+              <NuxtLink to="/klass-duhovnogo-peniya"
+                >Класс Духовного Пения</NuxtLink
+              >
+            </li>
             <li><NuxtLink to="/contacts">Контакты</NuxtLink></li>
           </ul>
         </div>

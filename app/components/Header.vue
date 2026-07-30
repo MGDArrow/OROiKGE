@@ -41,6 +41,12 @@
         Конкурсы
       </div>
       <NuxtLink
+        :class="{ active: page === 'klass-duhovnogo-peniya' }"
+        to="/klass-duhovnogo-peniya"
+        @click="setSecondMenu('')"
+        >Класс Духовного Пения</NuxtLink
+      >
+      <NuxtLink
         :class="{ active: page === 'contacts' }"
         to="/contacts"
         @click="setSecondMenu('')"
@@ -107,6 +113,8 @@
       return `Информация для родителей`;
     else if (page.value === 'opk-for-teacher') return `Материалы для учителей`;
     else if (page.value === 'opk-for-student') return `Материалы для учеников`;
+    else if (page.value === 'klass-duhovnogo-peniya')
+      return `Класс Духовного Пения`;
     else if (page.value === 'contacts') return `Контакты`;
     else
       return `Отдел Религиозного Образования и Катехизации Горловской Епархии`;
