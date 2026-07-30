@@ -2,16 +2,6 @@
   <footer>
     <div class="footer">
       <div class="footer__column">
-        <div class="footer__logo">
-          <NuxtImg src="/logo_white.svg" alt="logo" loading="lazy" />
-        </div>
-        <ClientOnly>
-          <div class="footer__name">
-            2024 – {{ new Date().getFullYear() }}© ОРОиК ГЕ
-          </div>
-        </ClientOnly>
-      </div>
-      <div class="footer__column">
         <div class="footer__menu">
           <a
             class="footer__ge"
@@ -59,9 +49,38 @@
                 >Класс Духовного Пения</NuxtLink
               >
             </li>
+            <li>
+              Воцерковление
+              <ul>
+                <li>
+                  <NuxtLink to="/baptism">Подготовка к Крещению</NuxtLink>
+                </li>
+                <li>
+                  <NuxtLink to="/wedding">Подготовка к Венчанию</NuxtLink>
+                </li>
+                <li>
+                  <NuxtLink to="/study-of-scripture">Изучение Писания</NuxtLink>
+                </li>
+                <li>
+                  <NuxtLink to="/liturgy"
+                    >Миссионерская Божественная Литургия</NuxtLink
+                  >
+                </li>
+              </ul>
+            </li>
             <li><NuxtLink to="/contacts">Контакты</NuxtLink></li>
           </ul>
         </div>
+      </div>
+      <div class="footer__column">
+        <div class="footer__logo">
+          <NuxtImg src="/logo_white.svg" alt="logo" loading="lazy" />
+        </div>
+        <ClientOnly>
+          <div class="footer__name">
+            2024 – {{ new Date().getFullYear() }}© ОРОиК ГЕ
+          </div>
+        </ClientOnly>
 
         <a
           class="footer__created"
@@ -97,7 +116,7 @@
     }
     &__logo {
       max-width: 400px;
-      margin: 10px auto;
+      margin: 10px auto 20px;
     }
     &__name {
       font-size: 1.2em;
@@ -105,7 +124,7 @@
     }
     &__ge {
       display: block;
-      width: 100%;
+      width: 90%;
       margin: 20px auto;
       padding: 15px 10px;
       color: var(--color-white);
@@ -118,7 +137,6 @@
     }
     &__menu {
       flex: 1;
-      margin-bottom: 20px;
     }
     &__created {
       display: block;
@@ -167,9 +185,6 @@
       }
       &__name {
         font-size: 1em;
-      }
-      &__menu {
-        margin-bottom: 30px;
       }
       &__created {
         width: auto;

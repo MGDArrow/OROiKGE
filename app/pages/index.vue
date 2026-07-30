@@ -104,6 +104,31 @@
         <span>Лето Господне</span>
       </NuxtLink>
     </div>
+    <h2>Класс Духовного Пения</h2>
+    <div class="menu">
+      <NuxtLink to="/klass-duhovnogo-peniya" class="menu__item">
+        <span>Класс Духовного Пения</span>
+      </NuxtLink>
+    </div>
+    <h2>Катехизация (Воцерковление)</h2>
+    <div class="menu">
+      <NuxtLink to="/baptism" class="menu__item">
+        <span>Подготовка к Крещению</span>
+      </NuxtLink>
+      <NuxtLink to="/wedding" class="menu__item">
+        <span>Подготовка к Венчанию</span>
+      </NuxtLink>
+      <NuxtLink
+        to="/study-of-scripture"
+        class="menu__item"
+        style="--accent: var(--gold)"
+      >
+        <span>Изучение Писания</span>
+      </NuxtLink>
+      <NuxtLink to="/liturgy" class="menu__item" style="--accent: var(--green)">
+        <span>Миссионерская Божественная Литургия</span>
+      </NuxtLink>
+    </div>
     <a
       href="https://pravobraz.ru/informaciya-ob-otdele/obshhaya-informaciya/"
       class="organization-competition"
@@ -191,6 +216,7 @@
   }
   .menu {
     display: flex;
+    flex-wrap: wrap;
     gap: 20px;
     width: 90%;
     margin: 20px auto;

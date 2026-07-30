@@ -24,6 +24,8 @@
       document.documentElement.style.setProperty('--accent', 'var(--red)');
     else if (to === 'summer-of-lord')
       document.documentElement.style.setProperty('--accent', 'var(--green)');
+    else if (to === 'study-of-scripture')
+      document.documentElement.style.setProperty('--accent', 'var(--gold)');
     else document.documentElement.style.setProperty('--accent', 'var(--blue)');
   }
 </script>

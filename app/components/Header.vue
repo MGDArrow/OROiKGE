@@ -12,6 +12,11 @@
         src="/logo_summer.svg"
         alt="logo"
       />
+      <NuxtImg
+        v-else-if="page === 'study-of-scripture'"
+        src="/logo_scripture.svg"
+        alt="logo"
+      />
       <NuxtImg v-else src="/logo.svg" alt="logo" />
     </div>
     <h1>{{ pageName }}</h1>
@@ -46,6 +51,15 @@
         @click="setSecondMenu('')"
         >Класс Духовного Пения</NuxtLink
       >
+      <div
+        :class="{
+          active: secondMenu === 'Catechesis' || isCatechesis,
+          halfactive: !isCatechesis,
+        }"
+        @click="setSecondMenu('Catechesis')"
+      >
+        Воцерковление
+      </div>
       <NuxtLink
         :class="{ active: page === 'contacts' }"
         to="/contacts"
@@ -86,6 +100,22 @@
           >Лето Господне</NuxtLink
         >
       </template>
+      <template v-if="secondMenu === 'Catechesis'">
+        <NuxtLink :class="{ active: page === 'baptism' }" to="/baptism"
+          >Подготовка к Крещению</NuxtLink
+        >
+        <NuxtLink :class="{ active: page === 'wedding' }" to="/wedding"
+          >Подготовка к Венчанию</NuxtLink
+        >
+        <NuxtLink
+          :class="{ active: page === 'study-of-scripture' }"
+          to="/study-of-scripture"
+          >Изучение Писания</NuxtLink
+        >
+        <NuxtLink :class="{ active: page === 'liturgy' }" to="/liturgy"
+          >Миссионерская Божественная Литургия</NuxtLink
+        >
+      </template>
     </nav>
   </header>
 </template>
@@ -115,6 +145,12 @@
     else if (page.value === 'opk-for-student') return `Материалы для учеников`;
     else if (page.value === 'klass-duhovnogo-peniya')
       return `Класс Духовного Пения`;
+    else if (page.value === 'baptism') return `Подготовка к Таинству Крещения`;
+    else if (page.value === 'wedding') return `Подготовка к Таинству Венчания`;
+    else if (page.value === 'study-of-scripture')
+      return `Патриаршая программа изучения Библии «Исследуйте Писания»`;
+    else if (page.value === 'liturgy')
+      return `Миссионерская Божественная Литургия`;
     else if (page.value === 'contacts') return `Контакты`;
     else
       return `Отдел Религиозного Образования и Катехизации Горловской Епархии`;
@@ -134,6 +170,14 @@
       page.value === 'summer-of-lord'
     );
   });
+  const isCatechesis = computed(() => {
+    return (
+      page.value === 'baptism' ||
+      page.value === 'wedding' ||
+      page.value === 'study-of-scripture' ||
+      page.value === 'liturgy'
+    );
+  });
 
   useRouter().afterEach((to) => {
     page.value = to.name as string;
@@ -142,6 +186,7 @@
   onMounted(() => {
     if (isOPK.value) secondMenu.value = 'OPK';
     if (isCompetition.value) secondMenu.value = 'Competition';
+    if (isCatechesis.value) secondMenu.value = 'Catechesis';
   });
 </script>
 
