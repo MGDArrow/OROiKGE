@@ -42,5 +42,16 @@
         background: var(--accent);
       }
     }
+
+    @media (width <= 768px) {
+      gap: 5px;
+      margin: 10px 0;
+      & div {
+        padding: 5px;
+        font-weight: 500;
+        font-size: 1em;
+        border: 2px solid var(--accent);
+      }
+    }
   }
 </style>
