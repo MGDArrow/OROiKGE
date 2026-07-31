@@ -5,7 +5,7 @@
     <figure class="photo right">
       <NuxtImg
         src="https://s3.regru.cloud/opk-info/kdp/kdp1.webp"
-        alt="Евгений, митрополит Екатеринбургский и Верхотурский"
+        alt="photo"
       />
     </figure>
     <p>
@@ -19,7 +19,7 @@
     <figure class="photo">
       <NuxtImg
         src="https://s3.regru.cloud/opk-info/kdp/kdp2.webp"
-        alt="Евгений, митрополит Екатеринбургский и Верхотурский"
+        alt="photo"
       />
     </figure>
     <p>
@@ -31,7 +31,7 @@
     <figure class="photo right">
       <NuxtImg
         src="https://s3.regru.cloud/opk-info/kdp/kdp3.webp"
-        alt="Евгений, митрополит Екатеринбургский и Верхотурский"
+        alt="photo"
       />
     </figure>
     <p>
@@ -46,7 +46,7 @@
     <figure class="photo">
       <NuxtImg
         src="https://s3.regru.cloud/opk-info/kdp/kdp4.webp"
-        alt="Евгений, митрополит Екатеринбургский и Верхотурский"
+        alt="photo"
       />
     </figure>
     <p>
@@ -66,7 +66,7 @@
     <figure class="photo right">
       <NuxtImg
         src="https://s3.regru.cloud/opk-info/kdp/kdp5.webp"
-        alt="Евгений, митрополит Екатеринбургский и Верхотурский"
+        alt="photo"
       />
     </figure>
     <p>
@@ -86,7 +86,7 @@
       <figure class="photo">
         <NuxtImg
           src="https://s3.regru.cloud/opk-info/kdp/kdp6.webp"
-          alt="Евгений, митрополит Екатеринбургский и Верхотурский"
+          alt="photo"
         />
       </figure>
       <li>
@@ -108,7 +108,7 @@
     <figure class="photo right">
       <NuxtImg
         src="https://s3.regru.cloud/opk-info/kdp/kdp7.webp"
-        alt="Евгений, митрополит Екатеринбургский и Верхотурский"
+        alt="photo"
       />
     </figure>
     <p>
@@ -121,7 +121,7 @@
     <figure class="photo">
       <NuxtImg
         src="https://s3.regru.cloud/opk-info/kdp/kdp8.webp"
-        alt="Евгений, митрополит Екатеринбургский и Верхотурский"
+        alt="photo"
       />
     </figure>
     <p>
@@ -186,7 +186,7 @@
     <figure class="photo">
       <NuxtImg
         src="https://s3.regru.cloud/opk-info/kdp/kdp9.webp"
-        alt="Евгений, митрополит Екатеринбургский и Верхотурский"
+        alt="photo"
       />
     </figure>
     <p>
