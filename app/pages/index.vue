@@ -99,10 +99,10 @@
         <NuxtImg src="/logo_egg.svg" alt="logo" loading="lazy" />
         <span>Пасхальное яйцо</span>
       </NuxtLink>
-      <NuxtLink to="/summer-of-lord" class="menu__item">
+      <!-- <NuxtLink to="/summer-of-lord" class="menu__item">
         <NuxtImg src="/logo_summer.svg" alt="logo" loading="lazy" />
         <span>Лето Господне</span>
-      </NuxtLink>
+      </NuxtLink> -->
     </div>
     <h2>Класс Духовного Пения</h2>
     <div class="menu">

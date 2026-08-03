@@ -41,7 +41,7 @@
                   >
                 </li>
                 <li><NuxtLink to="/easter-egg">Пасхальное яйцо</NuxtLink></li>
-                <li><NuxtLink to="/summer-of-lord">Лето Господне</NuxtLink></li>
+                <!-- <li><NuxtLink to="/summer-of-lord">Лето Господне</NuxtLink></li> -->
               </ul>
             </li>
             <li>

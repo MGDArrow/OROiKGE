@@ -94,11 +94,11 @@
         <NuxtLink :class="{ active: page === 'easter-egg' }" to="/easter-egg"
           >Пасхальное яйцо</NuxtLink
         >
-        <NuxtLink
+        <!-- <NuxtLink
           :class="{ active: page === 'summer-of-lord' }"
           to="/summer-of-lord"
           >Лето Господне</NuxtLink
-        >
+        > -->
       </template>
       <template v-if="secondMenu === 'Catechesis'">
         <NuxtLink :class="{ active: page === 'baptism' }" to="/baptism"
