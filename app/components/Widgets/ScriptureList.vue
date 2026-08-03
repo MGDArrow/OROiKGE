@@ -276,6 +276,26 @@
           </UIList>
         </div>
       </div>
+      <div class="registry__item" v-if="button === 'Енакиево'">
+        <NuxtImg
+          src="https://s3.regru.cloud/opk-info/ppip/templ_11.webp"
+          alt="photo"
+        />
+        <div class="info">
+          <h4>
+            <strong>Библейская группа при Андреевском храме</strong>
+          </h4>
+          <UIList>
+            <li><strong>Адрес: </strong>г. Ждановка, ул. Школьная, 3а;</li>
+            <li><strong>Время занятий: </strong>среда, 17:00;</li>
+            <li><strong>Ведущий: </strong>протоиерей Алексий Пахомов;</li>
+            <!-- <li>
+              <strong>Телефон: </strong>
+              <a href="tel:79493497035">+7 (949) 349-70-35</a>.
+            </li> -->
+          </UIList>
+        </div>
+      </div>
     </div>
   </div>
 </template>
