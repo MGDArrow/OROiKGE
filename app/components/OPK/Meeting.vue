@@ -45,7 +45,7 @@
             <video
               playsinline
               controls
-              src="https://s3.regru.cloud/opk-info/videos/Общая информация о предмете ОРКСЭ_720p.mp4"
+              src="https://s3.regru.cloud/opk-info/videos/Общая информация о предмете ОРКСЭ_360p.mp4"
             ></video>
           </video-skin>
         </video-player>

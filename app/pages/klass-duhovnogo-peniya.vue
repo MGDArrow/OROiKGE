@@ -2,12 +2,18 @@
   <div>
     <UIMenu :menu />
     <h2 id="base-info">Класс Духовного Пения: развиваемся вместе</h2>
-    <figure class="photo right">
-      <NuxtImg
-        src="https://s3.regru.cloud/opk-info/kdp/kdp1.webp"
-        alt="photo"
-      />
-    </figure>
+    <div class="video">
+      <video-player>
+        <video-skin>
+          <video
+            playsinline
+            controls
+            src="https://s3.regru.cloud/opk-info/videos/Общая информация о КДП_360p.mp4"
+          ></video>
+        </video-skin>
+      </video-player>
+    </div>
+
     <p>
       Возрождение певческих хоровых традиций в храме — актуальная задача,
       которая стоит перед всеми, кто любит православное богослужение. Обучение
@@ -16,24 +22,26 @@
       народного пения в храме. Исходя из этих соображений, в Горловской епархии
       были открыты классы духовного пения.
     </p>
-    <figure class="photo">
+    <figure class="photo right">
       <NuxtImg
-        src="https://s3.regru.cloud/opk-info/kdp/kdp2.webp"
+        src="https://s3.regru.cloud/opk-info/kdp/kdp1.webp"
         alt="photo"
       />
     </figure>
+
     <p>
       <strong>Класс Духовного Пения в Горловке</strong> — это уникальная
       образовательная программа, которая сочетает музыкальное обучение с
       приобщением к православной традиции.
     </p>
     <h2 id="history">История создания: как всё начиналось</h2>
-    <figure class="photo right">
+    <figure class="photo">
       <NuxtImg
-        src="https://s3.regru.cloud/opk-info/kdp/kdp3.webp"
+        src="https://s3.regru.cloud/opk-info/kdp/kdp2.webp"
         alt="photo"
       />
     </figure>
+
     <p>
       Идея создания специализированного класса для подготовки певчих возникла
       <strong>в 2011 году</strong>. Её инициатором выступила
@@ -43,18 +51,25 @@
       приступили к формированию преподавательского коллектива. В первую очередь
       искали профессионалов, уже имеющих опыт клиросного пения.
     </p>
-    <figure class="photo">
+    <figure class="photo right">
       <NuxtImg
-        src="https://s3.regru.cloud/opk-info/kdp/kdp4.webp"
+        src="https://s3.regru.cloud/opk-info/kdp/kdp3.webp"
         alt="photo"
       />
     </figure>
+
     <p>
       Параллельно шёл набор учеников. Первыми воспитанниками стали 25 детей из
       воскресных школ Горловки. Костяк коллектива сложился благодаря тесному
       сотрудничеству с епархией и методическими объединениями преподавателей
       воскресных школ.
     </p>
+    <figure class="photo">
+      <NuxtImg
+        src="https://s3.regru.cloud/opk-info/kdp/kdp4.webp"
+        alt="photo"
+      />
+    </figure>
     <p>
       <strong>1 января 2015 года</strong> класс официально открыл свои двери. За
       первый год количество учащихся выросло почти вдвое — с 25 до 48 человек.
@@ -233,12 +248,12 @@
     <p></p>
     <UIList>
       <li>
-        <strong>Тарасюк Елена Викторовна</strong> (классный руководитель) —
-        <a href="tel:+79493675034">+7 (949) 367-50-34</a>
-      </li>
-      <li>
         <strong>Марковская Марина Викторовна</strong> (регент хора) —
         <a href="tel:+79495391798">+7 (949) 539-17-98</a>
+      </li>
+      <li>
+        <strong>Тарасюк Елена Викторовна</strong> (классный руководитель) —
+        <a href="tel:+79493675034">+7 (949) 367-50-34</a>
       </li>
     </UIList>
   </div>
@@ -307,6 +322,21 @@
     .right {
       float: none;
       margin: 0 0 1em;
+    }
+  }
+  .video {
+    width: 35%;
+  }
+
+  @media (width <= 1200px) {
+    .video {
+      width: 40%;
+    }
+  }
+
+  @media (width <= 768px) {
+    .video {
+      width: 100%;
     }
   }
 </style>
