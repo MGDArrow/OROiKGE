@@ -276,6 +276,7 @@
           </UIList>
         </div>
       </div>
+
       <div class="registry__item" v-if="button === 'Енакиево'">
         <NuxtImg
           src="https://s3.regru.cloud/opk-info/ppip/templ_11.webp"
@@ -293,6 +294,29 @@
               <strong>Телефон: </strong>
               <a href="tel:79493497035">+7 (949) 349-70-35</a>.
             </li> -->
+          </UIList>
+        </div>
+      </div>
+      <div class="registry__item" v-if="button === 'Шахтёрск'">
+        <NuxtImg
+          src="https://s3.regru.cloud/opk-info/ppip/templ_12.webp"
+          alt="photo"
+        />
+        <div class="info">
+          <h4>
+            <strong
+              >Библейская группа при храме святого праведного Иоанна
+              Кронштадтского</strong
+            >
+          </h4>
+          <UIList>
+            <li><strong>Адрес: </strong>г. Кировское, пер. Космический, 2;</li>
+            <li><strong>Время занятий: </strong>суббота, 18:00;</li>
+            <li><strong>Ведущий: </strong>протоиерей Георгий Цыганов;</li>
+            <li>
+              <strong>Телефон: </strong>
+              <a href="tel:79493431087">+7 (949) 343-10-87</a>.
+            </li>
           </UIList>
         </div>
       </div>
