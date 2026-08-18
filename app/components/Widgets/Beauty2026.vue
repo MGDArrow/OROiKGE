@@ -33,7 +33,7 @@
           />
         </div>
       </a>
-      <div class="video">
+      <!-- <div class="video">
         <video-player>
           <video-skin>
             <video
@@ -43,7 +43,7 @@
             ></video>
           </video-skin>
         </video-player>
-      </div>
+      </div> -->
       <h3 id="info-1">
         II региональный этап Конкурса проводится
         <strong>с 1 сентября по 28 октября 2026 года</strong>, принять участие в
@@ -210,6 +210,18 @@
 
     <CompetitionSection>
       <h2 id="order">Подать заявку</h2>
+      <div class="video">
+        <video-player>
+          <video-skin>
+            <video
+              playsinline
+              controls
+              src="https://s3.regru.cloud/opk-info/beauty-of-gods-world/Видеоинструкция КБМ_360p.mp4"
+            ></video>
+          </video-skin>
+        </video-player>
+        <figcaption>Видеоинструкция</figcaption>
+      </div>
       <p><strong>Для участия в конкурсе необходимо:</strong></p>
       <UIList :type="'ul'">
         <li>
@@ -359,8 +371,8 @@
   }
 
   // Даты конкурса (при необходимости скорректировать)
-  const dateStart = new Date(2025, 8, 1);
-  const dateEnd = new Date(2026, 9, 31);
+  const dateStart = new Date(2026, 8, 1);
+  const dateEnd = new Date(2026, 9, 25);
 
   const dateCurrent = ref<Date | null>(null);
   onMounted(() => {
@@ -499,5 +511,10 @@
       color: grey;
       border-color: grey;
     }
+  }
+  .video figcaption {
+    margin: 10px 0;
+    font-size: 0.8em;
+    text-align: center;
   }
 </style>
