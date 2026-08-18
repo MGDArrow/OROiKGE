@@ -33,9 +33,20 @@
           />
         </div>
       </a>
+      <div class="video">
+        <video-player>
+          <video-skin>
+            <video
+              playsinline
+              controls
+              src="https://s3.regru.cloud/opk-info/easter-egg/video_2026.mp4"
+            ></video>
+          </video-skin>
+        </video-player>
+      </div>
       <h3 id="info-1">
         II региональный этап Конкурса проводится
-        <strong>с 1 сентября по 10 ноября 2026 года</strong>, принять участие в
+        <strong>с 1 сентября по 28 октября 2026 года</strong>, принять участие в
         нем могут учащиеся <strong>с 5 до 17 лет</strong>:
       </h3>
       <UIList>
@@ -78,34 +89,33 @@
             этапе и не отправляются на Международный этап):</strong
           >
           <UIList>
+            <li>Мы — одна семья;</li>
+            <li>Моя малая Родина;</li>
+            <li>Культурное наследие и традиции народов России;</li>
+            <li>Народов много — страна одна;</li>
+            <li>День народного единства;</li>
             <li>Рождество Христово;</li>
-            <li>Библейские сюжеты;</li>
-            <li>Мир духовный и мир земной;</li>
             <li>Любимый храм;</li>
             <li>Красота родной природы;</li>
-            <li>Мой дом, моя деревня, мой город;</li>
-            <li>Моя семья, мои друзья.</li>
+            <li>Мой дом, моя деревня, мой город, моя семья, мои друзья.</li>
           </UIList>
         </li>
         <li>
           <strong>«ОСНОВНАЯ ТЕМАТИКА»:</strong>
           <UIList>
-            <li>Рождество Христово;</li>
-            <li>Библейские сюжеты;</li>
-            <li>Мир духовный и мир земной;</li>
-            <li>Любимый храм;</li>
-            <li>Красота родной природы;</li>
-            <li>Мой дом, моя деревня, мой город;</li>
-            <li>Моя семья, мои друзья.</li>
+            <li>Мы — одна семья;</li>
+            <li>Моя малая Родина;</li>
+            <li>Культурное наследие и традиции народов России;</li>
+            <li>Народов много — страна одна;</li>
+            <li>День народного единства.</li>
           </UIList>
         </li>
         <li>
           <strong>«РОСПИСЬ ПО ФАРФОРУ»:</strong>
           <UIList>
-            <li>Монастыри и храмы Москвы;</li>
-            <li>Утраченная Москва;</li>
-            <li>Значимые места моего края;</li>
-            <li>Эскизы, посвященные юбилейным датам страны.</li>
+            <li>Традиции моего народа;</li>
+            <li>Князь Дмитрий Пожарский и купец Кузьма Минин;</li>
+            <li>День народного единства.</li>
           </UIList>
         </li>
       </UIList>
@@ -137,7 +147,7 @@
         отмечены призовыми местами Горловской Епархии.
       </p>
       <p id="info-5">
-        Работы принимаются <strong>с 1 сентября до 31 октября 2026 г.</strong> в
+        Работы принимаются <strong>с 1 сентября по 25 октября 2026 г.</strong> в
         храмах на иконных лавках, по следующим адресам:
       </p>
       <UIList>
@@ -409,28 +419,38 @@
 
   const docs: Array<IDoc> = [
     {
-      size: '3.06 Mb',
-      href: `https://s3.regru.cloud/opk-info/beauty-of-gods-world/XXI/docs/01_Положение о конкурсе 'Красота Божьего мира'.pdf`,
+      size: '2.99 Mb',
+      href: `https://s3.regru.cloud/opk-info/beauty-of-gods-world/XXII/docs/00_Положение о конкурсе 'Красота Божьего мира'.pdf`,
       name: `Положение международного этапа`,
     },
     {
-      size: '2.80 Mb',
-      href: `https://s3.regru.cloud/opk-info/beauty-of-gods-world/XXI/docs/01_Положение регионального этапа о конкурсе.pdf`,
+      size: '440 Kb',
+      href: `https://s3.regru.cloud/opk-info/beauty-of-gods-world/XXII/docs/01_Положение регионального этапа о конкурсе.pdf`,
       name: `Положение регионального этапа`,
     },
     {
-      size: '3.37 Mb',
-      href: `https://s3.regru.cloud/opk-info/beauty-of-gods-world/XXI/docs/03_Требования к работам.pdf`,
+      size: '258 Kb',
+      href: `https://s3.regru.cloud/opk-info/beauty-of-gods-world/XXII/docs/02_Номинации регионального этапа.pdf`,
+      name: `Номинации регионального этапа`,
+    },
+    {
+      size: '442 Kb',
+      href: `https://s3.regru.cloud/opk-info/beauty-of-gods-world/XXII/docs/03_Требования к работам.pdf`,
       name: `Требования к работам`,
     },
     {
-      size: '17 Kb',
-      href: `https://s3.regru.cloud/opk-info/beauty-of-gods-world/XXI/docs/05_Согласие на передачу авторских прав.docx`,
-      name: `Согласие на передачу авторских прав`,
+      size: '260 Kb',
+      href: `https://s3.regru.cloud/opk-info/beauty-of-gods-world/XXII/docs/04_Призовые места регионального этапа.pdf`,
+      name: `Призовые места регионального этапа`,
     },
     {
       size: '21 Kb',
-      href: `https://s3.regru.cloud/opk-info/beauty-of-gods-world/XXI/docs/06_Согласие на обработку персональных данных.docx`,
+      href: `https://s3.regru.cloud/opk-info/beauty-of-gods-world/XXII/docs/05_Согласие на передачу авторских прав.docx`,
+      name: `Согласие на передачу авторских прав`,
+    },
+    {
+      size: '695 Kb',
+      href: `https://s3.regru.cloud/opk-info/beauty-of-gods-world/XXII/docs/06_Согласие на обработку персональных данных.docx`,
       name: `Согласие на обработку персональных данных`,
     },
   ];

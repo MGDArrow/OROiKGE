@@ -49,15 +49,14 @@ export default defineEventHandler(async (event) => {
     city,
   } = await readBody(event);
 
-  const url = getRequestURL(event);
-  let origin = url.origin;
+  const origin = getRequestURL(event).origin;
+  const urlObj = new URL(origin);
 
-  if (process.env.NODE_ENV === 'development' && origin === 'http://localhost') {
+  if (!urlObj.port) {
     const port = process.env.PORT || 3000;
-    origin = `http://localhost:${port}`;
+    urlObj.port = String(port);
   }
-
-  const reportUrl = new URL('/docs/label', origin);
+  const reportUrl = new URL('/docs/label', urlObj.toString());
 
   reportUrl.searchParams.set('authorFathername', authorFathername);
   reportUrl.searchParams.set('authorName', authorName);
