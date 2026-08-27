@@ -3,12 +3,17 @@
     <div v-if="pending" class="admin__loading">Загрузка...</div>
     <div v-else-if="error" class="admin__error">{{ error.message }}</div>
     <div v-else>
-      <p>
-        Всего: {{ currentStat.pictures }}/{{ statistic.pictures }} работ,
-        {{ currentStat.authors }}/{{ statistic.authors }} участников,
-        {{ currentStat.schools }}/{{ statistic.schools }} учреждений,
-        {{ currentStat.winners }}/{{ statistic.winners }} победителей;
-      </p>
+      <div class="admin__actions">
+        <p>
+          Всего: {{ currentStat.pictures }}/{{ statistic.pictures }} работ,
+          {{ currentStat.authors }}/{{ statistic.authors }} участников,
+          {{ currentStat.schools }}/{{ statistic.schools }} учреждений,
+          {{ currentStat.winners }}/{{ statistic.winners }} победителей;
+        </p>
+        <UIButton @click="showModal = true" class="btn-generate">
+          Сгенерировать грамоты
+        </UIButton>
+      </div>
       <table class="admin__table">
         <thead>
           <tr>
@@ -198,6 +203,48 @@
             </li>
           </ul>
         </div>
+        <UIPopup v-if="showModal" @close-popup="showModal = false">
+          <h2>Загрузка шаблонов грамот</h2>
+          <form @submit.prevent="uploadAndGenerate">
+            <div class="file-input-group">
+              <label>
+                <span>Шаблон для 1–3 места (PDF, 3 страницы):</span>
+                <input
+                  type="file"
+                  accept=".pdf"
+                  @change="handleFile($event, 'places')"
+                  required
+                />
+              </label>
+              <label>
+                <span>Шаблон для Гран-при (PDF):</span>
+                <input
+                  type="file"
+                  accept=".pdf"
+                  @change="handleFile($event, 'grand')"
+                  required
+                />
+              </label>
+              <label>
+                <span>Шаблон для сертификата участника (PDF):</span>
+                <input
+                  type="file"
+                  accept=".pdf"
+                  @change="handleFile($event, 'sert')"
+                  required
+                />
+              </label>
+            </div>
+
+            <div v-if="uploadError" class="error-message">
+              {{ uploadError }}
+            </div>
+
+            <UIButton type="submit" :loading="generating"
+              >Сгенерировать и скачать</UIButton
+            >
+          </form>
+        </UIPopup>
       </Teleport>
     </div>
   </div>
@@ -553,6 +600,69 @@
     if (e.key === 'Escape') closeFilterMenu();
   }
 
+  const showModal = ref(false);
+  const generating = ref(false);
+  const uploadError = ref<string | null>(null);
+
+  // Хранилище загруженных файлов (объект: имя поля -> File)
+  const uploadedFiles = ref<Record<string, File>>({});
+
+  function handleFile(event: Event, fieldName: string) {
+    const input = event.target as HTMLInputElement;
+    if (input.files && input.files[0]) {
+      uploadedFiles.value[fieldName] = input.files[0];
+    }
+  }
+
+  async function uploadAndGenerate() {
+    if (
+      !uploadedFiles.value.places ||
+      !uploadedFiles.value.grand ||
+      !uploadedFiles.value.sert
+    ) {
+      uploadError.value = 'Загрузите все три шаблона';
+      return;
+    }
+
+    generating.value = true;
+    uploadError.value = null;
+
+    try {
+      const formData = new FormData();
+      formData.append('places', uploadedFiles.value.places);
+      formData.append('grand', uploadedFiles.value.grand);
+      formData.append('sert', uploadedFiles.value.sert);
+
+      const response = await fetch('/api/beauty-2026/generate-certificates', {
+        method: 'POST',
+        body: formData,
+      });
+
+      if (!response.ok) {
+        const err = await response.json();
+        throw new Error(err.message || 'Ошибка генерации');
+      }
+
+      const blob = await response.blob();
+      const url = URL.createObjectURL(blob);
+      const link = document.createElement('a');
+      link.href = url;
+      link.download = `certificates_${Date.now()}.zip`;
+      document.body.appendChild(link);
+      link.click();
+      document.body.removeChild(link);
+      URL.revokeObjectURL(url);
+
+      // Закрываем модалку
+      showModal.value = false;
+      uploadedFiles.value = {};
+    } catch (err: any) {
+      uploadError.value = err.message;
+    } finally {
+      generating.value = false;
+    }
+  }
+
   onMounted(() => {
     document.addEventListener('click', onDocumentClick);
     document.addEventListener('keydown', onEscape);
@@ -676,5 +786,41 @@
         }
       }
     }
+  }
+  .admin__actions {
+    display: flex;
+    flex-wrap: wrap;
+    align-items: center;
+    justify-content: space-between;
+    margin-bottom: 1rem;
+  }
+  .btn-generate {
+    width: auto;
+    padding: 8px 20px;
+    font-size: 0.9em;
+  }
+  .file-input-group {
+    display: flex;
+    flex-direction: column;
+    gap: 12px;
+    margin: 16px 0;
+    label {
+      display: flex;
+      flex-direction: column;
+      gap: 4px;
+      font-weight: 500;
+      span {
+        font-size: 0.9rem;
+      }
+      input[type='file'] {
+        padding: 6px;
+        background: #f9f9f9;
+        border: 2px solid var(--accent);
+      }
+    }
+  }
+  .error-message {
+    margin: 8px 0;
+    color: var(--red);
   }
 </style>

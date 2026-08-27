@@ -33,17 +33,17 @@
           />
         </div>
       </a>
-      <!-- <div class="video">
+      <div class="video">
         <video-player>
           <video-skin>
             <video
               playsinline
               controls
-              src="https://s3.regru.cloud/opk-info/easter-egg/video_2026.mp4"
+              src="https://s3.regru.cloud/opk-info/beauty-of-gods-world/XXII/Информация о конкурсе КБМ 2026_360p.mp4"
             ></video>
           </video-skin>
         </video-player>
-      </div> -->
+      </div>
       <h3 id="info-1">
         II региональный этап Конкурса проводится
         <strong>с 1 сентября по 28 октября 2026 года</strong>, принять участие в
