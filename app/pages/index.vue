@@ -9,7 +9,7 @@
         />
         <figcaption>Митрофан, митрополит Горловский и Славянский</figcaption>
         <figcaption>
-          <span>Упаравляющий Горловской Епархией</span>
+          <span>Управляющий Горловской Епархией</span>
         </figcaption>
       </figure>
       <figure class="photo right">
