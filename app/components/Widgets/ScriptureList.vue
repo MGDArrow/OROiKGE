@@ -55,7 +55,7 @@
             <li><strong>Ведущий: </strong>протоиерей Николай (Зирка);</li>
             <li>
               <strong>Телефон: </strong>
-              <a href="tel:79495208117">+7 (949) 520-81-17</a>.
+              <a href="tel:79496370131">+7 (949) 637-01-31</a>.
             </li>
           </UIList>
         </div>
@@ -223,6 +223,7 @@
           </UIList>
         </div>
       </div>
+
       <div class="registry__item" v-if="button === 'Шахтёрск'">
         <NuxtImg
           src="https://s3.regru.cloud/opk-info/ppip/templ_9.webp"
@@ -290,10 +291,10 @@
             <li><strong>Адрес: </strong>г. Ждановка, ул. Школьная, 3а;</li>
             <li><strong>Время занятий: </strong>среда, 17:00;</li>
             <li><strong>Ведущий: </strong>протоиерей Алексий Пахомов;</li>
-            <!-- <li>
+            <li>
               <strong>Телефон: </strong>
-              <a href="tel:79493497035">+7 (949) 349-70-35</a>.
-            </li> -->
+              <a href="tel:79493428915">+7 (949) 342-89-15</a>.
+            </li>
           </UIList>
         </div>
       </div>
@@ -316,6 +317,32 @@
             <li>
               <strong>Телефон: </strong>
               <a href="tel:79493431087">+7 (949) 343-10-87</a>.
+            </li>
+          </UIList>
+        </div>
+      </div>
+      <div class="registry__item" v-if="button === 'Горловка'">
+        <NuxtImg
+          src="https://s3.regru.cloud/opk-info/ppip/templ_13.webp"
+          alt="photo"
+        />
+        <div class="info">
+          <h4>
+            <strong
+              >Библейская группа при храме иконы Божией Матери
+              «Казанская»</strong
+            >
+          </h4>
+          <UIList>
+            <li><strong>Адрес: </strong>г. Горловка, ул. Терриконная, 2;</li>
+            <li>
+              <strong>Время занятий: </strong>воскресенье, после Литургии (около
+              11:00);
+            </li>
+            <li><strong>Ведущий: </strong>протоиерей Василий Туренко;</li>
+            <li>
+              <strong>Телефон: </strong>
+              <a href="tel:79493697277">+7 (949) 369-72-77</a>.
             </li>
           </UIList>
         </div>
