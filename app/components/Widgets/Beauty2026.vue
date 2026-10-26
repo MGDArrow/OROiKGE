@@ -372,7 +372,7 @@
 
   // Даты конкурса (при необходимости скорректировать)
   const dateStart = new Date(2026, 8, 1);
-  const dateEnd = new Date(2026, 9, 26);
+  const dateEnd = new Date(2026, 9, 25);
 
   const dateCurrent = ref<Date | null>(null);
   onMounted(() => {
