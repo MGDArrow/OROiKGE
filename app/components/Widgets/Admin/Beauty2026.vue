@@ -10,9 +10,14 @@
           {{ currentStat.schools }}/{{ statistic.schools }} учреждений,
           {{ currentStat.winners }}/{{ statistic.winners }} победителей;
         </p>
-        <UIButton @click="showModal = true" class="btn-generate">
-          Сгенерировать грамоты
-        </UIButton>
+        <div class="admin__buttons">
+          <UIButton @click="showAddForm = true" class="btn-add">
+            Добавить работу вручную
+          </UIButton>
+          <UIButton @click="showModal = true" class="btn-generate">
+            Сгенерировать грамоты
+          </UIButton>
+        </div>
       </div>
       <table class="admin__table">
         <thead>
@@ -132,20 +137,34 @@
               {{ getNomination(item.nomination, item.authorOld) }}
             </td>
             <td>
-              {{ item.representativeSurname }} {{ item.representativeName }}
-              {{ item.representativeFathername }}
-              <a :href="`tel:${getPhone(item.representativePhone)}`">{{
-                item.representativePhone
-              }}</a>
+              {{
+                formatFio(
+                  item.representativeSurname,
+                  item.representativeName,
+                  item.representativeFathername,
+                )
+              }}
+              <a
+                v-if="item.representativePhone"
+                :href="`tel:${getPhone(item.representativePhone)}`"
+                >{{ item.representativePhone }}</a
+              >
             </td>
             <td>
-              {{ item.teacherSurname }} {{ item.teacherName }}
-              {{ item.teacherFathername }}
-              <a :href="`tel:${getPhone(item.teacherPhone)}`">{{
-                item.teacherPhone
-              }}</a>
+              {{
+                formatFio(
+                  item.teacherSurname,
+                  item.teacherName,
+                  item.teacherFathername,
+                )
+              }}
+              <a
+                v-if="item.teacherPhone"
+                :href="`tel:${getPhone(item.teacherPhone)}`"
+                >{{ item.teacherPhone }}</a
+              >
             </td>
-            <td class="school-cell">{{ item.school }}</td>
+            <td class="school-cell">{{ item.school ?? '—' }}</td>
             <td>
               <UISpinner v-if="loadingSet.has(item.id)" />
               <UIInputSelect
@@ -245,6 +264,73 @@
             >
           </form>
         </UIPopup>
+        <UIPopup v-if="showAddForm" @close-popup="closeAddForm">
+          <h2>Добавить работу вручную</h2>
+          <form @submit.prevent="submitManual">
+            <div class="popup__flex">
+              <UIInput
+                v-model="manualForm.authorSurname"
+                label="Фамилия участника:"
+                placeholder="Иванов"
+                required
+              />
+              <UIInput
+                v-model="manualForm.authorName"
+                label="Имя участника:"
+                placeholder="Иван"
+                required
+              />
+              <UIInput
+                v-model="manualForm.authorFathername"
+                label="Отчество участника:"
+                placeholder="Иванович"
+                required
+              />
+              <UIInput
+                v-model.number="manualForm.authorOld"
+                label="Возраст:"
+                :placeholder="'Полный возраст'"
+                :min="ageRange.min"
+                :max="ageRange.max"
+                required
+              />
+            </div>
+            <div class="popup__flex">
+              <UIInput
+                v-model="manualForm.jobName"
+                label="Название работы:"
+                placeholder="Моя работа"
+                required
+              />
+              <UIInputSelect
+                v-model="manualForm.nomination"
+                label="Номинация:"
+                :options="nominations"
+                required
+              />
+            </div>
+            <UIInputTextarea
+              v-model="manualForm.school"
+              label="Учебное заведение:"
+              placeholder="Полное название и адрес учебного заведения"
+              required
+            />
+            <div v-if="filteredSchools.length" class="search__list">
+              <div
+                v-for="school in filteredSchools"
+                :key="school"
+                class="search__item"
+                @click="manualForm.school = school"
+              >
+                {{ school }}
+              </div>
+            </div>
+            <div v-if="manualError" class="error-message">
+              {{ manualError }}
+            </div>
+            <UIButton type="submit" :loading="manualLoading">Добавить</UIButton>
+          </form>
+        </UIPopup>
       </Teleport>
     </div>
   </div>
@@ -253,6 +339,8 @@
 <script setup lang="ts">
   import type { BeautyII } from '~~/prisma/generated/client';
   import { formatLabelNumber } from '~~/utils/utils';
+  import { SCHOOLS, DOY, PAINT, VSH } from '~/assets/schools';
+  import Fuse from 'fuse.js';
 
   // Сортировка
   const sortBy = ref<
@@ -283,6 +371,29 @@
     },
   );
 
+  // Список всех школ (в верхнем регистре, как в форме на странице конкурса)
+  const schoolsAll: string[] = [...SCHOOLS, ...PAINT, ...DOY, ...VSH].map(
+    (item) => item.toUpperCase(),
+  );
+
+  let fuse: Fuse<string> | null = null;
+
+  onMounted(() => {
+    fuse = new Fuse(schoolsAll, { useTokenSearch: true, tokenMatch: 'all' });
+  });
+
+  const filteredSchools = computed(() => {
+    if (schoolsAll.includes(manualForm.school) || manualForm.school === '')
+      return [];
+    const query = manualForm.school.trim();
+    if (!query) return schoolsAll.slice(0, 5);
+    if (!fuse) return [];
+    return fuse
+      .search(query)
+      .map((r) => r.item)
+      .slice(0, 10);
+  });
+
   const applications = computed(() => data.value?.data ?? []);
   const statistic = computed(
     () =>
@@ -300,7 +411,7 @@
       authors.add(
         `${el.authorSurname} ${el.authorName} ${el.authorFathername} ${el.authorOld}`,
       );
-      schools.add(el.school);
+      if (el.school) schools.add(el.school);
     });
 
     return {
@@ -345,9 +456,17 @@
         return item.nomination + suffix;
       }
       case 'representative':
-        return `${item.representativeSurname} ${item.representativeName} ${item.representativeFathername}`;
+        return formatFio(
+          item.representativeSurname,
+          item.representativeName,
+          item.representativeFathername,
+        );
       case 'teacher':
-        return `${item.teacherSurname} ${item.teacherName} ${item.teacherFathername}`;
+        return formatFio(
+          item.teacherSurname,
+          item.teacherName,
+          item.teacherFathername,
+        );
       case 'school':
         return item.school;
       case 'place':
@@ -497,9 +616,17 @@
         case 'author':
           return `${item.authorSurname} ${item.authorName} ${item.authorFathername}`;
         case 'teacher':
-          return `${item.teacherSurname} ${item.teacherName} ${item.teacherFathername}`;
+          return formatFio(
+            item.teacherSurname,
+            item.teacherName,
+            item.teacherFathername,
+          );
         case 'representative':
-          return `${item.representativeSurname} ${item.representativeName} ${item.representativeFathername}`;
+          return formatFio(
+            item.representativeSurname,
+            item.representativeName,
+            item.representativeFathername,
+          );
         case 'nomination':
           return (
             item.nomination + getNomination(item.nomination, item.authorOld)
@@ -540,8 +667,20 @@
     return age < 13 ? `(9–12 лет)` : '(13–17 лет)';
   }
 
-  function getPhone(phone: string) {
+  function getPhone(phone: string | null | undefined): string {
+    if (!phone) return '';
     return phone.replace(/[-+()\s]/g, '');
+  }
+
+  function formatFio(
+    surname?: string | null,
+    name?: string | null,
+    fathername?: string | null,
+  ): string {
+    const parts = [surname, name, fathername].filter(
+      (p): p is string => !!p && p.trim() !== '',
+    );
+    return parts.length ? parts.join(' ') : '—';
   }
 
   // === Работа с местами ===
@@ -672,6 +811,77 @@
     document.removeEventListener('click', onDocumentClick);
     document.removeEventListener('keydown', onEscape);
   });
+
+  // === Ручное добавление работы ===
+  const showAddForm = ref(false);
+  const manualLoading = ref(false);
+  const manualError = ref<string | null>(null);
+
+  const nominations = [
+    { value: '«КРАСОТА ГЛАЗАМИ РЕБЁНКА»', label: '«КРАСОТА ГЛАЗАМИ РЕБЁНКА»' },
+    { value: '«ОСНОВНАЯ ТЕМАТИКА»', label: '«ОСНОВНАЯ ТЕМАТИКА»' },
+    { value: '«РОСПИСЬ ПО ФАРФОРУ»', label: '«РОСПИСЬ ПО ФАРФОРУ»' },
+  ];
+
+  const defaultManualForm = {
+    authorSurname: '',
+    authorName: '',
+    authorFathername: '',
+    authorOld: 9,
+    jobName: '',
+    nomination: '«ОСНОВНАЯ ТЕМАТИКА»',
+    school: '',
+  };
+
+  const manualForm = reactive({ ...defaultManualForm });
+
+  const ageRange = computed(() => {
+    switch (manualForm.nomination) {
+      case '«КРАСОТА ГЛАЗАМИ РЕБЁНКА»':
+        return { min: 5, max: 8 };
+      case '«РОСПИСЬ ПО ФАРФОРУ»':
+        return { min: 13, max: 17 };
+      default:
+        return { min: 9, max: 17 };
+    }
+  });
+
+  watch(
+    () => manualForm.nomination,
+    () => {
+      if (manualForm.authorOld < ageRange.value.min)
+        manualForm.authorOld = ageRange.value.min;
+      if (manualForm.authorOld > ageRange.value.max)
+        manualForm.authorOld = ageRange.value.max;
+    },
+  );
+
+  function closeAddForm() {
+    showAddForm.value = false;
+    Object.assign(manualForm, defaultManualForm);
+    manualError.value = null;
+  }
+
+  async function submitManual() {
+    manualLoading.value = true;
+    manualError.value = null;
+    try {
+      await $fetch('/api/beauty-2026/manual-add', {
+        method: 'POST',
+        body: manualForm,
+      });
+      closeAddForm();
+      await refresh();
+    } catch (err: any) {
+      if (err.data?.data) {
+        manualError.value = err.data.data.map((e: any) => e.message).join('; ');
+      } else {
+        manualError.value = err.message || 'Ошибка при добавлении';
+      }
+    } finally {
+      manualLoading.value = false;
+    }
+  }
 </script>
 
 <style scoped lang="scss">
@@ -822,5 +1032,45 @@
   .error-message {
     margin: 8px 0;
     color: var(--red);
+  }
+  .admin__buttons {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 10px;
+    align-items: center;
+  }
+  .btn-add {
+    width: auto;
+    padding: 8px 20px;
+    font-size: 0.9em;
+  }
+  .popup__flex {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 5px 10px;
+    margin-bottom: 10px;
+  }
+  .search {
+    &__list {
+      width: 100%;
+      max-height: 200px;
+      margin-bottom: 10px;
+      overflow-y: auto;
+      font-size: 0.7em;
+      border: 2px solid var(--accent);
+      border-top: none;
+    }
+    &__item {
+      padding: 4px 8px;
+      border-bottom: 1px solid #eee;
+      cursor: pointer;
+      &:hover {
+        color: var(--color-white);
+        background: var(--accent);
+      }
+      &:last-child {
+        border-bottom: none;
+      }
+    }
   }
 </style>

@@ -282,14 +282,14 @@ export type BeautyIIGroupByOutputType = {
   authorName: string
   authorFathername: string
   authorOld: number
-  representativeSurname: string
-  representativeName: string
-  representativeFathername: string
-  representativePhone: string
-  teacherSurname: string
-  teacherName: string
-  teacherFathername: string
-  teacherPhone: string
+  representativeSurname: string | null
+  representativeName: string | null
+  representativeFathername: string | null
+  representativePhone: string | null
+  teacherSurname: string | null
+  teacherName: string | null
+  teacherFathername: string | null
+  teacherPhone: string | null
   school: string
   place: string | null
   createdAt: Date
@@ -328,14 +328,14 @@ export type BeautyIIWhereInput = {
   authorName?: Prisma.StringFilter<"BeautyII"> | string
   authorFathername?: Prisma.StringFilter<"BeautyII"> | string
   authorOld?: Prisma.IntFilter<"BeautyII"> | number
-  representativeSurname?: Prisma.StringFilter<"BeautyII"> | string
-  representativeName?: Prisma.StringFilter<"BeautyII"> | string
-  representativeFathername?: Prisma.StringFilter<"BeautyII"> | string
-  representativePhone?: Prisma.StringFilter<"BeautyII"> | string
-  teacherSurname?: Prisma.StringFilter<"BeautyII"> | string
-  teacherName?: Prisma.StringFilter<"BeautyII"> | string
-  teacherFathername?: Prisma.StringFilter<"BeautyII"> | string
-  teacherPhone?: Prisma.StringFilter<"BeautyII"> | string
+  representativeSurname?: Prisma.StringNullableFilter<"BeautyII"> | string | null
+  representativeName?: Prisma.StringNullableFilter<"BeautyII"> | string | null
+  representativeFathername?: Prisma.StringNullableFilter<"BeautyII"> | string | null
+  representativePhone?: Prisma.StringNullableFilter<"BeautyII"> | string | null
+  teacherSurname?: Prisma.StringNullableFilter<"BeautyII"> | string | null
+  teacherName?: Prisma.StringNullableFilter<"BeautyII"> | string | null
+  teacherFathername?: Prisma.StringNullableFilter<"BeautyII"> | string | null
+  teacherPhone?: Prisma.StringNullableFilter<"BeautyII"> | string | null
   school?: Prisma.StringFilter<"BeautyII"> | string
   place?: Prisma.StringNullableFilter<"BeautyII"> | string | null
   createdAt?: Prisma.DateTimeFilter<"BeautyII"> | Date | string
@@ -351,14 +351,14 @@ export type BeautyIIOrderByWithRelationInput = {
   authorName?: Prisma.SortOrder
   authorFathername?: Prisma.SortOrder
   authorOld?: Prisma.SortOrder
-  representativeSurname?: Prisma.SortOrder
-  representativeName?: Prisma.SortOrder
-  representativeFathername?: Prisma.SortOrder
-  representativePhone?: Prisma.SortOrder
-  teacherSurname?: Prisma.SortOrder
-  teacherName?: Prisma.SortOrder
-  teacherFathername?: Prisma.SortOrder
-  teacherPhone?: Prisma.SortOrder
+  representativeSurname?: Prisma.SortOrderInput | Prisma.SortOrder
+  representativeName?: Prisma.SortOrderInput | Prisma.SortOrder
+  representativeFathername?: Prisma.SortOrderInput | Prisma.SortOrder
+  representativePhone?: Prisma.SortOrderInput | Prisma.SortOrder
+  teacherSurname?: Prisma.SortOrderInput | Prisma.SortOrder
+  teacherName?: Prisma.SortOrderInput | Prisma.SortOrder
+  teacherFathername?: Prisma.SortOrderInput | Prisma.SortOrder
+  teacherPhone?: Prisma.SortOrderInput | Prisma.SortOrder
   school?: Prisma.SortOrder
   place?: Prisma.SortOrderInput | Prisma.SortOrder
   createdAt?: Prisma.SortOrder
@@ -377,14 +377,14 @@ export type BeautyIIWhereUniqueInput = Prisma.AtLeast<{
   authorName?: Prisma.StringFilter<"BeautyII"> | string
   authorFathername?: Prisma.StringFilter<"BeautyII"> | string
   authorOld?: Prisma.IntFilter<"BeautyII"> | number
-  representativeSurname?: Prisma.StringFilter<"BeautyII"> | string
-  representativeName?: Prisma.StringFilter<"BeautyII"> | string
-  representativeFathername?: Prisma.StringFilter<"BeautyII"> | string
-  representativePhone?: Prisma.StringFilter<"BeautyII"> | string
-  teacherSurname?: Prisma.StringFilter<"BeautyII"> | string
-  teacherName?: Prisma.StringFilter<"BeautyII"> | string
-  teacherFathername?: Prisma.StringFilter<"BeautyII"> | string
-  teacherPhone?: Prisma.StringFilter<"BeautyII"> | string
+  representativeSurname?: Prisma.StringNullableFilter<"BeautyII"> | string | null
+  representativeName?: Prisma.StringNullableFilter<"BeautyII"> | string | null
+  representativeFathername?: Prisma.StringNullableFilter<"BeautyII"> | string | null
+  representativePhone?: Prisma.StringNullableFilter<"BeautyII"> | string | null
+  teacherSurname?: Prisma.StringNullableFilter<"BeautyII"> | string | null
+  teacherName?: Prisma.StringNullableFilter<"BeautyII"> | string | null
+  teacherFathername?: Prisma.StringNullableFilter<"BeautyII"> | string | null
+  teacherPhone?: Prisma.StringNullableFilter<"BeautyII"> | string | null
   school?: Prisma.StringFilter<"BeautyII"> | string
   place?: Prisma.StringNullableFilter<"BeautyII"> | string | null
   createdAt?: Prisma.DateTimeFilter<"BeautyII"> | Date | string
@@ -400,14 +400,14 @@ export type BeautyIIOrderByWithAggregationInput = {
   authorName?: Prisma.SortOrder
   authorFathername?: Prisma.SortOrder
   authorOld?: Prisma.SortOrder
-  representativeSurname?: Prisma.SortOrder
-  representativeName?: Prisma.SortOrder
-  representativeFathername?: Prisma.SortOrder
-  representativePhone?: Prisma.SortOrder
-  teacherSurname?: Prisma.SortOrder
-  teacherName?: Prisma.SortOrder
-  teacherFathername?: Prisma.SortOrder
-  teacherPhone?: Prisma.SortOrder
+  representativeSurname?: Prisma.SortOrderInput | Prisma.SortOrder
+  representativeName?: Prisma.SortOrderInput | Prisma.SortOrder
+  representativeFathername?: Prisma.SortOrderInput | Prisma.SortOrder
+  representativePhone?: Prisma.SortOrderInput | Prisma.SortOrder
+  teacherSurname?: Prisma.SortOrderInput | Prisma.SortOrder
+  teacherName?: Prisma.SortOrderInput | Prisma.SortOrder
+  teacherFathername?: Prisma.SortOrderInput | Prisma.SortOrder
+  teacherPhone?: Prisma.SortOrderInput | Prisma.SortOrder
   school?: Prisma.SortOrder
   place?: Prisma.SortOrderInput | Prisma.SortOrder
   createdAt?: Prisma.SortOrder
@@ -431,14 +431,14 @@ export type BeautyIIScalarWhereWithAggregatesInput = {
   authorName?: Prisma.StringWithAggregatesFilter<"BeautyII"> | string
   authorFathername?: Prisma.StringWithAggregatesFilter<"BeautyII"> | string
   authorOld?: Prisma.IntWithAggregatesFilter<"BeautyII"> | number
-  representativeSurname?: Prisma.StringWithAggregatesFilter<"BeautyII"> | string
-  representativeName?: Prisma.StringWithAggregatesFilter<"BeautyII"> | string
-  representativeFathername?: Prisma.StringWithAggregatesFilter<"BeautyII"> | string
-  representativePhone?: Prisma.StringWithAggregatesFilter<"BeautyII"> | string
-  teacherSurname?: Prisma.StringWithAggregatesFilter<"BeautyII"> | string
-  teacherName?: Prisma.StringWithAggregatesFilter<"BeautyII"> | string
-  teacherFathername?: Prisma.StringWithAggregatesFilter<"BeautyII"> | string
-  teacherPhone?: Prisma.StringWithAggregatesFilter<"BeautyII"> | string
+  representativeSurname?: Prisma.StringNullableWithAggregatesFilter<"BeautyII"> | string | null
+  representativeName?: Prisma.StringNullableWithAggregatesFilter<"BeautyII"> | string | null
+  representativeFathername?: Prisma.StringNullableWithAggregatesFilter<"BeautyII"> | string | null
+  representativePhone?: Prisma.StringNullableWithAggregatesFilter<"BeautyII"> | string | null
+  teacherSurname?: Prisma.StringNullableWithAggregatesFilter<"BeautyII"> | string | null
+  teacherName?: Prisma.StringNullableWithAggregatesFilter<"BeautyII"> | string | null
+  teacherFathername?: Prisma.StringNullableWithAggregatesFilter<"BeautyII"> | string | null
+  teacherPhone?: Prisma.StringNullableWithAggregatesFilter<"BeautyII"> | string | null
   school?: Prisma.StringWithAggregatesFilter<"BeautyII"> | string
   place?: Prisma.StringNullableWithAggregatesFilter<"BeautyII"> | string | null
   createdAt?: Prisma.DateTimeWithAggregatesFilter<"BeautyII"> | Date | string
@@ -453,14 +453,14 @@ export type BeautyIICreateInput = {
   authorName: string
   authorFathername: string
   authorOld: number
-  representativeSurname: string
-  representativeName: string
-  representativeFathername: string
-  representativePhone: string
-  teacherSurname: string
-  teacherName: string
-  teacherFathername: string
-  teacherPhone: string
+  representativeSurname?: string | null
+  representativeName?: string | null
+  representativeFathername?: string | null
+  representativePhone?: string | null
+  teacherSurname?: string | null
+  teacherName?: string | null
+  teacherFathername?: string | null
+  teacherPhone?: string | null
   school: string
   place?: string | null
   createdAt?: Date | string
@@ -476,14 +476,14 @@ export type BeautyIIUncheckedCreateInput = {
   authorName: string
   authorFathername: string
   authorOld: number
-  representativeSurname: string
-  representativeName: string
-  representativeFathername: string
-  representativePhone: string
-  teacherSurname: string
-  teacherName: string
-  teacherFathername: string
-  teacherPhone: string
+  representativeSurname?: string | null
+  representativeName?: string | null
+  representativeFathername?: string | null
+  representativePhone?: string | null
+  teacherSurname?: string | null
+  teacherName?: string | null
+  teacherFathername?: string | null
+  teacherPhone?: string | null
   school: string
   place?: string | null
   createdAt?: Date | string
@@ -498,14 +498,14 @@ export type BeautyIIUpdateInput = {
   authorName?: Prisma.StringFieldUpdateOperationsInput | string
   authorFathername?: Prisma.StringFieldUpdateOperationsInput | string
   authorOld?: Prisma.IntFieldUpdateOperationsInput | number
-  representativeSurname?: Prisma.StringFieldUpdateOperationsInput | string
-  representativeName?: Prisma.StringFieldUpdateOperationsInput | string
-  representativeFathername?: Prisma.StringFieldUpdateOperationsInput | string
-  representativePhone?: Prisma.StringFieldUpdateOperationsInput | string
-  teacherSurname?: Prisma.StringFieldUpdateOperationsInput | string
-  teacherName?: Prisma.StringFieldUpdateOperationsInput | string
-  teacherFathername?: Prisma.StringFieldUpdateOperationsInput | string
-  teacherPhone?: Prisma.StringFieldUpdateOperationsInput | string
+  representativeSurname?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  representativeName?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  representativeFathername?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  representativePhone?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  teacherSurname?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  teacherName?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  teacherFathername?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  teacherPhone?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   school?: Prisma.StringFieldUpdateOperationsInput | string
   place?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   createdAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
@@ -521,14 +521,14 @@ export type BeautyIIUncheckedUpdateInput = {
   authorName?: Prisma.StringFieldUpdateOperationsInput | string
   authorFathername?: Prisma.StringFieldUpdateOperationsInput | string
   authorOld?: Prisma.IntFieldUpdateOperationsInput | number
-  representativeSurname?: Prisma.StringFieldUpdateOperationsInput | string
-  representativeName?: Prisma.StringFieldUpdateOperationsInput | string
-  representativeFathername?: Prisma.StringFieldUpdateOperationsInput | string
-  representativePhone?: Prisma.StringFieldUpdateOperationsInput | string
-  teacherSurname?: Prisma.StringFieldUpdateOperationsInput | string
-  teacherName?: Prisma.StringFieldUpdateOperationsInput | string
-  teacherFathername?: Prisma.StringFieldUpdateOperationsInput | string
-  teacherPhone?: Prisma.StringFieldUpdateOperationsInput | string
+  representativeSurname?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  representativeName?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  representativeFathername?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  representativePhone?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  teacherSurname?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  teacherName?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  teacherFathername?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  teacherPhone?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   school?: Prisma.StringFieldUpdateOperationsInput | string
   place?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   createdAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
@@ -544,14 +544,14 @@ export type BeautyIICreateManyInput = {
   authorName: string
   authorFathername: string
   authorOld: number
-  representativeSurname: string
-  representativeName: string
-  representativeFathername: string
-  representativePhone: string
-  teacherSurname: string
-  teacherName: string
-  teacherFathername: string
-  teacherPhone: string
+  representativeSurname?: string | null
+  representativeName?: string | null
+  representativeFathername?: string | null
+  representativePhone?: string | null
+  teacherSurname?: string | null
+  teacherName?: string | null
+  teacherFathername?: string | null
+  teacherPhone?: string | null
   school: string
   place?: string | null
   createdAt?: Date | string
@@ -566,14 +566,14 @@ export type BeautyIIUpdateManyMutationInput = {
   authorName?: Prisma.StringFieldUpdateOperationsInput | string
   authorFathername?: Prisma.StringFieldUpdateOperationsInput | string
   authorOld?: Prisma.IntFieldUpdateOperationsInput | number
-  representativeSurname?: Prisma.StringFieldUpdateOperationsInput | string
-  representativeName?: Prisma.StringFieldUpdateOperationsInput | string
-  representativeFathername?: Prisma.StringFieldUpdateOperationsInput | string
-  representativePhone?: Prisma.StringFieldUpdateOperationsInput | string
-  teacherSurname?: Prisma.StringFieldUpdateOperationsInput | string
-  teacherName?: Prisma.StringFieldUpdateOperationsInput | string
-  teacherFathername?: Prisma.StringFieldUpdateOperationsInput | string
-  teacherPhone?: Prisma.StringFieldUpdateOperationsInput | string
+  representativeSurname?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  representativeName?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  representativeFathername?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  representativePhone?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  teacherSurname?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  teacherName?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  teacherFathername?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  teacherPhone?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   school?: Prisma.StringFieldUpdateOperationsInput | string
   place?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   createdAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
@@ -589,14 +589,14 @@ export type BeautyIIUncheckedUpdateManyInput = {
   authorName?: Prisma.StringFieldUpdateOperationsInput | string
   authorFathername?: Prisma.StringFieldUpdateOperationsInput | string
   authorOld?: Prisma.IntFieldUpdateOperationsInput | number
-  representativeSurname?: Prisma.StringFieldUpdateOperationsInput | string
-  representativeName?: Prisma.StringFieldUpdateOperationsInput | string
-  representativeFathername?: Prisma.StringFieldUpdateOperationsInput | string
-  representativePhone?: Prisma.StringFieldUpdateOperationsInput | string
-  teacherSurname?: Prisma.StringFieldUpdateOperationsInput | string
-  teacherName?: Prisma.StringFieldUpdateOperationsInput | string
-  teacherFathername?: Prisma.StringFieldUpdateOperationsInput | string
-  teacherPhone?: Prisma.StringFieldUpdateOperationsInput | string
+  representativeSurname?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  representativeName?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  representativeFathername?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  representativePhone?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  teacherSurname?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  teacherName?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  teacherFathername?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  teacherPhone?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   school?: Prisma.StringFieldUpdateOperationsInput | string
   place?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   createdAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
@@ -810,14 +810,14 @@ export type $BeautyIIPayload<ExtArgs extends runtime.Types.Extensions.InternalAr
     authorName: string
     authorFathername: string
     authorOld: number
-    representativeSurname: string
-    representativeName: string
-    representativeFathername: string
-    representativePhone: string
-    teacherSurname: string
-    teacherName: string
-    teacherFathername: string
-    teacherPhone: string
+    representativeSurname: string | null
+    representativeName: string | null
+    representativeFathername: string | null
+    representativePhone: string | null
+    teacherSurname: string | null
+    teacherName: string | null
+    teacherFathername: string | null
+    teacherPhone: string | null
     school: string
     place: string | null
     createdAt: Date
