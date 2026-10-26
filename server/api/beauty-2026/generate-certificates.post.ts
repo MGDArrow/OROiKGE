@@ -29,8 +29,21 @@ const CONFIG = {
     copper: '#e36f0c',
     diamond: '#3cbbd0',
   },
-  fontPath: path.resolve(process.cwd(), 'public/fonts/SPSL-New-Cyrillic.ttf'),
+  fontPath: getFontPath(),
 };
+
+function getFontPath(): string {
+  const candidates = [
+    // dev
+    path.resolve(process.cwd(), 'public/fonts/SPSL-New-Cyrillic.ttf'),
+    // prod (после nuxt build)
+    path.resolve(process.cwd(), '.output/public/fonts/SPSL-New-Cyrillic.ttf'),
+  ];
+  for (const p of candidates) {
+    if (fs.existsSync(p)) return p;
+  }
+  return candidates[0];
+}
 
 // дополнительные прямоугольники для грамот за места
 const RECT_NAME_PLACE = {
@@ -169,10 +182,11 @@ export default defineEventHandler(async (event) => {
   let fontBytes: Buffer;
   try {
     fontBytes = await fs.readFile(CONFIG.fontPath);
-  } catch {
+  } catch (e: any) {
+    console.error(`Не удалось прочитать шрифт: ${CONFIG.fontPath}`, e);
     throw createError({
       statusCode: 500,
-      message: 'Шрифт SPSL-New-Cyrillic не найден',
+      message: `Шрифт SPSL-New-Cyrillic не найден (${CONFIG.fontPath})`,
     });
   }
 
